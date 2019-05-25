@@ -1,23 +1,25 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using Support.Application.Contract.DTO;
+using Support.Application.Contract.IService;
 
 namespace Support.Host.Controller
 {
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     [ApiController]
-    public class PersonController : ControllerBase
+    public class ConfigController : ControllerBase
     {
-        private readonly IPersonService _personService;
-        public PersonController(IPersonService personService)
+        private readonly IConfigService _configService;
+        public ConfigController(IConfigService configService)
         {
-            _personService = personService;
+            _configService = configService;
         }
 
-        //[HttpGet]
-        //public List<Customer> Get()
-        //{
-        //    return _context.Customers.ToList();
-        //}
+        [HttpGet]
+        public List<ConfigDTO> Get()
+        {
+            return _configService.GetAll();
+        }
 
         //[HttpGet("{id}")]
         //public Customer Get(long id)

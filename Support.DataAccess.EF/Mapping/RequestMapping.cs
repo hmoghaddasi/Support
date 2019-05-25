@@ -7,15 +7,16 @@ namespace Support.DataAccess.EF.Mapping
 {
     public class RequestMapping : IEntityTypeConfiguration<Request>
     {
-        public RequestMapping(EntityTypeBuilder<Request> builder)
+        public void Configure(EntityTypeBuilder<Request> builder)
         {
-            builder.ToTable("Request", schemaName: "gen").HasKey(a => a.RequestId).Property(a => a.RequestId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            builder.ToTable("Request", "gen").HasKey(a => a.RequestId);
+            builder.Property(a => a.RequestId).ValueGeneratedOnAdd();
 
-           builder.HasRequired(a => a.RequestBy).WithMany(a => a.Requests).HasForeignKey(a => a.RequestById).WillCascadeOnDelete(false);
-           builder.HasRequired(a => a.Status).WithMany().HasForeignKey(a => a.StatusId).WillCascadeOnDelete(false);
-           builder.HasRequired(a => a.Priority).WithMany().HasForeignKey(a => a.PriorityId).WillCascadeOnDelete(false);
-           builder.HasRequired(a => a.Type).WithMany().HasForeignKey(a => a.TypeId).WillCascadeOnDelete(false);
-            builder.HasRequired(a => a.Assigned).WithMany(a => a.AssignResponses).HasForeignKey(a => a.AssignedId).WillCascadeOnDelete(false);
+            builder.HasOne(a => a.RequestBy).WithMany(a => a.Requests).HasForeignKey(a => a.RequestById).OnDelete(DeleteBehavior.Cascade);
+            builder.HasOne(a => a.Status).WithMany().HasForeignKey(a => a.StatusId).OnDelete(DeleteBehavior.Cascade);
+            builder.HasOne(a => a.Priority).WithMany().HasForeignKey(a => a.PriorityId).OnDelete(DeleteBehavior.Cascade);
+            builder.HasOne(a => a.Type).WithMany().HasForeignKey(a => a.TypeId).OnDelete(DeleteBehavior.Cascade);
+            builder.HasOne(a => a.Assigned).WithMany(a => a.AssignResponses).HasForeignKey(a => a.AssignedId).OnDelete(DeleteBehavior.Cascade);
 
         }
     }

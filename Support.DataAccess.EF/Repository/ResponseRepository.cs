@@ -1,15 +1,16 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
-using Support.Domain.IRepository;
 using Support.Domain.Model;
+using Support.Domain.Repositories;
 
 namespace Support.DataAccess.EF.Repository
 {
     public class ResponseRepository : IResponseRepository
     {
-        private readonly dbContext _context;
-        public ResponseRepository(dbContext context)
+        private readonly SupportDbContext _context;
+        public ResponseRepository(SupportDbContext context)
         {
             this._context = context;
         }

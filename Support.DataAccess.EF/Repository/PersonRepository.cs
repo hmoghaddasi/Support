@@ -2,15 +2,16 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using Support.Domain.IRepository;
+using Microsoft.EntityFrameworkCore;
 using Support.Domain.Model;
+using Support.Domain.Repositories;
 
 namespace Support.DataAccess.EF.Repository
 {
     public class PersonRepository : IPersonRepository
     {
-        private readonly dbContext _context;
-        public PersonRepository(dbContext context)
+        private readonly SupportDbContext _context;
+        public PersonRepository(SupportDbContext context)
         {
             this._context = context;
         }
@@ -39,7 +40,7 @@ namespace Support.DataAccess.EF.Repository
         }
         public bool GetAuthenticated(string loginName, string password)
         {
-            return _context.Persons.Any(a => a.LoginName == loginName && a.PassKey == password);
+            return _context.Persons.Any(a => a.LoginName == loginName && a.Password == password);
         }
 
         public int Create(Person person)
@@ -55,21 +56,8 @@ namespace Support.DataAccess.EF.Repository
         public void Delete(int personId)
         {
             var model = GetForDelete(personId);
-            GaurdDeleteForeignKey(model);
             _context.Persons.Remove(_context.Persons.Find(personId));
         }
-        private static void GaurdDeleteForeignKey(Person model)
-        {
-            if (model.Suppliers.Any() || model.Suppliers.Any()
-                                      || model.AccessPolicies.Any()
-                                      || model.CreateResponses.Any()
-                                      || model.AssignResponses.Any()
-                                      || model.Persons.Any() || model.Requests.Any())
-            {
-                throw new ForignkeyDeleteException();
-            }
-        }
-
         private Person GetForDelete(int personId)
         {
             return _context.Persons.Where(a => a.PersonId == personId)
@@ -86,7 +74,7 @@ namespace Support.DataAccess.EF.Repository
         public Person GetByUsername(string userName, string password)
         {
             var person = Get(a => a.LoginName.ToLower() == userName
-                             && a.PassKey == password);
+                             && a.Password == password);
             if (person.Any())
             {
                 return person.First();
@@ -95,5 +83,9 @@ namespace Support.DataAccess.EF.Repository
         }
 
        
+    }
+
+    public class PersonNotFoundException : Exception
+    {
     }
 }

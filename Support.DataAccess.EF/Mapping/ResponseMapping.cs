@@ -7,11 +7,13 @@ namespace Support.DataAccess.EF.Mapping
 {
     public class ResponseMapping : IEntityTypeConfiguration<Response>
     {
-        public ResponseMapping(EntityTypeBuilder<Response> builder)
+        public void Configure(EntityTypeBuilder<Response> builder)
         {
-           builder.ToTable("Response", schemaName: "gen").HasKey(a => a.ResponseId).Property(a => a.ResponseId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
-           builder.HasRequired(a => a.CreateBy).WithMany(a => a.CreateResponses).HasForeignKey(a => a.CreateById).WillCascadeOnDelete(false);
-            builder.HasRequired(a => a.Request).WithMany(a => a.Responses).HasForeignKey(a => a.RequestId).WillCascadeOnDelete(false);
+            builder.ToTable("Response",  "gen").HasKey(a => a.ResponseId);
+            builder.Property(a => a.ResponseId).ValueGeneratedOnAdd();
+            builder.HasOne(a => a.CreateBy).WithMany(a => a.CreateResponses).HasForeignKey(a => a.CreateById).OnDelete(DeleteBehavior.Cascade);
+            builder.HasOne(a => a.Request).WithMany(a => a.Responses).HasForeignKey(a => a.RequestId).OnDelete(DeleteBehavior.Cascade);
         }
+
     }
 }

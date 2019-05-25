@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Support.Application.Contract.DTO;
+using Support.Application.Contract.IService;
 using Support.Application.Mapper;
+using Support.Domain.Repositories;
 
 namespace Support.Application.Service
 {
@@ -11,53 +14,43 @@ namespace Support.Application.Service
         {
             this._repository = repository;
         }
-
         public List<ConfigDTO> GetConfigName()
         {
             return _repository.Get(w => w.ConfigHdrId == 0).Select(ConfigMapper.Map).ToList();
             
         }
-
         public List<ConfigDTO> GetAll()
         {
             return
                  _repository.GetAll().Select(ConfigMapper.Map)
                      .ToList();
         }
-
         public IQueryable<ConfigDTO> GetAllIQueryable()
         {
             return
                 _repository.GetAll().Select(ConfigMapper.Map)
                     .AsQueryable();
         }
-
         public ConfigDTO GetById(int Id)
         {
             var config = _repository.GetById(Id);
             return  ConfigMapper.Map(config);
         }
-
-       
-      
-
         public List<ConfigDTO> GetParent(int Id)
         {
             return
-                _repository.Get(a=>a.ConfigId==ConfigType.Parent)
+                _repository.Get(a=>a.ConfigId== Id)
                     .Select(ConfigMapper.Map)
                     .ToList();
         }
-
         public List<ConfigDTO> GetChild(int parentId, int related)
         {
             return
-             _repository.Get(a => (a.ConfigHdrId == parentId || a.ConfigId == ConfigType.Parent)&&
+             _repository.Get(a => (a.ConfigHdrId == parentId || a.ConfigId == parentId)&&
                                   (related==0 || a.ConfigValue==related))
                  .Select(ConfigMapper.Map)
                  .ToList();
         }
-
         public void CreateOrUpdate(ConfigDTO dto)
         {
             if (dto.ConfigId == 0)
@@ -69,13 +62,10 @@ namespace Support.Application.Service
                 Edit(dto);
             }
         }
-
-
         private void Create(ConfigDTO dto)
         {
             _repository.Create(ConfigMapper.MapToModel(dto));
         }
-
         private void Edit(ConfigDTO dto)
         {
             var model = _repository.GetById(dto.ConfigId);
@@ -84,57 +74,58 @@ namespace Support.Application.Service
              _repository.Edit(data);
             
         }
-
-     
-
         public void Delete(int id)
         {
             _repository.Delete(_repository.GetById(id));
         }
 
-        
-
         public ConfigParentDTO GetConfigParent()
         {
-            return ConfigMapper.MapToConfigParentDTO();
-        }
-
-        public FilterResponse<ConfigDTO> GetAllConfig(GridRequest request,int parentId)
-        {
-            var result = _repository.Get(a=>a.ConfigHdrId==parentId).Select(ConfigMapper.Map).AsQueryable();
-
-            var data = result.ApplyFilters(request, false);
-            return new FilterResponse<ConfigDTO>(data.Data, data.Count);
+            throw new System.NotImplementedException();
         }
 
 
-        public FilterResponse<ConfigDTO> GetAllForGrid(GridRequest request)
-        {
-            var result = _repository.GetAll().Select(ConfigMapper.Map).AsQueryable();
+        //public ConfigParentDTO GetConfigParent()
+        //{
+        //    return ConfigMapper.MapToConfigParentDTO();
+        //}
 
-            var data = result.ApplyFilters(request, false);
-            return new FilterResponse<ConfigDTO>(data.Data, data.Count);
-        }
+        //public FilterResponse<ConfigDTO> GetAllConfig(GridRequest request,int parentId)
+        //{
+        //    var result = _repository.Get(a=>a.ConfigHdrId==parentId).Select(ConfigMapper.Map).AsQueryable();
 
-        public List<PairValueDTO> GetPersonType()
-        {
-            return _repository.Get(a => a.ConfigHdrId == ConfigType.CreditType)
-                .OrderBy(a=>a.ConfigSort)
-                .Select(ConfigMapper.MapToPairValue).ToList();
-        }
+        //    var data = result.ApplyFilters(request, false);
+        //    return new FilterResponse<ConfigDTO>(data.Data, data.Count);
+        //}
 
-        public List<ConfigDTO> GetCreditType()
-        {
-            return _repository.Get(a => a.ConfigHdrId == ConfigType.CreditType)
-                .OrderBy(a => a.ConfigSort)
-                .Select(ConfigMapper.Map).ToList();
-        }
 
-        public List<PairValueDTO> GetContentType()
-        {
-            return _repository.Get(a => a.ConfigHdrId == ConfigType.ContentType)
-                .OrderBy(a => a.ConfigSort)
-                .Select(ConfigMapper.MapToPair).ToList();
-        }
+        //public FilterResponse<ConfigDTO> GetAllForGrid(GridRequest request)
+        //{
+        //    var result = _repository.GetAll().Select(ConfigMapper.Map).AsQueryable();
+
+        //    var data = result.ApplyFilters(request, false);
+        //    return new FilterResponse<ConfigDTO>(data.Data, data.Count);
+        //}
+
+        //public List<PairValueDTO> GetPersonType()
+        //{
+        //    return _repository.Get(a => a.ConfigHdrId == ConfigType.CreditType)
+        //        .OrderBy(a=>a.ConfigSort)
+        //        .Select(ConfigMapper.MapToPairValue).ToList();
+        //}
+
+        //public List<ConfigDTO> GetCreditType()
+        //{
+        //    return _repository.Get(a => a.ConfigHdrId == ConfigType.CreditType)
+        //        .OrderBy(a => a.ConfigSort)
+        //        .Select(ConfigMapper.Map).ToList();
+        //}
+
+        //public List<PairValueDTO> GetContentType()
+        //{
+        //    return _repository.Get(a => a.ConfigHdrId == ConfigType.ContentType)
+        //        .OrderBy(a => a.ConfigSort)
+        //        .Select(ConfigMapper.MapToPair).ToList();
+        //}
     }
 }

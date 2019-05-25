@@ -7,15 +7,16 @@ namespace Support.DataAccess.EF.Mapping
 {
     public class AccessPolicyMapping : IEntityTypeConfiguration<AccessPolicy>
     {
-        public AccessPolicyMapping(EntityTypeBuilder<AccessPolicy> builder)
+        public void Configure(EntityTypeBuilder<AccessPolicy> builder)
         {
-            builder.ToTable("AccessPolicy", schemaName: "sec").HasKey(a => a.AccessPolicyId).Property(a => a.AccessPolicyId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            builder.ToTable("AccessPolicy", "sec").HasKey(a => a.AccessPolicyId);
+            builder.Property(a => a.AccessPolicyId).ValueGeneratedOnAdd();
 
+            builder.HasOne(a => a.Access).WithMany(a => a.AccessPolicies)
+                .HasForeignKey(a => a.AccessId).OnDelete(DeleteBehavior.Cascade);
 
-           builder.HasRequired(a => a.Access).WithMany(a => a.AccessPolicies).HasForeignKey(a => a.AccessId).WillCascadeOnDelete(false);
-            builder.HasRequired(a => a.Person).WithMany(a => a.AccessPolicies).HasForeignKey(a => a.PersonId).WillCascadeOnDelete(false);
-            
-
+            builder.HasOne(a => a.Person).WithMany(a => a.AccessPolicies)
+                .HasForeignKey(a => a.PersonId).OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

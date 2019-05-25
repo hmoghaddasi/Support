@@ -4,4 +4,18 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Service\AccessPolicyServices.cs" />
+    <Compile Remove="Service\AccessServices.cs" />
+    <Compile Remove="Service\LogServices.cs" />
+    <Compile Remove="Service\PersonServices.cs" />
+    <Compile Remove="Service\RequestService.cs" />
+    <Compile Remove="Service\ResponseService.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Support.Application.Contract\Support.Application.Contract.csproj" />
+    <ProjectReference Include="..\Support.Domain\Support.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

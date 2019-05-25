@@ -1,15 +1,17 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
-using Support.Domain.IRepository;
+using Microsoft.EntityFrameworkCore;
 using Support.Domain.Model;
+using Support.Domain.Repositories;
 
 namespace Support.DataAccess.EF.Repository
 {
     public class AccessPolicyRepository : IAccessPolicyRepository
     {
-        private readonly dbContext _context;
-        public AccessPolicyRepository(dbContext context)
+        private readonly SupportDbContext _context;
+        public AccessPolicyRepository(SupportDbContext context)
         {
             this._context = context;
         }

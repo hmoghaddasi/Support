@@ -11,17 +11,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Host", "Host", "{612839C9-B50D-47F4-84C8-A069FACF7D48}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Support.Application", "Support.Application\Support.Application.csproj", "{341835C7-F701-4F4E-833E-E3082F41C440}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Support.Application", "Support.Application\Support.Application.csproj", "{341835C7-F701-4F4E-833E-E3082F41C440}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Support.Application.Contract", "Support.Application.Contract\Support.Application.Contract.csproj", "{4430F127-53E5-48A5-8023-EE67F11B9F6F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Support.Application.Contract", "Support.Application.Contract\Support.Application.Contract.csproj", "{4430F127-53E5-48A5-8023-EE67F11B9F6F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Support.Domain", "Support.Domain\Support.Domain.csproj", "{9AF2E6A8-782C-4F9B-B1B1-63C20E6E756B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Support.Domain", "Support.Domain\Support.Domain.csproj", "{9AF2E6A8-782C-4F9B-B1B1-63C20E6E756B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Support.Config", "Support.Config\Support.Config.csproj", "{C00519FA-941E-4E03-B4C5-F14F32E62BCC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Support.Config", "Support.Config\Support.Config.csproj", "{C00519FA-941E-4E03-B4C5-F14F32E62BCC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Support.DataAccess.EF", "Support.DataAccess.EF\Support.DataAccess.EF.csproj", "{AF77736D-4376-49D1-A221-09103EBA4798}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Support.DataAccess.EF", "Support.DataAccess.EF\Support.DataAccess.EF.csproj", "{AF77736D-4376-49D1-A221-09103EBA4798}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Support.Host", "Support.Host\Support.Host.csproj", "{1C5AB524-2872-470B-89BE-2F60648481F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Support.Host", "Support.Host\Support.Host.csproj", "{1C5AB524-2872-470B-89BE-2F60648481F0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

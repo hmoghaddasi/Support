@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using Support.Domain.Model;
 
-namespace Support.Domain.IRepository
+namespace Support.Domain.Repositories
 {
-    public interface IConfigRepository /*: Framework.Core.OnionClass.IRepository*/
+    public interface IConfigRepository : IRepository
     {
         List<Config> GetAll();
         Config GetById(int Id);

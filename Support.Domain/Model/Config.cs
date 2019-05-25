@@ -1,4 +1,6 @@
-﻿namespace Support.Domain.Model
+﻿using System.Collections.Generic;
+
+namespace Support.Domain.Model
 {
     public class Config
     {
@@ -9,8 +11,6 @@
         public string ConfigNote { get; set; }
         public int ConfigSort { get; set; }
         public string ClassName { get; set; }
-
         public virtual Config ConfigHdr { get; set; }
-     
     }
 }

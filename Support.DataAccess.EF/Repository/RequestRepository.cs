@@ -1,15 +1,17 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
-using Support.Domain.IRepository;
+using Microsoft.EntityFrameworkCore;
 using Support.Domain.Model;
+using Support.Domain.Repositories;
 
 namespace Support.DataAccess.EF.Repository
 {
     public class RequestRepository : IRequestRepository
     {
-        private readonly dbContext _context;
-        public RequestRepository(dbContext context)
+        private readonly SupportDbContext _context;
+        public RequestRepository(SupportDbContext context)
         {
             this._context = context;
         }
@@ -65,5 +67,9 @@ namespace Support.DataAccess.EF.Repository
                 .Include(a => a.Responses).First();
         }
 
+    }
+
+    internal class ForignkeyDeleteException : Exception
+    {
     }
 }
