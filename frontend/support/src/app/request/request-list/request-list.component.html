@@ -1,0 +1,27 @@
+
+<div class="grid-wrapper">
+<kendo-grid
+[data]="view | async"
+[pageSize]="gridState"
+[skip]="gridState"
+[filter]="gridState"
+filterable="menu"
+[pageable]="true"
+[scrollable]="'none'"
+(dataStateChange)="onStateChange($event)">
+  <kendo-grid-column field="RequestId" title="RequestId "   ></kendo-grid-column>
+  <kendo-grid-column field="Note" title="Note "   ></kendo-grid-column>
+  <kendo-grid-column field="Title" title="  Title"   ></kendo-grid-column>
+  <kendo-grid-column field="ProjectId" title="ProjectId"  ></kendo-grid-column>
+
+  <kendo-grid-column  width="200">
+      <ng-template kendoGridCellTemplate let-dataItem>
+          <button kendoButton (click)="edit(dataItem)" class="btn btn-default">Edit</button>
+          <button kendoButton (click)="delete(dataItem)" class="btn btn-default">Delete</button>
+      </ng-template>
+  </kendo-grid-column>
+</kendo-grid>
+<div *ngIf="loading" class="k-i-loading"></div>
+</div>
+
+

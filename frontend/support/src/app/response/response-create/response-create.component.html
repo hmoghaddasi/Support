@@ -1,0 +1,27 @@
+
+
+    <form class="">
+      <div class="">
+
+        <mat-form-field class="">
+          <mat-label> ResponseNote</mat-label>
+          <input matInput placeholder=" ResponseNote" name="ResponseNote" [(ngModel)]="model.ResponseNote" class="text-dark"
+            required>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <mat-label> ResponseId</mat-label>
+          <input matInput placeholder=" ResponseId" name="ResponseId" [(ngModel)]="model.ResponseId" class="text-dark"
+            required>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <mat-label> Title</mat-label>
+          <input matInput placeholder=" Title" name="Title" [(ngModel)]="model.Title" class="text-dark"
+            required>
+        </mat-form-field>
+      </div>
+      <mat-card-actions>
+        <button mat-raised-button (click)="create()" class="bg-sazman text-white">Create</button>
+      </mat-card-actions>
+    </form>
+
+
