@@ -16,7 +16,7 @@
             <div class="large">{{request.Request}}</div>
             <div>
               <mat-radio-group >
-                   <!-- [(ngModel)]="this.response" -->
+
                 <mat-radio-button *ngFor="let option of request.Responses" [value]="option.ResponseId"
                   style="width: 100%; display: block;">
                   <span class="persian">{{option.Response}}</span>
