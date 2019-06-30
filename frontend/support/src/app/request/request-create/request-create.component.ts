@@ -1,4 +1,4 @@
-import { Component, OnInit, Injectable, Inject } from '@angular/core';
+import { Component, OnInit,  Inject } from '@angular/core';
 import { RequestModel } from '../shared/request.model';
 import { MAT_DIALOG_DATA } from '@angular/material';
 import { RequestService } from '../shared/request.service';
@@ -17,15 +17,10 @@ export class DialogData {
 })
 export class RequestCreateComponent implements OnInit {
   model = new RequestModel();
-  constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData,
-              private service: RequestService) { }
+  constructor( private service: RequestService) {}
 
   ngOnInit() {
-    if (this.data.RequestId > 0) {
-      this.service.getById(this.data.RequestId).subscribe(result => {
-        this.model = result;
-      });
-    }
+
   }
 
   create() {

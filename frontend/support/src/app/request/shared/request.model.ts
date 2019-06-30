@@ -3,4 +3,5 @@ export class RequestModel {
   public Note: string;
   public Title: string;
   public ProjectId: number;
+  ResponseId: any;
 }

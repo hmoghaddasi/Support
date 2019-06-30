@@ -15,7 +15,7 @@ export class ResponseService  {
 
   constructor(private restService: RestService) {
   }
-  private resourceName = 'request';
+  private resourceName = 'resoonse';
 
 
   public create(model: ResponseModel): Observable<any> {

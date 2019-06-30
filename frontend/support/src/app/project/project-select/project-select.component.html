@@ -1,5 +1,5 @@
  <mat-form-field>
-  <mat-select placeholder="انتخاب نمایید" (selectionChange)="selectedItemChanged($event)" [value]="selectedProject">
+  <mat-select placeholder="select product " (selectionChange)="selectedItemChanged($event)" [value]="selectedProject">
     <mat-option *ngFor="let project of (projects |async)" [value]="project.ProjectId">
     {{project.ProjectName}}
     </mat-option>

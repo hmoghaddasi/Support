@@ -11,7 +11,7 @@ const routes: Routes = [
    component: RequestCreateComponent ,
 
   },
-  { path: 'request-list', component:RequestListComponent },
+  { path: 'request-list', component: RequestListComponent },
   {
     path: 'user-request-list',
     component: UserRequestListComponent,

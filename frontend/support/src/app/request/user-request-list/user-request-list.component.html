@@ -1,3 +1,36 @@
-<p>
-  user-request-list works!
-</p>
+
+<div id="accordion" lass="d-flex justify-content-start mb-3 container">
+
+  <div class="card col-12">
+    <div class="card-header">
+      <a class="card-link" data-toggle="collapse" href="#collapseOne">
+        <h4> Request </h4>
+      </a>
+    </div>
+    <div id="collapseOne" class="collapse show" data-parent="#accordion">
+      <div class="card-body text-right d-flex justify-content-start flex-row" dir='rtl'>
+
+
+        <div *ngFor="let request of (Requests | async); let i = index">
+          <div class="col-12">
+            <div class="large">{{request.Request}}</div>
+            <div>
+              <mat-radio-group >
+                   <!-- [(ngModel)]="this.response" -->
+                <mat-radio-button *ngFor="let option of request.Responses" [value]="option.ResponseId"
+                  style="width: 100%; display: block;">
+                  <span class="persian">{{option.Response}}</span>
+                </mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+
+</div>

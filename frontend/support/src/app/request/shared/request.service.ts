@@ -27,6 +27,9 @@ export class RequestService  {
   public getById(id): Observable<any> {
     return this.restService.getById(this.resourceName, id);
   }
+  public getRequest(id: number): Observable<any> {
+    return this.restService.customAction('request', id);
+  }
   public getForGrid(state: State): Observable<GridDataResult> {
     return this.restService.getForGrid(this.resourceName, state);
   }

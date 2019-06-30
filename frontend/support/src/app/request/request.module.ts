@@ -1,3 +1,5 @@
+import { ResponseCreateComponent } from 'src/app/response/response-create/response-create.component';
+import { ResponseModule } from './../response/response.module';
 import { MyMaterialModule } from './../material.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -15,7 +17,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CommonModule,
      ProjectModule,
     RequestRoutingModule,
-    MyMaterialModule,GridModule,BrowserAnimationsModule
-  ]
+    MyMaterialModule,
+    GridModule,
+     BrowserAnimationsModule,
+    ResponseModule
+  ],
+  entryComponents:[ResponseCreateComponent]
 })
 export class RequestModule { }

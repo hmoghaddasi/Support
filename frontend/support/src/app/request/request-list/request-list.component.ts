@@ -6,6 +6,8 @@ import { MatDialog } from '@angular/material';
 import { RequestService } from '../shared/request.service';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { GridDataResult } from '@progress/kendo-angular-grid';
+import { ResponseCreateComponent } from 'src/app/response/response-create/response-create.component';
+import { ResponseModel } from 'src/app/response/shared/response.model';
 
 @Component({
   selector: 'app-request-list',
@@ -52,7 +54,17 @@ export class RequestListComponent implements OnInit {
       });
   }
 
-
+  public create(model: RequestModel) {
+    const dialogRef = this.dialog.open(ResponseCreateComponent, {
+        width: '600px',
+        // data: { id: model.ResponseId }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+            this.reloadGrid();
+        }
+    });
+}
   public delete(model: RequestModel) {
       this.service.delete(model.RequestId).subscribe(result => {
           if (result) {

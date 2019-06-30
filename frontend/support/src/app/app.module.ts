@@ -11,6 +11,8 @@ import { AppComponent } from './app.component';
 import { MyMaterialModule } from './material.module';
 import { FrameworkModule } from './framework/framework.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { GridModule } from '@progress/kendo-angular-grid';
+
 
 @NgModule({
   declarations: [
@@ -26,7 +28,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     , RequestModule,
      ResponseModule
     , BrowserAnimationsModule
-    ,MatFormFieldModule,
+    ,MatFormFieldModule, GridModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
