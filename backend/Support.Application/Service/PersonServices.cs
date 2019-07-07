@@ -3,8 +3,9 @@ using System.Linq;
 using Support.Application.Contract.DTO;
 using Support.Application.Contract.IService;
 using Support.Application.Mapper;
-using Support.Domain.IRepository;
+using Support.Domain.Repositories;
 using Support.Domain.Model;
+using System;
 
 namespace Support.Application.Service
 {
@@ -21,7 +22,7 @@ namespace Support.Application.Service
         {
             var person = GetCurrentPerson(loginName);
             if (person == null) return 0;
-            return person.PersonTypeId;
+            return person.StatusId;
         }
 
         public PersonDTO GetByLogin(string loginName)
@@ -38,21 +39,23 @@ namespace Support.Application.Service
 
         public bool GetAuthenticated(string loginName, string password)
         {
-            return _personRepository.GetAuthenticated(loginName, MD5Tool.Hash(password));
+            // return _personRepository.GetAuthenticated(loginName, MD5Tool.Hash(password));
+            throw new NotImplementedException();
         }
 
 
 
         public bool ChangePassword(string username, string password, string newPassword)
         {
-            var hashPassword = MD5Tool.Hash(password);
-            var person = _personRepository.Get(a => a.LoginName == username && a.PassKey == hashPassword);
-            if (person.Any())
-            {
-                person.First().PassKey = MD5Tool.Hash(newPassword);
-                _personRepository.Edit(person.FirstOrDefault());
-            }
-            return person.Any();
+            //var hashPassword = MD5Tool.Hash(password);
+            //var person = _personRepository.Get(a => a.LoginName == username && a.PassKey == hashPassword);
+            //if (person.Any())
+            //{
+            //    person.First().PassKey = MD5Tool.Hash(newPassword);
+            //    _personRepository.Edit(person.FirstOrDefault());
+            //}
+            //return person.Any();
+            throw new NotImplementedException();
         }
 
         public PersonDTO GetById(int Id)
@@ -85,46 +88,48 @@ namespace Support.Application.Service
             return 0;
         }
 
-        public List<PersonDropDownDTO> GetPerson()
-        {
-            return _personRepository.GetAll()
-                .Select(PersonMapper.MapDropDown).ToList();
-        }
+        //public List<PersonDropDownDTO> GetPerson()
+        //{
+        //    return _personRepository.GetAll()
+        //        .Select(PersonMapper.MapDropDown).ToList();
+        //}
 
-        public PatientCreditDTO GetPersonForPrescription(PatientSearchDTO dto)
-        {
-            var patient = _personRepository.Get(a => a.PersonTypeId == PersonType.Patient &&
-                                                     a.NationalCode == dto.NationalCode);
+        //public PatientCreditDTO GetPersonForPrescription(PatientSearchDTO dto)
+        //{
+        //    var patient = _personRepository.Get(a => a.PersonTypeId == PersonType.Patient &&
+        //                                             a.NationalCode == dto.NationalCode);
 
-            if (patient.Any())
-            {
-                int maxAcceptable = _creditTransactionService.GetMaxAcceptable(patient.First().PersonId, dto.ProductId);
-                return PersonMapper.MapToCreditValue(patient.First(), maxAcceptable);
+        //    if (patient.Any())
+        //    {
+        //        int maxAcceptable = _creditTransactionService.GetMaxAcceptable(patient.First().PersonId, dto.ProductId);
+        //        return PersonMapper.MapToCreditValue(patient.First(), maxAcceptable);
 
-            }
-            else
-            {
-                throw new PersonNotFoundException();
-            }
+        //    }
+        //    else
+        //    {
+        //        throw new PersonNotFoundException();
+        //    }
 
-        }
-        public PatientDeliverDTO GetPersonByNational(string nationalCode)
-        {
-            return PersonMapper.MapToPatient(
-                            _personRepository.GetPatient(a =>
-                                a.PersonTypeId == PersonType.Patient &&
-                                a.NationalCode == nationalCode));
+        //}
+        //public PatientDeliverDTO GetPersonByNational(string nationalCode)
+        //{
+        //    return PersonMapper.MapToPatient(
+        //                    _personRepository.GetPatient(a =>
+        //                        a.PersonTypeId == PersonType.Patient &&
+        //                        a.NationalCode == nationalCode));
 
-        }
+        //}
 
         public int GetCurrentPersonContentTypeId(string userName)
         {
-            var person = GetCurrentPerson(userName);
-            if (person == null)
-            {
-                return 0;
-            }
-            return person.PersonType.ConfigValue;
+            //var person = GetCurrentPerson(userName);
+            //if (person == null)
+            //{
+            //    return 0;
+            //}
+            //return person.PersonType.ConfigValue;
+            throw new NotImplementedException();
+            
         }
     }
 }

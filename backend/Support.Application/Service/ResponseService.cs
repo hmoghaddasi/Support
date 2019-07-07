@@ -1,59 +1,108 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Support.Application.Contract.DTO;
 using Support.Application.Contract.IService;
 using Support.Application.Mapper;
-using Support.Domain.IRepository;
+using Support.Domain.Model;
+using Support.Domain.Repositories;
 
 namespace Support.Application.Service
 {
-   public class ResponseService:IResponseService
+    public class RequestService : IRequestServices
     {
-        private readonly IResponseRepository _responseRepository;
-        private readonly IPersonServices _personService;
-
-        public ResponseService(IResponseRepository responseRepository, IPersonServices personService)
+        private readonly IRequestRepository _repository;
+        public RequestService(IRequestRepository repository)
         {
-            this._responseRepository = responseRepository;
-            this._personService = personService;
+            this._repository = repository;
         }
-        public ResponseDTO GetById(int ResponseId)
+        public List<RequestListDTO> GetAll()
         {
-            return ResponseMapper.Map(_responseRepository.Get(a => a.ResponseId == ResponseId).First());
+            //return
+            //     _repository.GetAll().Select(ConfigMapper.Map)
+            //         .ToList();
+            throw new NotImplementedException();
         }
-        
-
-       //public FilterResponse<ResponseDTO> GetAllFilter(GridRequest request)
-       // {
-       //     var result = _responseRepository.GetAll().Select(ResponseMapper.Map).AsQueryable();
-       //     var data = result.ApplyFilters(request, false);
-       //     return new FilterResponse<ResponseDTO>(data.Data, data.Count);
-       // }
-
-        public List<ResponseDTO> GetAll()
+        public RequestEditDTO GetById(int Id)
         {
-            return _responseRepository.GetAll().Select(ResponseMapper.Map).ToList();
+            throw new NotImplementedException();
+            //var config = _repository.GetById(Id);
+            //return  ConfigMapper.Map(config);
+        }
+        public void Create(RequestCreateDTO dto)
+        {
+            // _repository.Create(ConfigMapper.MapToModel(dto));
+        }
+        public void Edit(RequestEditDTO dto)
+        {
+            throw new NotImplementedException();
+            //var model = _repository.GetById(dto.ConfigId);
+
+            //var data=ConfigMapper.MapToEditModel(model, dto);
+            // _repository.Edit(data);
 
         }
-
-        public void Delete(int ResponseId)
-       {
-            _responseRepository.Delete(ResponseId);
-        }
-        
-       public List<ResponseDTO> GetResponseByRequest(int requestId, bool showPrivate)
-       {
-           return _responseRepository.Get(a => a.RequestId == requestId && (showPrivate
-                                               || a.Private == showPrivate))
-               .Select(ResponseMapper.Map).ToList();
-       }
-        
-
-       public void Create(ResponseDTO dto, string userName)
-       {
-           dto.CreateById = _personService.GetPersonByLogin(userName);
-        _responseRepository.Create(ResponseMapper.MapToModel(dto));
+        public void Delete(int id)
+        {
+            throw new NotImplementedException();
+            //_repository.Delete(_repository.GetById(id));
         }
 
+        public List<RequestDTO> GetCustomerRequests(int personId, string userName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<RequestDTO> GetAllRequestResponcesById(int personId, string userName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public FilterResponse<RequestListDTO> GetAllFilter(GridRequest request)
+        {
+            throw new NotImplementedException();
+        }
+        //public ConfigParentDTO GetConfigParent()
+        //{
+        //    return ConfigMapper.MapToConfigParentDTO();
+        //}
+
+        //public FilterResponse<ConfigDTO> GetAllConfig(GridRequest request,int parentId)
+        //{
+        //    var result = _repository.Get(a=>a.ConfigHdrId==parentId).Select(ConfigMapper.Map).AsQueryable();
+
+        //    var data = result.ApplyFilters(request, false);
+        //    return new FilterResponse<ConfigDTO>(data.Data, data.Count);
+        //}
+
+
+        //public FilterResponse<ConfigDTO> GetAllForGrid(GridRequest request)
+        //{
+        //    var result = _repository.GetAll().Select(ConfigMapper.Map).AsQueryable();
+
+        //    var data = result.ApplyFilters(request, false);
+        //    return new FilterResponse<ConfigDTO>(data.Data, data.Count);
+        //}
+
+        //public List<PairValueDTO> GetPersonType()
+        //{
+        //    return _repository.Get(a => a.ConfigHdrId == ConfigType.CreditType)
+        //        .OrderBy(a=>a.ConfigSort)
+        //        .Select(ConfigMapper.MapToPairValue).ToList();
+        //}
+
+        //public List<ConfigDTO> GetCreditType()
+        //{
+        //    return _repository.Get(a => a.ConfigHdrId == ConfigType.CreditType)
+        //        .OrderBy(a => a.ConfigSort)
+        //        .Select(ConfigMapper.Map).ToList();
+        //}
+
+        //public List<PairValueDTO> GetContentType()
+        //{
+        //    return _repository.Get(a => a.ConfigHdrId == ConfigType.ContentType)
+        //        .OrderBy(a => a.ConfigSort)
+        //        .Select(ConfigMapper.MapToPair).ToList();
+        //}
     }
 }

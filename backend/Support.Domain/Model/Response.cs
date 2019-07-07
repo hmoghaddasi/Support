@@ -12,10 +12,6 @@ namespace Support.Domain.Model
         public bool Private { get; set; }
         public virtual Person CreateBy { get; set; }
         public virtual Request Request { get; set; }
-
-
-       
-
     }
 
 
