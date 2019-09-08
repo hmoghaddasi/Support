@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { RestService } from './rest.service';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { StorageService } from './storage.service';
 
 
@@ -8,13 +8,14 @@ import { StorageService } from './storage.service';
 export class AuthorizationService {
 
     private permissions: Array<string>;
+    public loadingPermissionsDone = new Subject<boolean>();
     constructor(private restService: RestService,
                 private storageService: StorageService) { }
 
     public loadPermissions() {
-
         this.getAccess().subscribe(a => {
             this.storageService.store('access', a);
+            this.loadingPermissionsDone.next(true);
         });
     }
 
@@ -24,7 +25,7 @@ export class AuthorizationService {
             this.permissions = access.split(',');
             return this.permissions.includes(permission);
         } else {
-            return true;
+            return false;
         }
     }
 
@@ -32,6 +33,6 @@ export class AuthorizationService {
         this.storageService.clear();
     }
     private getAccess(): Observable<any> {
-        return this.restService.getAll('Access');
+        return this.restService.getAll('AccessPolicy');
     }
 }

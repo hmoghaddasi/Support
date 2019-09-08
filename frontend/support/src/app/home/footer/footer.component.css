@@ -1,0 +1,17 @@
+.footers div {
+    direction: rtl;
+    text-align: right;
+}
+
+.footers {
+    background-color: #008081;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.border-bottom {
+    border-bottom: #ff8a00 solid 5px !important;
+}
+.footer-item  {
+    height: 30px;
+}

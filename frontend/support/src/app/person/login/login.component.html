@@ -1,0 +1,27 @@
+<div class=" d-flex flex-row align-items-center justify-content-center m-auto" style="height: 71vh;">
+
+    <mat-card class="my-card col-3" style="min-width: 300PX;">
+        <mat-card-title class="persian d-flex justify-content-center">
+            ورود
+        </mat-card-title>
+        <mat-card-content>
+            <form>
+                <mat-form-field class=" d-flex flex-row align-items-center justify-content-center">
+                    <mat-label>نام کاربری</mat-label>
+                    <input matInput placeholder="نام کاربری" name="UserName" [(ngModel)]="model.UserName">
+                </mat-form-field>
+
+                <mat-form-field class=" d-flex flex-row align-items-center justify-content-center">
+                    <mat-label>رمز عبور</mat-label>
+                    <input matInput placeholder="رمز عبور" type="password" name="Password" [(ngModel)]="model.Password">
+                </mat-form-field>
+                <p style="direction: rtl;display: flex;">
+                    <a class="persian text-right" routerLink="/reset-password">فراموشی رمزعبور</a>
+                </p>
+            </form>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button (click)="login()" class="btn btn-info persian">ورود</button>
+        </mat-card-actions>
+    </mat-card>
+</div>

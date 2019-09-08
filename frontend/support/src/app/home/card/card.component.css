@@ -1,0 +1,168 @@
+        /* .c1 {
+            background: url('../../../assets/images/1.png');
+            background-size: 135px;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        .c-size {
+            height: 20vw;
+            min-height: 278px;
+            min-width: 107px;
+        }
+        
+        .c2 {
+            background: url('../../../assets/images/2.png');
+            background-size: 135px;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        .c3 {
+            background: url('../../../assets/images/3.png');
+            background-size: 135px;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        .c4 {
+            background: url('../../../assets/images/4.png');
+            background-size: 135px;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        .c5 {
+            background: url('../../../assets/images/5.png');
+            background-size: 135px;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        .c6 {
+            background: url('../../../assets/images/6.png');
+            background-size: 135px;
+            background-position: center;
+            background-repeat: no-repeat;
+        } */
+        
+        .cir {
+            padding-top: 2px;
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            -ms-border-radius: 50%;
+            -o-border-radius: 50%;
+            background-color: #ff8a00;
+        }
+        
+        .bg-coloremoon {
+            color: #ff8a00;
+        }
+        
+        .ani-top {
+            -webkit-animation-name: example;
+            /* Safari 4.0 - 8.0 */
+            animation-iteration-count: infinite;
+            -webkit-animation-duration: 2s;
+            /* Safari 4.0 - 8.0 */
+            animation-name: example;
+            animation-duration: 2s;
+            position: relative;
+        }
+        /* Safari 4.0 - 8.0 */
+        
+        @-webkit-keyframes example {
+            from {
+                bottom: 0;
+            }
+            to {
+                bottom: 10px
+            }
+        }
+        /* Standard syntax */
+        
+        @keyframes example {
+            from {
+                bottom: 0;
+            }
+            to {
+                bottom: 10px
+            }
+        }
+        
+        .ani-down {
+            -webkit-animation-name: example2;
+            /* Safari 4.0 - 8.0 */
+            -webkit-animation-duration: 2s;
+            /* Safari 4.0 - 8.0 */
+            animation-name: example2;
+            animation-iteration-count: infinite;
+            animation-duration: 2s;
+            position: relative;
+        }
+        /* Safari 4.0 - 8.0 */
+        
+        @-webkit-keyframes example2 {
+            from {
+                top: 0;
+            }
+            to {
+                top: 10px
+            }
+        }
+        /* Standard syntax */
+        
+        @keyframes example2 {
+            from {
+                top: 0;
+            }
+            to {
+                top: 10px
+            }
+        }
+        
+        @media(max-width:552px) {
+            #road {
+                background: linear-gradient(90deg, #8af0d3, #d2e7ee, #ebce92, #d2e7ee, #8af0d3, #d2e7ee, #ebce92, #d2e7ee);
+                background-size: 1600% 1600%;
+                -webkit-animation: AnimationName 50s ease infinite;
+                -moz-animation: AnimationName 50s ease infinite;
+                animation: AnimationName 50s ease infinite;
+            }
+            @-webkit-keyframes AnimationName {
+                0% {
+                    background-position: 0% 51%
+                }
+                50% {
+                    background-position: 100% 50%
+                }
+                100% {
+                    background-position: 0% 51%
+                }
+            }
+            @-moz-keyframes AnimationName {
+                0% {
+                    background-position: 0% 51%
+                }
+                50% {
+                    background-position: 100% 50%
+                }
+                100% {
+                    background-position: 0% 51%
+                }
+            }
+            @keyframes AnimationName {
+                0% {
+                    background-position: 0% 51%
+                }
+                50% {
+                    background-position: 100% 50%
+                }
+                100% {
+                    background-position: 0% 51%
+                }
+            }
+        }

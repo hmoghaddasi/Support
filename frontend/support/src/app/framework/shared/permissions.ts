@@ -14,10 +14,12 @@ export class Permissions {
     public static LIST_REGION = 'listregion';
     public static LIST_PAYMENT = 'listpayment';
     public static CREATE_REQUEST = 'createrequest';
+    public static Edit_REQUEST = 'editrequest';
     public static LIST_REQUEST = 'listrequest';
     public static ADMIN_REQUEST = 'adminrequest';
     public static CREATE_RESPONSE = 'createresponse';
     public static LIST_RESPONSE = 'listresponse';
+    public static LIST_RESPONSE_ADMIN = 'listresponseadmin';
     public static CREATE_DRUG = 'createdrug';
     public static LIST_DRUG = 'listdrug';
     public static CREATE_MENU = 'createmenu';
@@ -29,11 +31,13 @@ export class Permissions {
     public static EDITPROFILE_PERSON = 'editprofile';
     public static REQUEST_DETAIL = 'requestdetail';
     public static OPEN_REQUEST = 'openrequest';
-  static LIST_PERSON: any;
-
-
-
-
-
-
+    public static PERSON_ACCESS = 'personaccess';
+    public static LIST_CREDIT = 'creditlist';
+    public static LIST_CONVERSATION = 'conversationlist';
+    public static LIST_CONVERSATION_ADMIN = 'conversationlistadmin';
+    public static LIST_IMAGE = 'listimage';
+    public static LIST_CONTRACT = 'listcontract';
+    public static LIST_CONTRACT_ADMIN = 'listcontractadmin';
+    public static CONTRACT_DETAIL = 'contractdetail';
+    public static LIST_PERSON: any;
 }

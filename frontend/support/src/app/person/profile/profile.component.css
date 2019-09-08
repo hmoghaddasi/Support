@@ -1,0 +1,49 @@
+.my-row{
+    display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+    align-content: flex-start;
+    box-shadow: 1px 1px 10px rgb(202, 202, 202);
+    padding: 2rem;
+}
+
+.info-badge {
+    font-family: IRANSANS;
+    text-align: right;
+    padding: 15px;
+    color: #233fbe;
+    font-size: 15px;
+    border-bottom: 1px dashed;
+}
+
+h6 {
+    font-family: IRANSANS !important;
+    margin-top: 10px;
+}
+
+.inline-icon {
+    float: right !important;
+    margin-left: 5px !important;
+    clear: both !important;
+}
+mat-list-item {
+    padding: 5px !important;
+}
+
+.credit-card {
+    max-width: 400px;
+    display: inline-block;
+    margin: 10px 20px;
+    font-family: IRANSANS;
+  }
+  
+  .credit-header-image {
+    /* background-image: url('/src/assets/images/credit.jpg'); */
+    background-size: cover;
+  }
+  .mat-card-image {
+    width: 200px;
+    margin-right: 25%;
+  }

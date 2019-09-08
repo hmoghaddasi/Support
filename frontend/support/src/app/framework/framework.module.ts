@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
-
+import * as moment from 'jalali-moment';
 import { HasPermissionDirective } from './directives/has-permission.directive';
 import { SignedDirective } from './directives/signed.directive';
 import { NotSignedDirective } from './directives/not-signed.directive';

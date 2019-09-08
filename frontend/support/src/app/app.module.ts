@@ -12,6 +12,7 @@ import { MyMaterialModule } from './material.module';
 import { FrameworkModule } from './framework/framework.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GridModule } from '@progress/kendo-angular-grid';
+import { HomeModule } from './home/home.module';
 
 
 @NgModule({
@@ -24,11 +25,13 @@ import { GridModule } from '@progress/kendo-angular-grid';
     MyMaterialModule,
     HttpClientModule,
     FrameworkModule,
-    ProjectModule
-    , RequestModule,
-     ResponseModule
-    , BrowserAnimationsModule
-    ,MatFormFieldModule, GridModule,
+    ProjectModule,
+    RequestModule,
+     ResponseModule,
+     BrowserAnimationsModule,
+     MatFormFieldModule,
+     HomeModule,
+     GridModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

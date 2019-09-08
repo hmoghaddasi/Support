@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>مدیریت دسترسی</h1>
+<mat-dialog-content>
+  <div *ngFor="let item of accessList">
+    <button (click)="changePersonAccess(item.AccessId, false)" class="remove-access" mat-icon-button *ngIf="item.PolicyAvailable">
+      <mat-icon>cancel</mat-icon>
+    </button>
+    <button (click)="changePersonAccess(item.AccessId, true)" class="give-access" mat-icon-button *ngIf="!item.PolicyAvailable">
+        <mat-icon>add_box</mat-icon>
+      </button>
+    {{item.AccessName}} - {{item.AccessDesc}}
+  </div>
+</mat-dialog-content>
+<div mat-dialog-actions>
+  <!-- <button class="submit-btn" mat-raised-button mat-button (click)="reject()" color="primary">لغو</button> -->
+</div>

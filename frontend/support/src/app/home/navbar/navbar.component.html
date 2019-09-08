@@ -1,0 +1,49 @@
+<div id="demo_top_wrapper">
+    <div id="sticky_navigation_wrapper">
+        <div id="sticky_navigation">
+            <div class="h-strip">
+                <div class="container">
+                    <div class="h-strip-main">
+                        <div class="h-strip-logo">
+                                <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    
+                            <div class="h-strip-right">
+                                <h2>پشتیبانی ساپ</h2>
+                            </div>
+                            <div class="collapse navbar-collapse" id="navbarTogglerDemo01" [ngClass]="{'show': isExpended}">
+   
+                            <ul class="navbar-nav mt-2 mt-lg-0">
+                                    <li class="nav-item dropdown" *signed>
+                                        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  اطلاعات پایه
+                                </a>
+                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                            <a class="dropdown-item" routerLink="/personlist" *hasPermission="'adminmenu'">مدیریت اعضا</a>
+                                            <a class="dropdown-item" routerLink="/pharmacyproductlist">محصولات و داروهای من</a>
+                                            <a class="dropdown-item" routerLink="/productlist" *hasPermission="'adminmenu'">مدیریت محصولات سامانه</a>
+                                            <a class="dropdown-item" routerLink="/druglist" *hasPermission="'adminmenu'">مدیریت داروهای سامانه</a>
+                                            <a class="dropdown-item" routerLink="/configlist">تنظیمات</a>
+                        
+                                        </div>
+                                    </li>
+                        
+                                </ul>
+                       
+                    <ul class="mr-auto navbar-nav mt-2">
+                        <li class="nav-item dropdown" *notSigned><a class="text-white nav-link " routerLink="/routine">نحوه کار</a></li>
+                        <li class="nav-item dropdown" *notSigned><a class="text-white nav-link " routerLink="/about">درباره ما</a></li>
+                        <li class="nav-item dropdown" *notSigned> <a class="text-white nav-link " routerLink="/contact">تماس با ما</a></li>
+          
+                        <li class="nav-item" *notSigned><a class="text-white nav-link" routerLink="/register">عضویت</a></li>
+                        <li class="nav-item" *notSigned>
+                            <a class="text-white nav-link" routerLink="/login">ورود</a>
+                        </li>
+                        <li class="nav-item dropdown" *signed><a class="text-white nav-link" routerLink="/profile">پروفایل</a></li>
+                        <li class="nav-item dropdown" *signed><a class="text-white nav-link" routerLink="/logout">خروج</a></li>
+                    </ul> </div>
+                </nav>  </div> </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

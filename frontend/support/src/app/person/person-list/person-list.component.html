@@ -1,0 +1,32 @@
+<mat-toolbar style="text-align:center" dir="rtl">
+  <!-- <span>تایید عضویت</span> -->
+</mat-toolbar>
+<div class="grid-wrapper">
+  <kendo-grid [data]="view | async" [pageSize]="gridState.take" [skip]="gridState.skip" [filter]="gridState.filter"
+    filterable="menu" [pageable]="true" [scrollable]="'none'" (dataStateChange)="onStateChange($event)">
+    <kendo-grid-column field="FullName" title="نام و نام خانوادگی"></kendo-grid-column>
+    <kendo-grid-column field="Mobile" title="موبایل"></kendo-grid-column>
+    <kendo-grid-column field="Status" title="وضعیت کاربر" filterable=false></kendo-grid-column>
+    <kendo-grid-column field="CityName" title="شهر" filterable=false></kendo-grid-column>
+    <kendo-grid-column field="PharmacyName" title="داروخانه" filterable=false></kendo-grid-column>
+    <kendo-grid-column width="200">
+      <ng-template kendoGridCellTemplate let-dataItem>
+        <button *ngIf="dataItem.StatusId == 20" kendoButton (click)="accept(dataItem)"
+          class="btn btn-default">تایید</button>
+        <button *ngIf="dataItem.StatusId == 19" kendoButton (click)="activate(dataItem)"
+          class="btn btn-default">فعال‌سازی</button>
+        <button *ngIf="dataItem.StatusId == 18" kendoButton (click)="deactivate(dataItem)"
+          class="btn btn-default">غیرفعال‌سازی</button>
+      </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column width="200">
+      <ng-template kendoGridCellTemplate let-dataItem> 
+        <button (click)="access(dataItem.PersonId)" mat-icon-button>
+          <mat-icon>security</mat-icon>
+          مدیریت دسترسی
+        </button>
+      </ng-template>
+    </kendo-grid-column>
+  </kendo-grid>
+  <div *ngIf="loading" class="k-i-loading"></div>
+</div>
