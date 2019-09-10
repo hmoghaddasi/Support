@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Support.Application.Contract.DTO;
+using Support.Application.Contract.Grid;
 
 namespace Support.Application.Contract.IService
 {

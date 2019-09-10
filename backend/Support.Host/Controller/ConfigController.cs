@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using Support.Application.Contract.DTO;
+using Support.Application.Contract.Grid;
 using Support.Application.Contract.IService;
 
 namespace Support.Host.Controller
@@ -12,26 +15,50 @@ namespace Support.Host.Controller
         private readonly IConfigService _configService;
         public ConfigController(IConfigService configService)
         {
-            _configService = configService;
+            this._configService = configService;
         }
 
         [HttpGet]
-        public List<ConfigDTO> Get()
+        [AllowAnonymous]
+        public ConfigDTO Get(int id)
         {
-            return _configService.GetAll();
+            return _configService.GetById(id);
         }
 
-        //[HttpGet("{id}")]
-        //public Customer Get(long id)
-        //{
-        //    return _context.Customers.FirstOrDefault(a => a.Id == id);
-        //}
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("api/ConfigChild")]
+        public List<ConfigDTO> ConfigChild(int id)
+        {
+            return _configService.GetChild(id);
+        }
 
-        //[HttpPost]
-        //public void Post(Customer customer)
-        //{
-        //    _context.Customers.Add(customer);
-        //    _context.SaveChanges();
-        //}
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("api/ConfigGrid")]
+        public FilterResponse<ConfigDTO> Get(GridRequest request)
+        {
+            if (!string.IsNullOrWhiteSpace(request.Filter))
+            {
+                request.FilterX = JsonConvert.DeserializeObject<GridFilter>(request.Filter);
+            }
+            return _configService.GetForGrid(request);
+        }
+
+        [HttpPost]
+        public BaseResponseDTO Post(ConfigDTO dto)
+        {
+            return _configService.Create(dto);
+        }
+
+        public BaseResponseDTO Put(ConfigDTO dto)
+        {
+            return _configService.Edit(dto);
+        }
+
+        public BaseResponseDTO Delete(int id)
+        {
+            return _configService.Delete(id);
+        }
     }
 }

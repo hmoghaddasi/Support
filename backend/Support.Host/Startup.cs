@@ -6,10 +6,12 @@ using Autofac;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Support.Config;
 using Support.Host.Settings;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace Support.Host
 {
@@ -27,7 +29,11 @@ namespace Support.Host
 
 
 
-            services.AddMvc();
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1.0", new Info { Title = "Support API", Version = "1.0" });
+            });
             //services.AddMvc(a =>
             //{
             //    a.Filters.Add(new CustomActionFilter());
@@ -51,6 +57,11 @@ namespace Support.Host
                     .AllowAnyMethod();
             });
 
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1.0/swagger.json", "Support API (V 1.0)");
+            });
             app.UseMvcWithDefaultRoute();
 
             //if (env.IsDevelopment())

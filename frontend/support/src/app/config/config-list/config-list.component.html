@@ -1,0 +1,18 @@
+<div class="grid-wrapper">
+  <kendo-grid [data]="view | async" [pageSize]="gridState.take" [skip]="gridState.skip" [filter]="gridState.filter"
+    filterable="menu" [pageable]="true" [scrollable]="'none'" (dataStateChange)="onStateChange($event)">
+    <kendo-grid-column field="ConfigName" title="عنوان"></kendo-grid-column>
+    <kendo-grid-column field="ConfigValue" title="مقدار" filter="numeric"></kendo-grid-column>
+    <kendo-grid-column field="ClassName" title="کلاس"></kendo-grid-column>
+    <kendo-grid-column field="ConfigNote" title="توضیحات"></kendo-grid-column>
+    <kendo-grid-column field="ConfigSort" title="ترتیب" filter="numeric"></kendo-grid-column>
+
+    <kendo-grid-column width="200">
+      <ng-template kendoGridCellTemplate let-dataItem>
+        <button kendoButton (click)="edit(dataItem)" class="btn btn-default">ویرایش <i class="fas fa-edit"></i></button>
+        <button kendoButton (click)="delete(dataItem)" class="btn btn-default">حذف</button>
+      </ng-template>
+    </kendo-grid-column>
+  </kendo-grid>
+  <div *ngIf="loading" class="k-i-loading"></div>
+</div>

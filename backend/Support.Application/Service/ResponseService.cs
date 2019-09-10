@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Support.Application.Contract.DTO;
+using Support.Application.Contract.Grid;
 using Support.Application.Contract.IService;
 using Support.Application.Mapper;
 using Support.Domain.Model;

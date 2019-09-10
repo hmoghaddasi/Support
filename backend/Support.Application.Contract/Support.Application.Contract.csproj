@@ -5,13 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="IService\IAccessPolicyServices.cs" />
-    <Compile Remove="IService\IAccessServices.cs" />
-    <Compile Remove="IService\IRequestService.cs" />
-    <Compile Remove="IService\IResponseService.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Support.Domain\Support.Domain.csproj" />
   </ItemGroup>
 

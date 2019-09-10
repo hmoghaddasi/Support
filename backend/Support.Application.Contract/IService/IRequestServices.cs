@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Support.Application.Contract.DTO;
+using Support.Application.Contract.Grid;
 using Support.Domain.Model;
 
 namespace Support.Application.Contract.IService

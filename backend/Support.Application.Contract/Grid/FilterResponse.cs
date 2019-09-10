@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
-namespace Support.Domain.Model
+namespace Support.Application.Contract.Grid
 {
     public class FilterResponse<T>
     {

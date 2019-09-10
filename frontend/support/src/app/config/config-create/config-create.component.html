@@ -1,0 +1,42 @@
+<mat-toolbar style="text-align:center" dir="rtl">
+    <span>تنظیمات</span>
+</mat-toolbar>
+<mat-card class="my-card" dir="rtl">
+  <mat-card-content dir='rtl'>
+    <form #createform="ngForm" class="my-form mydadrow" dir="rtl">
+      <div class="my-row">
+        <mat-form-field style="display: none;">
+          <mat-label>والد</mat-label>
+          <input matInput placeholder="والد" name="ConfigHdrId" [(ngModel)]="model.ConfigHdrId" required readonly />
+        </mat-form-field>
+        <app-config-select [label]="'والد'" [parentId]=0 [(selectedConfig)]="model.ConfigHdrId"></app-config-select>
+        <mat-form-field class="half-width-input">
+          <mat-label>عنوان </mat-label>
+          <input matInput placeholder=" عنوان " name="ConfigName" [(ngModel)]="model.ConfigName" />
+        </mat-form-field>
+        <mat-form-field class="half-width-input">
+          <mat-label>توضیحات</mat-label>
+          <input matInput placeholder=" توضیحات " name="ConfigNote" [(ngModel)]="model.ConfigNote" />
+        </mat-form-field>
+        <mat-form-field class="half-width-input">
+          <mat-label>ترتیب </mat-label>
+          <input type="number" matInput placeholder=" ترتیب " name="ConfigSort" [(ngModel)]="model.ConfigSort"
+            required />
+        </mat-form-field>
+        <mat-form-field class="half-width-input">
+          <mat-label>کلاس</mat-label>
+          <input matInput placeholder=" کلاس " name="ClassName" [(ngModel)]="model.ClassName" />
+        </mat-form-field>
+        <mat-form-field class="half-width-input">
+          <mat-label>مقدار</mat-label>
+          <input type="number" matInput placeholder=" مقدار " name="ConfigValue" [(ngModel)]="model.ConfigValue"
+            required />
+        </mat-form-field>
+        <mat-card-actions>
+          <button class="submit-btn" mat-raised-button (click)="submitform()" color="primary"
+            [disabled]="createform.form.invalid">ثبت</button>
+        </mat-card-actions>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

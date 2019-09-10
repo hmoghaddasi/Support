@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using Support.Application.Contract.DTO;
+using Support.Application.Contract.Grid;
+using Support.Domain.Model;
 
 namespace Support.Application.Contract.IService
 {
@@ -13,5 +15,7 @@ namespace Support.Application.Contract.IService
         int GetCurrentPersonTypeId(string loginName);
         PersonDTO GetByLogin(string name);
         int GetPersonByLogin(string userName);
+        FilterResponse<PersonDTO> GetForGrid(GridRequest request);
+        BaseResponseDTO DeActivateUser(int id);
     }
 }

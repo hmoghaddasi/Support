@@ -1,7 +1,6 @@
 import { MatFormFieldModule } from '@angular/material';
 import { ResponseModule } from './response/response.module';
 import { RequestModule } from './request/request.module';
-import { ProjectModule } from './project/project.module';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -25,7 +24,6 @@ import { HomeModule } from './home/home.module';
     MyMaterialModule,
     HttpClientModule,
     FrameworkModule,
-    ProjectModule,
     RequestModule,
      ResponseModule,
      BrowserAnimationsModule,
