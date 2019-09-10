@@ -12,8 +12,7 @@ import { MatDialog } from '@angular/material';
 })
 export class UserRequestListComponent implements OnInit {
   Requests: Observable<RequestModel>;
-  model = new RequestModel();
-  constructor(private service: RequestService,
+  model = new RequestModel();   constructor(private service: RequestService,
     private dialog: MatDialog) { }
   ngOnInit() {
 
