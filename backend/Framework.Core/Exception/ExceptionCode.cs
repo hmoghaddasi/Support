@@ -27,5 +27,6 @@ namespace Framework.Core.Exception
         public const int NotExistImageCode = 1017;
         public const int PharmacyIsNotActive = 1018;
         public const int RequestAlreadyConfirmed = 1019;
+        public const int ExpressionBuilderFailCode = 1020;
     }
 }

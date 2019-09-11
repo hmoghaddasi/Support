@@ -8,37 +8,37 @@ namespace Framework.Core.File
 {
     public static class FileManagement
     {
-        public static string UploadExcelFile(HttpPostedFileBase file, string folder)
-        {
-            string excelPath = folder + Path.GetFileName(file.FileName);
-            file.SaveAs(excelPath);
+        //public static string UploadExcelFile(HttpPostedFileBase file, string folder)
+        //{
+        //    string excelPath = folder + Path.GetFileName(file.FileName);
+        //    file.SaveAs(excelPath);
 
-            string conString = string.Empty;
-            string extension = Path.GetExtension(file.FileName).ToLower();
+        //    string conString = string.Empty;
+        //    string extension = Path.GetExtension(file.FileName).ToLower();
 
-            conString = GetConnectionStringToExcel(extension, conString, excelPath);
-            return string.Format(conString, excelPath);
-        }
+        //    conString = GetConnectionStringToExcel(extension, conString, excelPath);
+        //    return string.Format(conString, excelPath);
+        //}
 
         private static string GenerateRandomFileName()
         {
             return Guid.NewGuid().ToString();
         }
 
-        public static string SaveFile(HttpPostedFile postedFile, string folder, string logPath)
-        {
-            var randomName = GenerateRandomFileName();
-            var extension = Path.GetExtension(postedFile.FileName).ToLower();
-            string filePath = folder + randomName;
-            if (!Directory.Exists(folder))
-                Directory.CreateDirectory(folder);
+        //public static string SaveFile(HttpPostedFile postedFile, string folder, string logPath)
+        //{
+        //    var randomName = GenerateRandomFileName();
+        //    var extension = Path.GetExtension(postedFile.FileName).ToLower();
+        //    string filePath = folder + randomName;
+        //    if (!Directory.Exists(folder))
+        //        Directory.CreateDirectory(folder);
 
-            postedFile.SaveAs(filePath + extension);
+        //    postedFile.SaveAs(filePath + extension);
 
-            Log(logPath, $"Content Type: {postedFile.ContentType}, File Name: {postedFile.FileName}, Extension: {extension}");
+        //    Log(logPath, $"Content Type: {postedFile.ContentType}, File Name: {postedFile.FileName}, Extension: {extension}");
 
-            return randomName + extension;
-        }
+        //    return randomName + extension;
+        //}
 
         private static string GetConnectionStringToExcel(string extension, string conString, string excelPath)
         {
@@ -56,32 +56,32 @@ namespace Framework.Core.File
             return conString;
         }
 
-        public static DataTable ConvertExcelToDataAdapter(string conString)
-        {
-            try
-            {
+        //public static DataTable ConvertExcelToDataAdapter(string conString)
+        //{
+        //    try
+        //    {
 
-            DataTable dataTable = new DataTable();
-            using (OleDbConnection excel_con = new OleDbConnection(conString))
-            {
-                excel_con.Open();
-                string sheet1 = excel_con.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null).Rows[0]["TABLE_NAME"].ToString();
+        //    DataTable dataTable = new DataTable();
+        //    using (OleDbConnection excel_con = new OleDbConnection(conString))
+        //    {
+        //        excel_con.Open();
+        //        string sheet1 = excel_con.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null).Rows[0]["TABLE_NAME"].ToString();
 
-                using (OleDbDataAdapter data = new OleDbDataAdapter("SELECT * FROM [" + sheet1 + "]", excel_con))
-                {
-                    data.Fill(dataTable);
-                    excel_con.Close();
-                    return dataTable;
-                }
-            }
+        //        using (OleDbDataAdapter data = new OleDbDataAdapter("SELECT * FROM [" + sheet1 + "]", excel_con))
+        //        {
+        //            data.Fill(dataTable);
+        //            excel_con.Close();
+        //            return dataTable;
+        //        }
+        //    }
 
-            }
-            catch (System.Exception exception)
-            {
-                throw exception;
-            }
+        //    }
+        //    catch (System.Exception exception)
+        //    {
+        //        throw exception;
+        //    }
 
-        }
+        //}
 
         public static bool IsImageFile(string contentType)
         {
@@ -110,15 +110,15 @@ namespace Framework.Core.File
             }
         }
 
-        public static bool FileIsValid(HttpPostedFile postedFile, string logPath)
-        {
-            if (!IsImageFile(postedFile.ContentType))
-            {
-                Log(logPath, "Upload file is not image");
-            }
+        //public static bool FileIsValid(HttpPostedFile postedFile, string logPath)
+        //{
+        //    if (!IsImageFile(postedFile.ContentType))
+        //    {
+        //        Log(logPath, "Upload file is not image");
+        //    }
 
-            return postedFile.ContentLength > 0;
-        }
+        //    return postedFile.ContentLength > 0;
+        //}
 
         public static void DownloadFile()
         {
