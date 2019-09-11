@@ -5,6 +5,7 @@ using Support.Application.Contract.IService;
 using Support.Application.Mapper;
 using Support.Domain.Model;
 using System;
+using Support.Application.Contract.Grid;
 using Support.Domain.IRepositories;
 
 namespace Support.Application.Service
@@ -86,6 +87,16 @@ namespace Support.Application.Service
                 return person.PersonId;
             }
             return 0;
+        }
+
+        public FilterResponse<PersonDTO> GetForGrid(GridRequest request)
+        {
+            throw new NotImplementedException();
+        }
+
+        public BaseResponseDTO DeActivateUser(int id)
+        {
+            throw new NotImplementedException();
         }
 
         //public List<PersonDropDownDTO> GetPerson()

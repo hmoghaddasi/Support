@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 
-namespace Support.Host.Middlewares
+namespace Support.Host.Middleware
 {
     // You may need to install the Microsoft.AspNetCore.Http.Abstractions package into your project
     public class AuthenticationMiddleware

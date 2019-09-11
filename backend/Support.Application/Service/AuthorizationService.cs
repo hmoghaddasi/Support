@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
+using Framework.Core.Notification;
+using Framework.Core.Text;
 using Support.Application.Contract.Constant;
 using Support.Application.Contract.DTO;
 using Support.Application.Contract.IService;
