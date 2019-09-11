@@ -20,8 +20,8 @@ namespace Support.Host.Controller
             if (claims != null)
                 return JwtManager.GenerateToken(claims);
 
-            throw new HttpResponseException(HttpStatusCode.Unauthorized);
-
+            HttpContext.Response.StatusCode = 401;
+            return null;
         }
 
     }
