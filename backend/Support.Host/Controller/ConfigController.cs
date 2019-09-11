@@ -26,7 +26,7 @@ namespace Support.Host.Controller
         }
 
         [HttpGet]
-        [AllowAnonymous]
+        [Authorize]
         [Route("api/ConfigChild")]
         public List<ConfigDTO> ConfigChild(int id)
         {

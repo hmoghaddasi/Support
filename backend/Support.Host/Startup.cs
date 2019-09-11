@@ -11,34 +11,37 @@ using Microsoft.IdentityModel.Tokens;
 using Support.Config;
 using Support.Host.Settings;
 using Swashbuckle.AspNetCore.Swagger;
+using Microsoft.AspNetCore.Http;
 
 namespace Support.Host
 {
     public class Startup
     {
         private DataSettings settings;
+        private IConfiguration Configuration { get; }
         public Startup(IConfiguration configuration)
         {
             settings = configuration.Get<DataSettings>();
+            Configuration = configuration;
         }
 
         public void ConfigureServices(IServiceCollection services)
         {
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-   .AddJwtBearer(options =>
-   {
-       options.TokenValidationParameters = new TokenValidationParameters
-       {
-           ValidateIssuer = true,
-           ValidateAudience = true,
-           ValidateLifetime = true,
-           ValidateIssuerSigningKey = true,
-           ValidIssuer = Configuration["Jwt:Issuer"],
-           ValidAudience = Configuration["Jwt:Issuer"],
-           IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
-       };
-   });
+               .AddJwtBearer(options =>
+               {
+                   options.TokenValidationParameters = new TokenValidationParameters
+                   {
+                       ValidateIssuer = true,
+                       ValidateAudience = true,
+                       ValidateLifetime = true,
+                       ValidateIssuerSigningKey = true,
+                       ValidIssuer = Configuration["Jwt:Issuer"],
+                       ValidAudience = Configuration["Jwt:Issuer"],
+                       IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
+                   };
+               });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddSwaggerGen(c =>
@@ -73,19 +76,19 @@ namespace Support.Host
             {
                 c.SwaggerEndpoint("/swagger/v1.0/swagger.json", "Support API (V 1.0)");
             });
+            app.UseAuthentication();
             app.UseMiddleware<AuthenticationMiddleware>();
-
             app.UseMvcWithDefaultRoute();
 
-            //if (env.IsDevelopment())
-            //{
-            //    app.UseDeveloperExceptionPage();
-            //}
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
 
-            //app.Run(async (context) =>
-            //{
-            //    await context.Response.WriteAsync("Hello World!");
-            //});
+            app.Run(async (context) =>
+            {
+                await context.Response.WriteAsync("Hello World!");
+            });
         }
     }
 }
