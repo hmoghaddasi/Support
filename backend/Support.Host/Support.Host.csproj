@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Framework.Core\Framework.Core.csproj" />
     <ProjectReference Include="..\Support.Application.Contract\Support.Application.Contract.csproj" />
     <ProjectReference Include="..\Support.Config\Support.Config.csproj" />
   </ItemGroup>
