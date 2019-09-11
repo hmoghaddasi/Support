@@ -17,5 +17,9 @@ namespace Support.Application.Contract.IService
         int GetPersonByLogin(string userName);
         FilterResponse<PersonDTO> GetForGrid(GridRequest request);
         BaseResponseDTO DeActivateUser(int id);
+        ProfileDTO GetProfile(object currentUserName);
+        BaseResponseDTO Edit(object currentUserName, ProfileDTO request);
+        BaseResponseDTO ValidateUser(int id);
+        BaseResponseDTO ActivateUser(int id);
     }
 }

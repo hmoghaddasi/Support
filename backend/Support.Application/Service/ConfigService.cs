@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Support.Application.Contract.DTO;
+using Support.Application.Contract.Grid;
 using Support.Application.Contract.IService;
 using Support.Application.Mapper;
 using Support.Domain.IRepositories;
@@ -43,40 +45,54 @@ namespace Support.Application.Service
                     .Select(ConfigMapper.Map)
                     .ToList();
         }
-        public List<ConfigDTO> GetChild(int parentId, int related)
+        public List<ConfigDTO> GetChild(int parentId)
         {
             return
-             _repository.Get(a => (a.ConfigHdrId == parentId || a.ConfigId == parentId)&&
-                                  (related==0 || a.ConfigValue==related))
+             _repository.Get(a => (a.ConfigHdrId == parentId || a.ConfigId == parentId))
                  .Select(ConfigMapper.Map)
                  .ToList();
         }
-        public void CreateOrUpdate(ConfigDTO dto)
+      
+        public BaseResponseDTO Create(ConfigDTO dto)
         {
-            if (dto.ConfigId == 0)
+            try
             {
-                Create(dto);
+
+                _repository.Create(ConfigMapper.MapToModel(dto));
+                return BaseResponseHelper.Success();
             }
-            else
+            catch (Exception e)
             {
-                Edit(dto);
+                return BaseResponseHelper.Failure(e.Message);
             }
         }
-        private void Create(ConfigDTO dto)
+        public BaseResponseDTO Edit(ConfigDTO dto)
         {
-            _repository.Create(ConfigMapper.MapToModel(dto));
-        }
-        private void Edit(ConfigDTO dto)
-        {
-            var model = _repository.GetById(dto.ConfigId);
+            try
+            {
+                var model = _repository.GetById(dto.ConfigId);
             
             var data=ConfigMapper.MapToEditModel(model, dto);
              _repository.Edit(data);
-            
-        }
-        public void Delete(int id)
+             return BaseResponseHelper.Success();
+            }
+        catch (Exception e)
         {
-            _repository.Delete(_repository.GetById(id));
+            return BaseResponseHelper.Failure(e.Message);
+        }
+
+}
+        public BaseResponseDTO Delete(int id)
+        {
+            try
+            {
+                _repository.Delete(_repository.GetById(id));
+                return BaseResponseHelper.Success();
+            }
+        catch (Exception e)
+        {
+        return BaseResponseHelper.Failure(e.Message);
+}
         }
 
         public ConfigParentDTO GetConfigParent()
@@ -84,48 +100,9 @@ namespace Support.Application.Service
             throw new System.NotImplementedException();
         }
 
-
-        //public ConfigParentDTO GetConfigParent()
-        //{
-        //    return ConfigMapper.MapToConfigParentDTO();
-        //}
-
-        //public FilterResponse<ConfigDTO> GetAllConfig(GridRequest request,int parentId)
-        //{
-        //    var result = _repository.Get(a=>a.ConfigHdrId==parentId).Select(ConfigMapper.Map).AsQueryable();
-
-        //    var data = result.ApplyFilters(request, false);
-        //    return new FilterResponse<ConfigDTO>(data.Data, data.Count);
-        //}
-
-
-        //public FilterResponse<ConfigDTO> GetAllForGrid(GridRequest request)
-        //{
-        //    var result = _repository.GetAll().Select(ConfigMapper.Map).AsQueryable();
-
-        //    var data = result.ApplyFilters(request, false);
-        //    return new FilterResponse<ConfigDTO>(data.Data, data.Count);
-        //}
-
-        //public List<PairValueDTO> GetPersonType()
-        //{
-        //    return _repository.Get(a => a.ConfigHdrId == ConfigType.CreditType)
-        //        .OrderBy(a=>a.ConfigSort)
-        //        .Select(ConfigMapper.MapToPairValue).ToList();
-        //}
-
-        //public List<ConfigDTO> GetCreditType()
-        //{
-        //    return _repository.Get(a => a.ConfigHdrId == ConfigType.CreditType)
-        //        .OrderBy(a => a.ConfigSort)
-        //        .Select(ConfigMapper.Map).ToList();
-        //}
-
-        //public List<PairValueDTO> GetContentType()
-        //{
-        //    return _repository.Get(a => a.ConfigHdrId == ConfigType.ContentType)
-        //        .OrderBy(a => a.ConfigSort)
-        //        .Select(ConfigMapper.MapToPair).ToList();
-        //}
+        public FilterResponse<ConfigDTO> GetForGrid(GridRequest request)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

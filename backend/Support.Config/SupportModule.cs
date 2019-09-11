@@ -6,6 +6,7 @@ using Support.DataAccess.EF;
 using Support.DataAccess.EF.Repository;
 using Support.Domain.IRepositories;
 
+
 namespace Support.Config
 {
     public class SupportModule : Module

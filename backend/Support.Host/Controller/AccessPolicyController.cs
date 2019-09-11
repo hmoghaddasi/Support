@@ -16,11 +16,6 @@ namespace Support.Host.Controller
             this._accessPolicyService = accessPolicyService;           
         }
 
-		[AllowAnonymous]
-        public List<AccessPolicyDTO> Get()
-        {
-            return _accessPolicyService.GetAll();
-        }
         [AllowAnonymous]
         public IActionResult Post(AccessPolicyDTO dto)
         {

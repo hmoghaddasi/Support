@@ -7,4 +7,9 @@
         {
         }
     }
+
+    public class ExceptionCode
+    {
+        public const int ExpressionBuilderFailCode = 1000;
+    }
 }

@@ -12,6 +12,8 @@ using Support.Config;
 using Support.Host.Settings;
 using Swashbuckle.AspNetCore.Swagger;
 using Microsoft.AspNetCore.Http;
+using Support.Host.Middleware;
+using AuthenticationMiddleware = Support.Host.Middleware.AuthenticationMiddleware;
 
 namespace Support.Host
 {
@@ -63,6 +65,18 @@ namespace Support.Host
         {
             app.UseDefaultFiles();
             app.UseStaticFiles();
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+            else
+            {
+                app.UseHsts();
+            }
+
+            app.ConfigureExceptionHandler();
+
+            app.UseHttpsRedirection();
 
             app.UseCors(a =>
             {
