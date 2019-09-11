@@ -3,9 +3,9 @@
     public class ForignkeyDeleteException : BusinessException
     {
         public ForignkeyDeleteException()
-            : base(ExceptionCode.ForignKeyDeleteCode,
+            : base(ExceptionCode.ForeignKeyDeleteCode,
                   "به علت وجود وابستگی داده امکان حذف این آیتم وجود ندارد" +" ("+
-                  ExceptionCode.ForignKeyDeleteCode.ToString() + ")")
+                  ExceptionCode.ForeignKeyDeleteCode.ToString() + ")")
         {
         }
     }

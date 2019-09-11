@@ -1,4 +1,6 @@
-﻿namespace Support.Domain.Exception
+﻿using Framework.Core.Exception;
+
+namespace Support.Domain.Exception
 {
     public class PersonNotActiveException : BusinessException
     {
