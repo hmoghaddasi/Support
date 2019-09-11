@@ -1,11 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
+using Support.Application.Contract.Constant;
 using Support.Application.Contract.DTO;
 using Support.Application.Contract.IService;
+using Support.Application.Contract.Tools;
 using Support.Application.Mapper;
+using Support.Domain.Exception;
+using Support.Domain.IRepositories;
 using Support.Domain.Model;
-using Support.Domain.Repositories;
 
 namespace Support.Application.Service
 {
@@ -13,9 +16,9 @@ namespace Support.Application.Service
     {
         private readonly IPersonRepository _personRepository;
         private readonly INotificationService _notificationService;
-        private readonly IAccessPolicyService _accessPolicyService;
+        private readonly IAccessPolicyServices _accessPolicyService;
 
-        public AuthorizationService(IPersonRepository personRepository, INotificationService notificationService, IAccessPolicyService accessPolicyService)
+        public AuthorizationService(IPersonRepository personRepository, INotificationService notificationService, IAccessPolicyServices accessPolicyService)
         {
             _personRepository = personRepository;
             _notificationService = notificationService;
