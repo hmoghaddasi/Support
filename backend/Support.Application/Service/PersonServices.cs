@@ -3,9 +3,9 @@ using System.Linq;
 using Support.Application.Contract.DTO;
 using Support.Application.Contract.IService;
 using Support.Application.Mapper;
-using Support.Domain.Repositories;
 using Support.Domain.Model;
 using System;
+using Support.Domain.IRepositories;
 
 namespace Support.Application.Service
 {

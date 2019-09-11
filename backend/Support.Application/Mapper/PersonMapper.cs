@@ -54,7 +54,11 @@ namespace Support.Application.Mapper
 
             return model;
         }
-    
+
+        public static PersonDTO MapToRegister(PersonRegisterDTO dto)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 
 }

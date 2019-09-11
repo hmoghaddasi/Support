@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using Support.Domain.Model;
 
-namespace Support.Domain.Repositories
+namespace Support.Domain.IRepositories
 {
     public interface IAccessPolicyRepository /*: Framework.Core.OnionClass.IRepository*/
     {

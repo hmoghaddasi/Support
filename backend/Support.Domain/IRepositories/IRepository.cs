@@ -1,4 +1,4 @@
-﻿namespace Support.Domain.Repositories
+﻿namespace Support.Domain.IRepositories
 {
     public interface IRepository
     {

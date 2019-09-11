@@ -4,7 +4,7 @@ using Support.Application.Contract.IService;
 using Support.Application.Service;
 using Support.DataAccess.EF;
 using Support.DataAccess.EF.Repository;
-using Support.Domain.Repositories;
+using Support.Domain.IRepositories;
 
 namespace Support.Config
 {

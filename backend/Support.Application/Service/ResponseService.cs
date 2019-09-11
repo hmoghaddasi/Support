@@ -5,8 +5,8 @@ using Support.Application.Contract.DTO;
 using Support.Application.Contract.Grid;
 using Support.Application.Contract.IService;
 using Support.Application.Mapper;
+using Support.Domain.IRepositories;
 using Support.Domain.Model;
-using Support.Domain.Repositories;
 
 namespace Support.Application.Service
 {

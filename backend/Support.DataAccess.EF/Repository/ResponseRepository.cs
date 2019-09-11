@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using Support.Domain.IRepositories;
 using Support.Domain.Model;
-using Support.Domain.Repositories;
 
 namespace Support.DataAccess.EF.Repository
 {
