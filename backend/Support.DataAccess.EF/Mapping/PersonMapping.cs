@@ -11,7 +11,7 @@ namespace Support.DataAccess.EF.Mapping
         {
           builder.ToTable("Person", "gen").HasKey(a => a.PersonId);
           builder.Property(a => a.PersonId).ValueGeneratedOnAdd();
-          builder.HasOne(a => a.Status).WithMany().HasForeignKey(a => a.StatusId).OnDelete(DeleteBehavior.Cascade);
+          builder.HasOne(a => a.Status).WithMany().HasForeignKey(a => a.StatusId).OnDelete(DeleteBehavior.Restrict);
           //builder.HasOne(a => a.Category).WithMany().HasForeignKey(a => a.CategoryId).WillCascadeOnDelete(false);
             //builder.HasOne(a => a.Group).WithMany().HasForeignKey(a => a.GroupId).WillCascadeOnDelete(false);
             //builder.HasOne(a => a.PersonType).WithMany().HasForeignKey(a => a.PersonTypeId).WillCascadeOnDelete(false);

@@ -13,10 +13,10 @@ namespace Support.DataAccess.EF.Mapping
             builder.Property(a => a.AccessPolicyId).ValueGeneratedOnAdd();
 
             builder.HasOne(a => a.Access).WithMany(a => a.AccessPolicies)
-                .HasForeignKey(a => a.AccessId).OnDelete(DeleteBehavior.Cascade);
+                .HasForeignKey(a => a.AccessId).OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(a => a.Person).WithMany(a => a.AccessPolicies)
-                .HasForeignKey(a => a.PersonId).OnDelete(DeleteBehavior.Cascade);
+                .HasForeignKey(a => a.PersonId).OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

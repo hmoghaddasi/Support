@@ -11,8 +11,8 @@ namespace Support.DataAccess.EF.Mapping
         {
             builder.ToTable("Response",  "gen").HasKey(a => a.ResponseId);
             builder.Property(a => a.ResponseId).ValueGeneratedOnAdd();
-            builder.HasOne(a => a.CreateBy).WithMany(a => a.CreateResponses).HasForeignKey(a => a.CreateById).OnDelete(DeleteBehavior.Cascade);
-            builder.HasOne(a => a.Request).WithMany(a => a.Responses).HasForeignKey(a => a.RequestId).OnDelete(DeleteBehavior.Cascade);
+            builder.HasOne(a => a.CreateBy).WithMany(a => a.CreateResponses).HasForeignKey(a => a.CreateById).OnDelete(DeleteBehavior.Restrict);
+            builder.HasOne(a => a.Request).WithMany(a => a.Responses).HasForeignKey(a => a.RequestId).OnDelete(DeleteBehavior.Restrict);
         }
 
     }

@@ -15,7 +15,7 @@ namespace Support.DataAccess.EF.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
+                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -147,6 +147,8 @@ namespace Support.DataAccess.EF.Migrations
 
                     b.Property<int>("PriorityId");
 
+                    b.Property<int>("ProjectId");
+
                     b.Property<int>("RequestById");
 
                     b.Property<DateTime>("RequestDate");
@@ -162,6 +164,8 @@ namespace Support.DataAccess.EF.Migrations
                     b.HasIndex("AssignedId");
 
                     b.HasIndex("PriorityId");
+
+                    b.HasIndex("ProjectId");
 
                     b.HasIndex("RequestById");
 
@@ -202,12 +206,12 @@ namespace Support.DataAccess.EF.Migrations
                     b.HasOne("Support.Domain.Model.Access", "Access")
                         .WithMany("AccessPolicies")
                         .HasForeignKey("AccessId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("Support.Domain.Model.Person", "Person")
                         .WithMany("AccessPolicies")
                         .HasForeignKey("PersonId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("Support.Domain.Model.Config", b =>
@@ -230,7 +234,7 @@ namespace Support.DataAccess.EF.Migrations
                     b.HasOne("Support.Domain.Model.Config", "Status")
                         .WithMany()
                         .HasForeignKey("StatusId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("Support.Domain.Model.Request", b =>
@@ -238,27 +242,32 @@ namespace Support.DataAccess.EF.Migrations
                     b.HasOne("Support.Domain.Model.Person", "Assigned")
                         .WithMany("AssignResponses")
                         .HasForeignKey("AssignedId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("Support.Domain.Model.Config", "Priority")
                         .WithMany()
                         .HasForeignKey("PriorityId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("Support.Domain.Model.Config", "Project")
+                        .WithMany()
+                        .HasForeignKey("ProjectId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Support.Domain.Model.Person", "RequestBy")
                         .WithMany("Requests")
                         .HasForeignKey("RequestById")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("Support.Domain.Model.Config", "Status")
                         .WithMany()
                         .HasForeignKey("StatusId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("Support.Domain.Model.Config", "Type")
                         .WithMany()
                         .HasForeignKey("TypeId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("Support.Domain.Model.Response", b =>
@@ -266,12 +275,12 @@ namespace Support.DataAccess.EF.Migrations
                     b.HasOne("Support.Domain.Model.Person", "CreateBy")
                         .WithMany("CreateResponses")
                         .HasForeignKey("CreateById")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("Support.Domain.Model.Request", "Request")
                         .WithMany("Responses")
                         .HasForeignKey("RequestId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 #pragma warning restore 612, 618
         }

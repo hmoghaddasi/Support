@@ -11,6 +11,7 @@ namespace Support.Domain.Model
         public int StatusId { get; set; }
         public int TypeId { get; set; }
         public int PriorityId { get; set; }
+        public int ProjectId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
 
@@ -19,6 +20,7 @@ namespace Support.Domain.Model
         public Config Status { get; set; }
         public Config Type { get; set; }
         public Config Priority { get; set; }
+        public Config Project { get; set; }
 
         public virtual Person Assigned { get; set; }
         public virtual List<Response> Responses { get; set; }

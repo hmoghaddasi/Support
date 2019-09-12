@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Support.DataAccess.EF.Migrations
 {
-    public partial class Initial : Migration
+    public partial class InitialStep : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -37,7 +37,7 @@ namespace Support.DataAccess.EF.Migrations
                         principalSchema: "gen",
                         principalTable: "Config",
                         principalColumn: "ConfigId",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -81,7 +81,7 @@ namespace Support.DataAccess.EF.Migrations
                         principalSchema: "gen",
                         principalTable: "Config",
                         principalColumn: "ConfigId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -122,6 +122,7 @@ namespace Support.DataAccess.EF.Migrations
                     StatusId = table.Column<int>(nullable: false),
                     TypeId = table.Column<int>(nullable: false),
                     PriorityId = table.Column<int>(nullable: false),
+                    ProjectId = table.Column<int>(nullable: false),
                     Title = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
                     AssignedId = table.Column<int>(nullable: false)
@@ -135,35 +136,42 @@ namespace Support.DataAccess.EF.Migrations
                         principalSchema: "gen",
                         principalTable: "Person",
                         principalColumn: "PersonId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Request_Config_PriorityId",
                         column: x => x.PriorityId,
                         principalSchema: "gen",
                         principalTable: "Config",
                         principalColumn: "ConfigId",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Request_Config_ProjectId",
+                        column: x => x.ProjectId,
+                        principalSchema: "gen",
+                        principalTable: "Config",
+                        principalColumn: "ConfigId",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Request_Person_RequestById",
                         column: x => x.RequestById,
                         principalSchema: "gen",
                         principalTable: "Person",
                         principalColumn: "PersonId",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Request_Config_StatusId",
                         column: x => x.StatusId,
                         principalSchema: "gen",
                         principalTable: "Config",
                         principalColumn: "ConfigId",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Request_Config_TypeId",
                         column: x => x.TypeId,
                         principalSchema: "gen",
                         principalTable: "Config",
                         principalColumn: "ConfigId",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -185,14 +193,14 @@ namespace Support.DataAccess.EF.Migrations
                         principalSchema: "sec",
                         principalTable: "Access",
                         principalColumn: "AccessId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_AccessPolicy_Person_PersonId",
                         column: x => x.PersonId,
                         principalSchema: "gen",
                         principalTable: "Person",
                         principalColumn: "PersonId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -217,14 +225,14 @@ namespace Support.DataAccess.EF.Migrations
                         principalSchema: "gen",
                         principalTable: "Person",
                         principalColumn: "PersonId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Response_Request_RequestId",
                         column: x => x.RequestId,
                         principalSchema: "gen",
                         principalTable: "Request",
                         principalColumn: "RequestId",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
@@ -256,6 +264,12 @@ namespace Support.DataAccess.EF.Migrations
                 schema: "gen",
                 table: "Request",
                 column: "PriorityId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Request_ProjectId",
+                schema: "gen",
+                table: "Request",
+                column: "ProjectId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Request_RequestById",
