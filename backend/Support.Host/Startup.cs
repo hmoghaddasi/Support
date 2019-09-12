@@ -1,6 +1,5 @@
 ﻿using System.Text;
 using Autofac;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -10,10 +9,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Support.Config;
 using Support.Host.Settings;
-using Swashbuckle.AspNetCore.Swagger;
 using Microsoft.AspNetCore.Http;
 using Support.Host.Middleware;
-using AuthenticationMiddleware = Support.Host.Middleware.AuthenticationMiddleware;
+using Support.Host.Tools;
 
 namespace Support.Host
 {
@@ -46,10 +44,7 @@ namespace Support.Host
                });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1.0", new Info { Title = "Support API", Version = "1.0" });
-            });
+            services.AddSwaggerDocumentation();
             //services.AddMvc(a =>
             //{
             //    a.Filters.Add(new CustomActionFilter());
@@ -86,12 +81,9 @@ namespace Support.Host
             });
 
             app.UseSwagger();
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1.0/swagger.json", "Support API (V 1.0)");
-            });
+            app.UseSwaggerDocumentation();
             app.UseAuthentication();
-            app.UseMiddleware<AuthenticationMiddleware>();
+            //app.UseMiddleware<AuthenticationMiddleware>();
             app.UseMvcWithDefaultRoute();
 
             if (env.IsDevelopment())

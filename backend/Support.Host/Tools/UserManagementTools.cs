@@ -3,7 +3,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading;
 
-namespace Support.Host.Controller
+namespace Support.Host.Tools
 {
     public class UserManagementTools
     {
