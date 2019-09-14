@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Framework.Core.Filtering;
 using Support.Application.Contract.DTO;
-using Support.Application.Contract.Grid;
 
 namespace Support.Application.Contract.IService
 {
@@ -15,6 +15,7 @@ namespace Support.Application.Contract.IService
         BaseResponseDTO Edit(ConfigDTO config);
         BaseResponseDTO Delete(int Id);
         ConfigParentDTO GetConfigParent();
-        FilterResponse<ConfigDTO> GetForGrid(GridRequest request);
+        List<ConfigDTO> GetConfigChildsByParentId(int id);
+        FilterResponse<ConfigDTO> GetForGrid(GridRequestWithArgument request);
     }
 }

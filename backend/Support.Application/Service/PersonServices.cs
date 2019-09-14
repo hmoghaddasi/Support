@@ -6,8 +6,8 @@ using Support.Application.Mapper;
 using Support.Domain.Model;
 using System;
 using Framework.Core.Text;
-using Support.Application.Contract.Grid;
 using Support.Domain.IRepositories;
+using Framework.Core.Filtering;
 
 namespace Support.Application.Service
 {

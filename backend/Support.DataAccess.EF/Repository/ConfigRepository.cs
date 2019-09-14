@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using Framework.Core.Filtering;
 using Support.Domain.IRepositories;
 using Support.Domain.Model;
 
@@ -43,6 +44,10 @@ namespace Support.DataAccess.EF.Repository
             _context.Configs.Remove(_context.Configs.Find(configId));
         }
 
-
+        public FilterResponse<Config> GetForGrid(GridRequest request, int parentId)
+        {
+            return _context.Configs.Where(a => a.ConfigHdrId == parentId)
+           .AsQueryable().ApplyFilters(request);
+        }
     }
 }

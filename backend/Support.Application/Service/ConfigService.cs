@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Framework.Core.Filtering;
 using Support.Application.Contract.DTO;
-using Support.Application.Contract.Grid;
 using Support.Application.Contract.IService;
 using Support.Application.Mapper;
 using Support.Domain.IRepositories;
@@ -19,7 +19,7 @@ namespace Support.Application.Service
         public List<ConfigDTO> GetConfigName()
         {
             return _repository.Get(w => w.ConfigHdrId == 0).Select(ConfigMapper.Map).ToList();
-            
+
         }
         public List<ConfigDTO> GetAll()
         {
@@ -36,12 +36,12 @@ namespace Support.Application.Service
         public ConfigDTO GetById(int Id)
         {
             var config = _repository.GetById(Id);
-            return  ConfigMapper.Map(config);
+            return ConfigMapper.Map(config);
         }
         public List<ConfigDTO> GetParent(int Id)
         {
             return
-                _repository.Get(a=>a.ConfigId== Id)
+                _repository.Get(a => a.ConfigId == Id)
                     .Select(ConfigMapper.Map)
                     .ToList();
         }
@@ -52,7 +52,7 @@ namespace Support.Application.Service
                  .Select(ConfigMapper.Map)
                  .ToList();
         }
-      
+
         public BaseResponseDTO Create(ConfigDTO dto)
         {
             try
@@ -71,17 +71,17 @@ namespace Support.Application.Service
             try
             {
                 var model = _repository.GetById(dto.ConfigId);
-            
-            var data=ConfigMapper.MapToEditModel(model, dto);
-             _repository.Edit(data);
-             return BaseResponseHelper.Success();
-            }
-        catch (Exception e)
-        {
-            return BaseResponseHelper.Failure(e.Message);
-        }
 
-}
+                var data = ConfigMapper.MapToEditModel(model, dto);
+                _repository.Edit(data);
+                return BaseResponseHelper.Success();
+            }
+            catch (Exception e)
+            {
+                return BaseResponseHelper.Failure(e.Message);
+            }
+
+        }
         public BaseResponseDTO Delete(int id)
         {
             try
@@ -89,10 +89,10 @@ namespace Support.Application.Service
                 _repository.Delete(_repository.GetById(id));
                 return BaseResponseHelper.Success();
             }
-        catch (Exception e)
-        {
-        return BaseResponseHelper.Failure(e.Message);
-}
+            catch (Exception e)
+            {
+                return BaseResponseHelper.Failure(e.Message);
+            }
         }
 
         public ConfigParentDTO GetConfigParent()
@@ -100,9 +100,30 @@ namespace Support.Application.Service
             throw new System.NotImplementedException();
         }
 
-        public FilterResponse<ConfigDTO> GetForGrid(GridRequest request)
+        public FilterResponse<ConfigDTO> GetForGrid(GridRequestWithArgument request)
         {
-            throw new System.NotImplementedException();
+            var result = _repository.GetForGrid(new GridRequest
+            {
+                Take = request.Take,
+                Skip = request.Skip,
+                Filter = request.Filter,
+                FilterX = request.FilterX,
+                Sort = request.Sort,
+            }, request.Id);
+            return new FilterResponse<ConfigDTO>(result.data.Select(ConfigMapper.Map).ToList(), result.total);
+        }
+
+        public List<ConfigDTO> GetConfigChildsByParentId(int id)
+        {
+            try
+            {
+                return _repository.Get(d => d.ConfigHdrId == id && d.ConfigId != 0).Select(ConfigMapper.Map).ToList();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
     }
 }

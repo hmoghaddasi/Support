@@ -1,6 +1,6 @@
 using System.Collections.Generic;
+using Framework.Core.Filtering;
 using Support.Application.Contract.DTO;
-using Support.Application.Contract.Grid;
 
 namespace Support.Application.Contract.IService
 {
