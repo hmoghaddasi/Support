@@ -11,5 +11,6 @@
     public class ExceptionCode
     {
         public const int ExpressionBuilderFailCode = 1000;
+        public const int NotExistConfigCode = 1001;
     }
 }

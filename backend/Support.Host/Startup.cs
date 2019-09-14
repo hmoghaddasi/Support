@@ -39,8 +39,8 @@ namespace Support.Host
         {
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-               .AddJwtBearer(options =>
-               {
+                .AddJwtBearer(options =>
+                {
                    options.TokenValidationParameters = new TokenValidationParameters
                    {
                        ValidateIssuer = true,
@@ -68,6 +68,9 @@ namespace Support.Host
             builder.RegisterType<AccessPolicyService>().As<IAccessPolicyServices>();
             builder.RegisterType<AccessPolicyRepository>().As<IAccessPolicyRepository>();
             builder.RegisterType<AccessRepository>().As<IAccessRepository>();
+            builder.RegisterType<ConfigRepository>().As<IConfigRepository>();
+            builder.RegisterType<ConfigService>().As<IConfigService>();
+
             //builder.RegisterType<SiteAnalyticsServices>();
             builder.Populate(services);
             var container = builder.Build();

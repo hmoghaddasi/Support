@@ -3,7 +3,7 @@ using Support.Domain.Model;
 
 namespace Support.Application.Mapper
 {
-   public class ConfigMapper
+    public class ConfigMapper
     {
         public static ConfigDTO Map(Config config)
         {
@@ -15,11 +15,11 @@ namespace Support.Application.Mapper
                 ConfigValue = config.ConfigValue,
                 ConfigNote = config.ConfigNote,
                 ConfigSort = config.ConfigSort,
-                ClassName= config.ClassName
+                ClassName = config.ClassName
 
             };
         }
-      
+
         public static Config MapToModel(ConfigDTO config)
         {
             return new Config()
@@ -43,7 +43,7 @@ namespace Support.Application.Mapper
             model.ConfigSort = dto.ConfigSort;
             return model;
         }
-   
+
     }
 
 }
