@@ -92,8 +92,7 @@ namespace Support.Host
                 app.UseHsts();
             }
 
-            app.ConfigureExceptionHandler();
-
+            //app.ConfigureExceptionHandler();
             app.UseHttpsRedirection();
 
             app.UseCors(a =>
@@ -107,13 +106,13 @@ namespace Support.Host
             app.UseSwaggerDocumentation();
             app.UseAuthentication();
             //app.UseMiddleware<AuthenticationMiddleware>();
+            app.UseMiddleware(typeof(ErrorHandlingMiddleware));
             app.UseMvcWithDefaultRoute();
             app.UseMiddleware<StatusCodeExceptionHandler>();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-
             app.Run(async (context) =>
             {
                 await context.Response.WriteAsync("Hello World!");
