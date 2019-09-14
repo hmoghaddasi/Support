@@ -7,7 +7,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using Support.Config;
 using Support.Host.Settings;
 using Microsoft.AspNetCore.Http;
 using Support.Host.Middleware;
@@ -74,13 +73,8 @@ namespace Support.Host
             //Create the IServiceProvider based on the container.
             return new AutofacServiceProvider(container);
         }
-
-        //public void ConfigureContainer(ContainerBuilder builder)
-        //{
-        //    builder.RegisterModule(new SupportModule(this.settings.ConnectionString));
-        //}
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-        {            
+        {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -89,21 +83,16 @@ namespace Support.Host
             {
                 app.UseHsts();
             }
-
-            //app.ConfigureExceptionHandler();
+            app.UseAuthentication();
             app.UseHttpsRedirection();
-
             app.UseCors(a =>
             {
-                a.WithOrigins("http://localhost:4200")
+                a.AllowAnyOrigin()
                     .AllowAnyHeader()
                     .AllowAnyMethod();
             });
-
             app.UseSwagger();
             app.UseSwaggerDocumentation();
-            app.UseAuthentication();
-            //app.UseMiddleware<AuthenticationMiddleware>();
             app.UseMiddleware(typeof(ErrorHandlingMiddleware));
             app.UseMvcWithDefaultRoute();
             app.UseMiddleware<StatusCodeExceptionHandler>();

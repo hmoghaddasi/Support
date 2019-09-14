@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
+using Framework.Core.Text;
+using Support.Application.Contract.Constant;
 using Support.Application.Contract.DTO;
+using Support.Application.Contract.Tools;
 using Support.Domain.Model;
 
 namespace Support.Application.Mapper
@@ -27,20 +30,19 @@ namespace Support.Application.Mapper
             };
         }
 
-        public static Person MapToModel(PersonDTO dto)
+        public static Person MapToModel(PersonCreateDTO person)
         {
             return new Person()
             {
-                PersonId = dto.PersonId,
-                FirstName = dto.FirstName,
-                LastName = dto.LastName,
-                LoginName = dto.LoginName,
-                Email = dto.Email,
-                Mobile = dto.Mobile,
-                Gender = dto.Gender,
-                //Password = MD5Tool.Hash(dto.Password),
+                PersonId = 0,
+                FirstName = person.FirstName,
+                LastName = person.LastName,
+                Mobile = person.Mobile,
+                StatusId = PersonStatus.New,                
+                Gender = false,
+                Password = MD5Tool.Hash(person.Password),
+                LoginName = person.Mobile
             };
-
         }
 
         public static Person MapEditDTO(Person model, PersonDTO editDTO)
@@ -55,9 +57,17 @@ namespace Support.Application.Mapper
             return model;
         }
 
-        public static PersonDTO MapToRegister(PersonRegisterDTO dto)
+        public static PersonCreateDTO MapToRegister(PersonRegisterDTO dto)
         {
-            throw new System.NotImplementedException();
+            return new PersonCreateDTO()
+            {
+                PersonId = 0,
+                FirstName = dto.FirstName,
+                LastName = dto.LastName,
+                LoginName = dto.Mobile,
+                Mobile = dto.Mobile,
+                Password = PersonTools.GetRandomPassKey()
+            };
         }
     }
 

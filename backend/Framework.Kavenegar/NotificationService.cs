@@ -1,6 +1,6 @@
 ﻿using Framework.Core.Notification;
 using Kavenegar;
-using Kavenegar.Exceptions;
+using Kavenegar.Core.Exceptions;
 using System;
 
 namespace Framework.Kavenegar

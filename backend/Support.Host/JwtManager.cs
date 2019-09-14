@@ -20,7 +20,8 @@ namespace Support.Host
             {
                 Subject = new ClaimsIdentity(claims),
                 Expires = DateTime.UtcNow.AddMinutes(Convert.ToInt32(expireMinutes)),
-                SigningCredentials = signingCredentials
+                SigningCredentials = signingCredentials,
+                IssuedAt = DateTime.Now,
             };
             var securityToken = jwtSecurityTokenHandler.CreateToken(securityTokenDescriptor);
             var strToken = jwtSecurityTokenHandler.WriteToken(securityToken);

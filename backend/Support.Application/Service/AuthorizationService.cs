@@ -35,7 +35,7 @@ namespace Support.Application.Service
             var personId = _personRepository.Create(person);
             _accessPolicyService.AddGeneralAccess(personId);
             _notificationService.SendSms(person.Mobile,
-               $"پیوستن شما به داروگشت را تبریک می گوییم نام کاربری {person.Mobile} رمز عبور  {registerPerson.Password}");
+               $"پیوستن شما به سامانه پشتیبانی SAAP را تبریک می گوییم نام کاربری {person.Mobile} رمز عبور  {registerPerson.Password}");
             return CreateClaims(person);
         }
         private void GuardDuplicateMobileNumber(string mobile)
@@ -73,6 +73,7 @@ namespace Support.Application.Service
             var password = MD5Tool.Hash(dto.Code);
             var person = _personRepository.Get(a => a.Mobile == mobile &&
                                                a.Password == password);
+            person.First().StatusId = PersonStatus.Verified;
             if (person.Any())
             {
                 return CreateClaims(person.First());
