@@ -80,9 +80,7 @@ namespace Support.Host
         //    builder.RegisterModule(new SupportModule(this.settings.ConnectionString));
         //}
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-        {
-            app.UseDefaultFiles();
-            app.UseStaticFiles();
+        {            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -113,6 +111,8 @@ namespace Support.Host
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
             app.Run(async (context) =>
             {
                 await context.Response.WriteAsync("Hello World!");
