@@ -6,5 +6,6 @@
         public const int MobileExists = 1002;
         public const int PersonNotActiveCode = 1003;
         public const int ForeignKeyDeleteCode = 1004;
+        public const int AccessPolicyNotFoundCode = 1005;
     }
 }

@@ -12,6 +12,16 @@ using Support.Host.Settings;
 using Microsoft.AspNetCore.Http;
 using Support.Host.Middleware;
 using Support.Host.Tools;
+using Support.Host.HttpStatus;
+using Support.DataAccess.EF;
+using System;
+using Autofac.Extensions.DependencyInjection;
+using Support.Application.Service;
+using Support.Application.Contract.IService;
+using Support.Domain.IRepositories;
+using Support.DataAccess.EF.Repository;
+using Framework.Kavenegar;
+using Framework.Core.Notification;
 
 namespace Support.Host
 {
@@ -25,7 +35,7 @@ namespace Support.Host
             Configuration = configuration;
         }
 
-        public void ConfigureServices(IServiceCollection services)
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -44,18 +54,31 @@ namespace Support.Host
                });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddDbContext<SupportDbContext>(options =>
+            {
+            });
             services.AddSwaggerDocumentation();
-            //services.AddMvc(a =>
-            //{
-            //    a.Filters.Add(new CustomActionFilter());
-            //    a.Filters.Add(new AuthorizeFilter());
-            //});
+
+            //Now register our services with Autofac container
+            var builder = new ContainerBuilder();
+            //add services to autofac container
+            builder.RegisterType<AuthorizationService>().As<IAuthorizationService>();
+            builder.RegisterType<PersonRepository>().As<IPersonRepository>();
+            builder.RegisterType<NotificationService>().As<INotificationService>();
+            builder.RegisterType<AccessPolicyService>().As<IAccessPolicyServices>();
+            builder.RegisterType<AccessPolicyRepository>().As<IAccessPolicyRepository>();
+            builder.RegisterType<AccessRepository>().As<IAccessRepository>();
+            //builder.RegisterType<SiteAnalyticsServices>();
+            builder.Populate(services);
+            var container = builder.Build();
+            //Create the IServiceProvider based on the container.
+            return new AutofacServiceProvider(container);
         }
 
-        public void ConfigureContainer(ContainerBuilder builder)
-        {
-            builder.RegisterModule(new SupportModule(this.settings.ConnectionString));
-        }
+        //public void ConfigureContainer(ContainerBuilder builder)
+        //{
+        //    builder.RegisterModule(new SupportModule(this.settings.ConnectionString));
+        //}
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             app.UseDefaultFiles();
@@ -85,7 +108,7 @@ namespace Support.Host
             app.UseAuthentication();
             //app.UseMiddleware<AuthenticationMiddleware>();
             app.UseMvcWithDefaultRoute();
-
+            app.UseMiddleware<StatusCodeExceptionHandler>();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

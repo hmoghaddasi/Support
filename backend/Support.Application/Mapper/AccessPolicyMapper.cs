@@ -7,27 +7,36 @@ namespace Support.Application.Mapper
 {
     public class AccessPolicyMapper
     {
-        public static AccessPolicyDTO Map(AccessPolicy access)
+        public static AccessPolicyDTO MapToDTO(AccessPolicy model)
         {
             return new AccessPolicyDTO()
             {
-                AccessPolicyId = access.AccessPolicyId,
-                AccessId = access.AccessId,
-                PersonId = access.PersonId,
-                AccessName = access.Access.AccessName,
-                FullName = access.Person.FirstName + " " + access.Person.LastName
-
+                AccessPolicyId = model.AccessPolicyId,
+                AccessId = model.AccessId,
+                PersonId = model.PersonId,
+                AccessName = model.Access.AccessName,
             };
         }
-        
+
+
         public static AccessPolicy MapToModel(AccessPolicyDTO dto)
         {
             return new AccessPolicy()
             {
-                AccessPolicyId = dto.AccessPolicyId,
                 AccessId = dto.AccessId,
                 PersonId = dto.PersonId,
             };
+        }
+
+
+        public static AccessPolicy MapEditDTO(AccessPolicy model, AccessPolicyDTO editDTO)
+        {
+            model.AccessPolicyId = editDTO.AccessPolicyId;
+            model.AccessId = editDTO.AccessId;
+            model.PersonId = editDTO.PersonId;
+
+
+            return model;
         }
     }
 }

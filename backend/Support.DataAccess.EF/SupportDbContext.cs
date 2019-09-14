@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Support.DataAccess.EF.Mapping;
 using Support.Domain.Model;
+using System;
 
 namespace Support.DataAccess.EF
 {
@@ -17,11 +19,17 @@ namespace Support.DataAccess.EF
         public SupportDbContext(DbContextOptions options) : base(options)
         {
         }
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    optionsBuilder.UseSqlServer("data source=.;initial catalog=SupportDB;Integrated security=true");
-        //    base.OnConfiguring(optionsBuilder);
-        //}
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            var baseUri = new Uri(AppDomain.CurrentDomain.BaseDirectory, UriKind.Absolute);
+            var uri = new Uri(baseUri, @"..\..\..\..\Support.Host\appsettings.json").AbsolutePath;
+
+            var builder = new ConfigurationBuilder()
+                .AddJsonFile(uri, optional: true, reloadOnChange: true);
+            optionsBuilder.UseSqlServer(builder.Build().GetValue<string>("ConnectionString"));
+            base.OnConfiguring(optionsBuilder);
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

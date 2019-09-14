@@ -10,43 +10,38 @@ namespace Support.DataAccess.EF.Repository
 {
     public class AccessPolicyRepository : IAccessPolicyRepository
     {
-        private readonly SupportDbContext _context;
+        private readonly SupportDbContext context;
         public AccessPolicyRepository(SupportDbContext context)
         {
-            this._context = context;
-        }
-
-        public AccessPolicy GetById(int accessPolicyId)
-        {
-            return _context.AccessPolicies.Find(accessPolicyId);
-        }
-        public List<AccessPolicy> GetAll()
-        {
-            return _context.AccessPolicies
-                            .Include(a => a.Person).Include(a => a.Access)
-                            .ToList();
-        }
-        public List<AccessPolicy> Get(Expression<Func<AccessPolicy, bool>> predicate)
-        {
-            return _context.AccessPolicies
-                            .Include(a => a.Person).Include(a => a.Access)
-                            .Where(predicate).ToList();
+            this.context = context;
         }
         public void Create(AccessPolicy accessPolicy)
         {
-            _context.AccessPolicies.Add(accessPolicy);
+            context.AccessPolicies.Add(accessPolicy);
+        }
+        public void Delete(AccessPolicy accessPolicy)
+        {
+            context.AccessPolicies.Remove(accessPolicy);
         }
         public void Edit(AccessPolicy accessPolicy)
         {
         }
-        public void Delete(int accessPolicyId)
+        public List<AccessPolicy> GetAll()
         {
-            _context.AccessPolicies.Remove(_context.AccessPolicies.Find(accessPolicyId));
+            return context.AccessPolicies.Include(a => a.Access).Include(a => a.Person).ToList();
+        }
+        public AccessPolicy GetById(int accessPolicyId)
+        {
+            return context.AccessPolicies.Find(accessPolicyId);
+        }
+        public List<AccessPolicy> Get(Expression<Func<AccessPolicy, bool>> predicate)
+        {
+            return context.AccessPolicies.Include(a => a.Access).Include(a => a.Person).Where(predicate).ToList();
         }
 
-        public void AddRange(List<AccessPolicy> list)
+        public void AddRange(List<AccessPolicy> accessPolicies)
         {
-            _context.AccessPolicies.AddRange(list);
+            context.AccessPolicies.AddRange(accessPolicies);
         }
     }
 }

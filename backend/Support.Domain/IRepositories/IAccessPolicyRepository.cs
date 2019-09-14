@@ -7,13 +7,13 @@ namespace Support.Domain.IRepositories
 {
     public interface IAccessPolicyRepository /*: Framework.Core.OnionClass.IRepository*/
     {
-        List<AccessPolicy> GetAll();
-        AccessPolicy GetById(int accessPolicyId);
-        List<AccessPolicy> Get(Expression<Func<AccessPolicy, bool>> predicate);
         void Create(AccessPolicy accessPolicy);
-        void Delete(int accessPolicyId);
-
-        void AddRange(List<AccessPolicy> list);
+        void Delete(AccessPolicy accessPolicy);
+        void Edit(AccessPolicy accessPolicy);
+        List<AccessPolicy> GetAll();
+        AccessPolicy GetById(int AccessPolicyId);
+        List<AccessPolicy> Get(Expression<Func<AccessPolicy, bool>> predicate);
+        void AddRange(List<AccessPolicy> accessPolicies);
     }
 }
 

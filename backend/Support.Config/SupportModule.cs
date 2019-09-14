@@ -21,6 +21,11 @@ namespace Support.Config
         {
             builder.Register<SupportDbContext>(SupportDbContextFactory).InstancePerLifetimeScope();
 
+            builder.RegisterAssemblyTypes(typeof(AuthorizationService).Assembly)
+                .AssignableTo<IAuthorizationService>()
+                .AsImplementedInterfaces()
+                .InstancePerLifetimeScope();
+
             builder.RegisterAssemblyTypes(typeof(ConfigService).Assembly)
                 .AssignableTo<IApplicationService>()
                 .AsImplementedInterfaces()
