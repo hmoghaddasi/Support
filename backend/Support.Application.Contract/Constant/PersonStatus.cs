@@ -2,9 +2,9 @@
 {
     public static class PersonStatus
     {
-        public const int Active = 18;
-        public const int DeActive = 19;
-        public const int NewUser = 20;
-        public const int All = 21;
+        public const int New = 7;
+        public const int Verified = 8;
+        public const int Active = 9;
+        public const int DeActive = 10;
     }
 }
