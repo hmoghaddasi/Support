@@ -70,12 +70,14 @@ namespace Support.Host
             //Now register our services with Autofac container
             var builder = new ContainerBuilder();
             //add services to autofac container
+
             builder.RegisterType<AuthenticateService>().As<IAuthenticateService>();
             builder.RegisterType<AuthorizationService>().As<IAuthorizationService>();
             builder.RegisterType<UserManagementService>().As<IUserManagementService>();
             builder.RegisterType<PersonRepository>().As<IPersonRepository>();
             builder.RegisterType<NotificationService>().As<INotificationService>();
             builder.RegisterType<AccessPolicyService>().As<IAccessPolicyServices>();
+            builder.RegisterType<AccessServices>().As<IAccessServices>();
             builder.RegisterType<AccessPolicyRepository>().As<IAccessPolicyRepository>();
             builder.RegisterType<AccessRepository>().As<IAccessRepository>();
             builder.RegisterType<ConfigRepository>().As<IConfigRepository>();

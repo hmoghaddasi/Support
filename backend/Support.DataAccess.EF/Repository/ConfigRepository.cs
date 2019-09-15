@@ -31,6 +31,7 @@ namespace Support.DataAccess.EF.Repository
         public void Create(Config config)
         {
             _context.Configs.Add(config);
+            _context.SaveChanges();
         }
         public void Edit(Config config)
         {
@@ -38,6 +39,7 @@ namespace Support.DataAccess.EF.Repository
         public void Delete(Config config)
         {
             _context.Configs.Remove(config);
+            _context.SaveChanges();
         }
         public void Delete(int configId)
         {

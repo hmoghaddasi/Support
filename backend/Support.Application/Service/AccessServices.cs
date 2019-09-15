@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using Framework.Core.Filtering;
+using Support.Application.Contract.Constant;
 using Support.Application.Contract.DTO;
 using Support.Application.Contract.IService;
 using Support.Application.Mapper;
-using Support.Domain.IRepository;
+using Support.Domain.Exception;
+using Support.Domain.IRepositories;
 using Support.Domain.Model;
 
 namespace Support.Application.Service
@@ -19,6 +22,11 @@ namespace Support.Application.Service
             this._accessRepository = _accessRepository;
             this._accessPolicyrepository = _accessPolicyrepository;
 
+        }
+        public FilterResponse<AccessDTO> GetForGrid(GridRequest request)
+        {
+            var result = _accessRepository.GetForGrid(request);
+            return new FilterResponse<AccessDTO>(result.data.Select(AccessMapper.Map).ToList(), result.total);
         }
 
         public IQueryable<AccessDTO> GetAllIQueryable()
@@ -46,49 +54,70 @@ namespace Support.Application.Service
             return access;
         }
 
-       //public FilterResponse<AccessDTO> GetAll(GridRequest request)
-        //{
-        //    var result = _accessRepository.GetAll().OrderByDescending(a => a.AccessName).Select(AccessMapper.Map).AsQueryable();
-        //    var data = result.ApplyFilters(request, false);
-        //    return new FilterResponse<AccessDTO>(data.Data, data.Count);
-        //}
-        public int CreateOrUpdate(AccessDTO dto)
+        public List<AccessDTO> Get(Expression<Func<Access, bool>> predicate)
         {
-            int AccessId = dto.AccessId;
-            if (AccessId == 0)
-            {
-                Create(dto);
-                return 1;
-
-            }
-            else
-            {
-                Edit(dto);
-            }
-            return AccessId;
+            return _accessRepository.Get(predicate).Select(AccessMapper.Map).ToList();
         }
 
-        public void Create(AccessDTO accessvm)
+        public BaseResponseDTO Create(AccessDTO accessvm)
         {
-            _accessRepository.Create(AccessMapper.MapToModel(accessvm));
-            
+            var response = new BaseResponseDTO();
+            try
+            {
+                _accessRepository.Create(AccessMapper.MapToModel(accessvm));
+                response.ResultCode = ResultCode.Success;
+                response.Message = "عملیات درج  با موفقیت انجام شد";
+            }
+            catch (Exception ex)
+            {
+                response.ResultCode = ResultCode.Error;
+                response.Message = "عملیات درج  با خطا مواجه شد";
+            }
+            return response;
         }
 
         public void Delete(int Id)
         {
             _accessRepository.Delete(_accessRepository.GetById(Id));
         }
-
-        public void Edit(AccessDTO accessvm)
+        public BaseResponseDTO Edit(AccessDTO accessvm)
         {
-            var accessToEdit = AccessMapper.MapToUpdate(
-                _accessRepository.GetById(accessvm.AccessId)
-                                , accessvm);
-            _accessRepository.Edit(accessToEdit);
+            var response = new BaseResponseDTO();
+            var model = _accessRepository.GetById(accessvm.AccessId);
+            if (model == null)
+            {
+                throw new NotExistAccessException();
+            }
+            try
+            {
+                var accessToEdit = AccessMapper.MapToUpdate(model, accessvm);
+                _accessRepository.Edit(accessToEdit);
+
+                response.ResultCode = ResultCode.Success;
+                response.Message = "عملیات ویرایش  با موفقیت انجام شد";
+            }
+            catch (Exception ex)
+            {
+                response.ResultCode = ResultCode.Error;
+                response.Message = "عملیات ویرایش  با خطا مواجه شد";
+            }
+            return response;
         }
 
+        public void AddOrUpdate(AccessDTO dto)
+        {
+            throw new NotImplementedException();
+        }
 
-
-
+        public List<PersonAccessDTO> PersonAccess(int id)
+        {
+            var accessList = _accessRepository.GetAll();
+            var result = accessList.Select(AccessMapper.MapToPeronAccessDTO).ToList();
+            for (var i = 0; i < result.Count; i++)
+            {
+                result[i].PolicyAvailable = accessList[i].AccessPolicies != null ? accessList[i].AccessPolicies.Any(d => d.PersonId == id) : false;
+            }
+            return result;
+        }
     }
 }
