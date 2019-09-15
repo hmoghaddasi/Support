@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using Framework.Core.Filtering;
 using Support.Domain.Model;
 
 namespace Support.Domain.IRepositories
@@ -13,6 +14,7 @@ namespace Support.Domain.IRepositories
         void Create(Access access);
         void Edit(Access access);
         void Delete(Access access);
+        FilterResponse<Access> GetForGrid(GridRequest request);
 
     }
 }

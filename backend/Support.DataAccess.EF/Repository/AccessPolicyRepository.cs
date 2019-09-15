@@ -18,13 +18,16 @@ namespace Support.DataAccess.EF.Repository
         public void Create(AccessPolicy accessPolicy)
         {
             context.AccessPolicies.Add(accessPolicy);
+            context.SaveChanges();
         }
         public void Delete(AccessPolicy accessPolicy)
         {
             context.AccessPolicies.Remove(accessPolicy);
+            context.SaveChanges();
         }
         public void Edit(AccessPolicy accessPolicy)
         {
+            context.SaveChanges();
         }
         public List<AccessPolicy> GetAll()
         {

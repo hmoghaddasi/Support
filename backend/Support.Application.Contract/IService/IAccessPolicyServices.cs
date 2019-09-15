@@ -6,8 +6,8 @@ namespace Support.Application.Contract.IService
 {
     public interface IAccessPolicyServices : IApplicationService
     {
-        void Create(AccessPolicyDTO accessPolicyDTO);
-        void Delete(int accessPolicyId);
+        BaseResponseDTO Create(AccessPolicyDTO accessPolicyDTO);
+        BaseResponseDTO Delete(int accessPolicyId);
         AccessPolicyDTO GetById(int accessPolicyId);
         FilterResponse<AccessPolicyDTO> GetList(GridRequest request);
         List<AccessPolicyDTO> GetAll();

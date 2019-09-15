@@ -23,32 +23,57 @@ namespace Support.Application.Service
             this._accessRepository = accessRepository;
         }
 
-        public void Create(AccessPolicyDTO accessPolicyDTO)
+        public BaseResponseDTO Create(AccessPolicyDTO accessPolicyDTO)
         {
-            _accessPolicyRepository.Create(AccessPolicyMapper.MapToModel(accessPolicyDTO));
+            var response = new BaseResponseDTO();
+            try
+            {
+                _accessPolicyRepository.Create(AccessPolicyMapper.MapToModel(accessPolicyDTO));
+                response.ResultCode = ResultCode.Success;
+                response.Message = "عملیات درج  با موفقیت انجام شد";
+            }
+            catch (Exception ex)
+            {
+                response.ResultCode = ResultCode.Error;
+                response.Message = "عملیات درج  با خطا مواجه شد";
+            }
+            return response;
         }
-
-        public void Delete(int accessPolicyId)
+        public BaseResponseDTO Delete(int accessPolicyId)
         {
+            var response = new BaseResponseDTO();
             var accessPolicyToDelete = _accessPolicyRepository.GetById(accessPolicyId);
-            _accessPolicyRepository.Delete(accessPolicyToDelete);
+            if (accessPolicyToDelete == null)
+            {
+                throw new NotExistAccessPloicyException();
+            }
+            try
+            {
+                _accessPolicyRepository.Delete(accessPolicyToDelete);
+                response.ResultCode = ResultCode.Success;
+                response.Message = "عملیات حذف  با موفقیت انجام شد";
+            }
+            catch (Exception ex)
+            {
+                response.ResultCode = ResultCode.Error;
+                response.Message = "عملیات حذف  با خطا مواجه شد";
+            }
+            return response;
         }
-
-
         public AccessPolicyDTO GetById(int accessPolicyId)
         {
-            return AccessPolicyMapper.MapToDTO(_accessPolicyRepository.GetById(accessPolicyId));
+            return AccessPolicyMapper.Map(_accessPolicyRepository.GetById(accessPolicyId));
         }
         public FilterResponse<AccessPolicyDTO> GetList(GridRequest request)
         {
-            var result = _accessPolicyRepository.GetAll().Select(AccessPolicyMapper.MapToDTO).AsQueryable();
+            var result = _accessPolicyRepository.GetAll().Select(AccessPolicyMapper.Map).AsQueryable();
             var data = result.ApplyFilters(request, false);
             return new FilterResponse<AccessPolicyDTO>(data.data, data.total);
         }
 
         public List<AccessPolicyDTO> GetAll()
         {
-            return _accessPolicyRepository.GetAll().Select(AccessPolicyMapper.MapToDTO).ToList();
+            return _accessPolicyRepository.GetAll().Select(AccessPolicyMapper.Map).ToList();
         }
 
         public string GetUserAccess(string user)

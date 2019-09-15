@@ -2,18 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using Framework.Core.Filtering;
 using Support.Application.Contract.DTO;
 
 namespace Support.Application.Contract.IService
 {
     public interface IAccessServices:IApplicationService
     {
-         int CreateOrUpdate(AccessDTO dto);
         AccessDTO GetById(int Id);
         string GetAllAccessId(string loginName);
-        void Create(AccessDTO accessvm);
+        BaseResponseDTO Create(AccessDTO accessvm);
         void Delete(int Id);
-        void Edit(AccessDTO accessvm);
+        BaseResponseDTO Edit(AccessDTO accessvm);
+        FilterResponse<AccessDTO> GetForGrid(GridRequest request);
+        List<PersonAccessDTO> PersonAccess(int id);
 
     }
 }

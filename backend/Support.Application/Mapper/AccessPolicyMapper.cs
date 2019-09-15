@@ -1,42 +1,33 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Support.Application.Contract.DTO;
+﻿using Support.Application.Contract.DTO;
 using Support.Domain.Model;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Support.Application.Mapper
 {
     public class AccessPolicyMapper
     {
-        public static AccessPolicyDTO MapToDTO(AccessPolicy model)
+        public static AccessPolicyDTO Map(AccessPolicy access)
         {
             return new AccessPolicyDTO()
             {
-                AccessPolicyId = model.AccessPolicyId,
-                AccessId = model.AccessId,
-                PersonId = model.PersonId,
-                AccessName = model.Access.AccessName,
+                AccessPolicyId = access.AccessPolicyId,
+                AccessId = access.AccessId,
+                PersonId = access.PersonId,
+                AccessName = access.Access.AccessName,
+                FullName = access.Person.FirstName + " " + access.Person.LastName
+
             };
         }
-
 
         public static AccessPolicy MapToModel(AccessPolicyDTO dto)
         {
             return new AccessPolicy()
             {
+                AccessPolicyId = dto.AccessPolicyId,
                 AccessId = dto.AccessId,
                 PersonId = dto.PersonId,
             };
-        }
-
-
-        public static AccessPolicy MapEditDTO(AccessPolicy model, AccessPolicyDTO editDTO)
-        {
-            model.AccessPolicyId = editDTO.AccessPolicyId;
-            model.AccessId = editDTO.AccessId;
-            model.PersonId = editDTO.PersonId;
-
-
-            return model;
         }
     }
 }
