@@ -5,6 +5,7 @@ using Support.Application.Contract.IService;
 using Support.Host.HttpStatus;
 using Support.Host.Tools;
 using System.Net;
+using System.Security.Claims;
 
 namespace Support.Host.Controllers
 {
@@ -23,7 +24,7 @@ namespace Support.Host.Controllers
         [HttpPost, Authorize]
         public string Post([FromBody]VerificationDTO code)
         {
-            var mobile = UserManagementTools.GetCurrentPersonUser();
+            var mobile = User.GetLoggedInUserName();
             var claims = _authorizationService.Verification(code, mobile);
             if (claims != null)
                 return _authenticateService.IsAuthenticated(claims);

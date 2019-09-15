@@ -37,6 +37,7 @@ namespace Support.Host
 
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
+            services.AddHttpContextAccessor();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.Configure<TokenManagement>(Configuration.GetSection("tokenManagement"));
             var token = Configuration.GetSection("tokenManagement").Get<TokenManagement>();

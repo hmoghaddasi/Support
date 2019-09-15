@@ -11,7 +11,7 @@ namespace Support.Host.Tools
         {
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1.0", new Info { Title = "Main API v1.0", Version = "v1.0" });
+                c.SwaggerDoc("v1.0", new Info { Title = "Support API v1.0", Version = "v1.0" });
 
                 c.AddSecurityDefinition("Bearer", new ApiKeyScheme
                 {
