@@ -79,7 +79,7 @@ namespace Support.Application.Service
             var password = MD5Tool.Hash(dto.Code);
             var person = _personRepository.Get(a => a.Mobile == mobile &&
                                                a.Password == password);
-            person.First().StatusId = 0;
+            person.First().StatusId = PersonStatus.Verified;
             if (person.Any())
             {
                 return CreateClaims(person.First());
