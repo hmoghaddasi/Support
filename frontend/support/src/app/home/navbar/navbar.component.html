@@ -14,12 +14,19 @@
             aria-haspopup="true" aria-expanded="false">
             اطلاعات پایه
           </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item text-white" routerLink="/personlist" *hasPermission="'adminmenu'">مدیریت اعضا</a>
-            <a class="dropdown-item text-white" routerLink="/pharmacyproductlist">محصولات و داروهای من</a>
-            <a class="dropdown-item text-white" routerLink="/productlist" *hasPermission="'adminmenu'">مدیریت محصولات سامانه</a>
-            <a class="dropdown-item text-white" routerLink="/druglist" *hasPermission="'adminmenu'">مدیریت داروهای سامانه</a>
-            <a class="dropdown-item text-white" routerLink="/configlist">تنظیمات</a>
+          <div class="dropdown-menu bg-info" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" routerLink="/person-list" *hasPermission="'adminmenu'">مدیریت اعضا</a>
+            <a class="dropdown-item" routerLink="/config-list"  *hasPermission="'adminmenu'">تنظیمات</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown" *signed>
+          <a class="nav-link text-white dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            تیکت
+          </a>
+          <div class="dropdown-menu bg-info" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" routerLink="/requst-list-admin" *hasPermission="'adminmenu'">مدیریت تیکت های سامانه</a>
+              <a class="dropdown-item" routerLink="/requst-list">تیکت های من</a>
           </div>
         </li>
       <li class="nav-item">

@@ -1,17 +1,17 @@
-<mat-toolbar style="text-align:center" dir="rtl">
-  <span>لیست تنظیمات</span>
-</mat-toolbar>
-<div style="float: right"> <button class="btn btn-info" (click)="create()">تنظیمات جدید</button></div>
-<div class="clearfix"></div>
-<div dir="rtl">
-  <ul class="nav nav-tabs">
-    <li class="nav-item" *ngFor="let config of (configs | async)">
-      <a class="nav-link" data-toggle="tab" href="#tab{{config.ConfigId}}">{{config.ConfigName}}</a>
-    </li>
-  </ul>
-  <div class="tab-content">
-    <div class="tab-pane" *ngFor="let config of (configs | async)" id="tab{{config.ConfigId}}">
-      <app-config-list [parentId]=config.ConfigId></app-config-list>
+  <mat-toolbar style="text-align:center" dir="rtl">
+    <span>لیست تنظیمات</span>
+  </mat-toolbar>
+  <div style="float: right"> <button class="btn btn-info" (click)="create()">تنظیمات جدید</button></div>
+  <div class="clearfix"></div>
+  <div dir="rtl">
+    <ul class="nav nav-tabs">
+      <li class="nav-item" *ngFor="let config of (configs | async)">
+        <a class="nav-link text-black" data-toggle="tab" href="#tab{{config.configId}}">{{config.configName}}</a>
+      </li>
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane" *ngFor="let config of (configs | async)" id="tab{{config.configId}}">
+        <app-config-list [parentId]=config.configId></app-config-list>
+      </div>
     </div>
   </div>
-</div>

@@ -17,10 +17,10 @@ namespace Support.Hosts.Controllers
         }
         [HttpGet]
         [Authorize]
-        public string Get()
+        public CurrentAccessPolicyDTO Get()
         {
             var user = User.GetLoggedInUserName();
-            return _accessPolicyService.GetUserAccess(user);
+            return new CurrentAccessPolicyDTO { Access = _accessPolicyService.GetUserAccess(user) };
         }
         [HttpPost]
         [AllowAnonymous]

@@ -54,11 +54,11 @@ export class PersonListComponent implements OnInit, OnDestroy {
   }
   accept(model: ValidationModel) {
     this.service.accept(model.PersonId).subscribe((res: BaseResponseDto) => {
-      if (res.ResultCode === 200) {
-        Swal.fire('عملیات موفق', res.Message, 'success');
+      if (res.resultCode === 200) {
+        Swal.fire('عملیات موفق', res.message, 'success');
         this.service.needDataUpdate.next(true);
       } else {
-        Swal.fire('عملیات ناموفق', res.Message, 'error');
+        Swal.fire('عملیات ناموفق', res.message, 'error');
       }
     }, err => {
       Swal.fire('خطایی رخ داده است', err.error.Message, 'error');
@@ -67,11 +67,11 @@ export class PersonListComponent implements OnInit, OnDestroy {
 
   activate(model: ValidationModel) {
     this.service.activate(model.PersonId).subscribe((res: BaseResponseDto) => {
-      if (res.ResultCode === 200) {
-        Swal.fire('عملیات موفق', res.Message, 'success');
+      if (res.resultCode === 200) {
+        Swal.fire('عملیات موفق', res.message, 'success');
         this.service.needDataUpdate.next(true);
       } else {
-        Swal.fire('عملیات ناموفق', res.Message, 'error');
+        Swal.fire('عملیات ناموفق', res.message, 'error');
       }
     }, err => {
       Swal.fire('خطایی رخ داده است', err.error.Message, 'error');
@@ -80,11 +80,11 @@ export class PersonListComponent implements OnInit, OnDestroy {
 
   deactivate(model: ValidationModel) {
     this.service.deactivate(model.PersonId).subscribe((res: BaseResponseDto) => {
-      if (res.ResultCode === 200) {
-        Swal.fire('عملیات موفق', res.Message, 'success');
+      if (res.resultCode === 200) {
+        Swal.fire('عملیات موفق', res.message, 'success');
         this.service.needDataUpdate.next(true);
       } else {
-        Swal.fire('عملیات ناموفق', res.Message, 'error');
+        Swal.fire('عملیات ناموفق', res.message, 'error');
       }
     }, err => {
       Swal.fire('خطایی رخ داده است', err.error.Message, 'error');

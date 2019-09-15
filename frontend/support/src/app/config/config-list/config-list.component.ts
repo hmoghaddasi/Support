@@ -19,8 +19,7 @@ export class DialogData {
 })
 export class ConfigListComponent implements OnInit, OnDestroy {
     @Input() parentId: number;
-    public view = new BehaviorSubject
-        <GridDataResult>(null);
+    public view = new BehaviorSubject<GridDataResult>(null);
     public gridState: State = {
         sort: [],
         skip: 0,
@@ -64,16 +63,16 @@ export class ConfigListComponent implements OnInit, OnDestroy {
             data: model
         });
         dialogRef.componentInstance.confirmedEventEmitter.subscribe((result: BaseResponseDto) => {
-            if (result.ResultCode === 200) {
-                Swal.fire('عملیات موفق', result.Message, 'success');
+            if (result.resultCode === 200) {
+                Swal.fire('عملیات موفق', result.message, 'success');
                 this.service.needDataUpdate.next(true);
             } else {
-                Swal.fire('عملیات ناموفق', result.Message, 'error');
+                Swal.fire('عملیات ناموفق', result.message, 'error');
             }
         });
     }
 
     public delete(model: ConfigModel) {
-        this.service.delete(model.ConfigId);
+        this.service.delete(model.configId);
     }
 }

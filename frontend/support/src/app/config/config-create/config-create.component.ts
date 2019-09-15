@@ -36,14 +36,14 @@ export class ConfigCreateComponent {
         this.confirmedEventEmitter.emit(result);
         this.dialogRef.close();
       }, err => {
-        Swal.fire('خطایی رخ داد', err.error.ExceptionMessage, 'error');
+        Swal.fire('خطایی رخ داد', err.error.message, 'error');
       });
     } else {
       this.service.update(this.model).subscribe((result: BaseResponseDto) => {
         this.confirmedEventEmitter.emit(result);
         this.dialogRef.close();
       }, err => {
-        Swal.fire('خطایی رخ داد', err.error.ExceptionMessage, 'error');
+        Swal.fire('خطایی رخ داد', err.error.message, 'error');
       });
     }
   }  

@@ -57,7 +57,6 @@ namespace Support.Application.Service
         {
             try
             {
-
                 _repository.Create(ConfigMapper.MapToModel(dto));
                 return BaseResponseHelper.Success();
             }
@@ -71,7 +70,6 @@ namespace Support.Application.Service
             try
             {
                 var model = _repository.GetById(dto.ConfigId);
-
                 var data = ConfigMapper.MapToEditModel(model, dto);
                 _repository.Edit(data);
                 return BaseResponseHelper.Success();

@@ -7,7 +7,7 @@ import { MyMaterialModule } from '../material.module';
 import { ConfigRoutingModule } from './config.module.routing';
 import { ConfigCreateComponent } from './config-create/config-create.component';
 import { GridModule } from '@progress/kendo-angular-grid';
-import {DialogModule} from '@progress/kendo-angular-dialog';
+import { DialogModule } from '@progress/kendo-angular-dialog';
 import { ConfigParentComponent } from './config-parent/config-parent.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 

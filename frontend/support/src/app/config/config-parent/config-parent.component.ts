@@ -22,6 +22,9 @@ export class ConfigParentComponent implements OnInit {
 
   ngOnInit() {
     this.configs = this.service.getConfigChild(0);
+    this.configs.subscribe(s =>{
+      console.log(s);
+    })
   }
 
 
@@ -31,11 +34,11 @@ export class ConfigParentComponent implements OnInit {
       data: null
     });
     dialogRef.componentInstance.confirmedEventEmitter.subscribe((result: BaseResponseDto) => {
-      if (result.ResultCode === 200) {
-        Swal.fire('عملیات موفق', result.Message, 'success');
+      if (result.resultCode === 200) {
+        Swal.fire('عملیات موفق', result.message, 'success');
         this.configs = this.service.getConfigChild(0);
       } else {
-        Swal.fire('عملیات ناموفق', result.Message, 'error');
+        Swal.fire('عملیات ناموفق', result.message, 'error');
       }
     });
   }

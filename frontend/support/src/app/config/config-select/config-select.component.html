@@ -1,7 +1,7 @@
 <mat-form-field class="half-width-input">
   <mat-select [placeholder]=label (selectionChange)="selectedItemChanged($event)" [value]="selectedConfig" required>
-    <mat-option *ngFor="let config of (configs | async)" [value]="config.ConfigId">
-      {{config.ConfigName}}
+    <mat-option *ngFor="let config of (configs | async)" [value]="config.configId">
+      {{config.configName}}
     </mat-option>
   </mat-select>
 </mat-form-field>

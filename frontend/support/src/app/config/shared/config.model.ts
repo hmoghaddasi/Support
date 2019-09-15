@@ -1,11 +1,11 @@
 export class ConfigModel {
-    public ConfigId: number;
-    public ConfigHdrId: number;
-    public ConfigName: string;
-    public ConfigNote: string;
-    public ConfigSort: number;
-    public ClassName: string;
-    public ConfigValue: number;
+    public configId: number;
+    public configHdrId: number;
+    public configName: string;
+    public configNote: string;
+    public configSort: number;
+    public className: string;
+    public configValue: number;
     public value: number;
     public label: string;
 

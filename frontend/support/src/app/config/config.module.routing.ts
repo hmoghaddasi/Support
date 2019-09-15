@@ -7,23 +7,25 @@ import { Permissions } from '../framework/shared/permissions';
 import { ConfigParentComponent } from './config-parent/config-parent.component';
 
 const routes: Routes = [
-  { path: 'Configcreate',
-   component: ConfigListComponent ,
-   canActivate: [AuthGuard],
-  data: { permission: Permissions.CREATE_CONFIG}},
+  {
+    path: 'Configcreate',
+    component: ConfigListComponent,
+    canActivate: [AuthGuard],
+    data: { permission: Permissions.CREATE_CONFIG }
+  },
   { path: 'configSelect', component: ConfigSelectComponent },
   {
-    path: 'configlist',
-    component:  ConfigParentComponent,
+    path: 'config-list',
+    component: ConfigParentComponent,
     canActivate: [AuthGuard],
-    data: { permission: Permissions.LIST_CONFIG}
-   }
+    data: { permission: Permissions.LIST_CONFIG }
+  }
 ];
 
 @NgModule({
-imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class ConfigRoutingModule {}
+export class ConfigRoutingModule { }
 
 

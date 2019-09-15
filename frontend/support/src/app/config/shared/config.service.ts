@@ -38,7 +38,7 @@ export class ConfigService {
   }
 
   public getConfigChild(id: number): Observable<any> {
-    return this.restService.customAction('ConfigChild', id);
+    return this.restService.customAction(this.resourceName + '/' + 'ConfigChild', id);
   }
 
   public delete(id: number): any {
@@ -52,14 +52,15 @@ export class ConfigService {
     }).then((result) => {
       if (result.value) {
         this.restService.delete(this.resourceName, id).subscribe((res: BaseResponseDto) => {
-          if (res.ResultCode === 200) {
-            Swal.fire('عملیات موفق', res.Message, 'success');
+          if (res.resultCode === 200) {
+            Swal.fire('عملیات موفق', res.message, 'success');
             this.needDataUpdate.next(true);
           } else {
-            Swal.fire('عملیات ناموفق', res.Message, 'error');
+            Swal.fire('عملیات ناموفق', res.message, 'error');
           }
         }, err => {
-          Swal.fire('خطایی رخ داده است', err.error.ExceptionMessage, 'error');
+          console.log(err)
+          Swal.fire('خطایی رخ داده است', err.error.message, 'error');
         });
       }
     });

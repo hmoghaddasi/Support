@@ -28,7 +28,7 @@ export class RestService {
     return this.http.put<TResonse>(this.getUrl(resource), model, this.createHeaders());
   }
   public delete(resource: string, id: number): Observable<any> {
-    return this.http.delete(this.getUrl(resource) + '/' + id, this.createHeaders());
+    return this.http.delete(this.getUrl(resource) + '?id=' + id, this.createHeaders());
   }
   public getAll<TResonse>(resource: string): Observable<TResonse> {
     return this.http.get<TResonse>(this.getUrl(resource), this.createHeaders());
@@ -45,7 +45,7 @@ export class RestService {
     if (id !== undefined) {
       queryString += `&id=${id}`;
     }
-    return this.http.get<GridDataResult>(`${environment.baseUrl}${resource}Grid?${queryString}`, this.createHeaders());
+    return this.http.get<GridDataResult>(`${environment.baseUrl}${resource}/${resource}Grid?${queryString}`, this.createHeaders());
   }
   public getById<TResonse>(resource: string, id: number): Observable<TResonse> {
     return this.http.get<TResonse>(this.getUrl(resource) + id, this.createHeaders());

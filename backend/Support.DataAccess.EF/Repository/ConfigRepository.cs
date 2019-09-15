@@ -35,6 +35,7 @@ namespace Support.DataAccess.EF.Repository
         }
         public void Edit(Config config)
         {
+            _context.SaveChanges();
         }
         public void Delete(Config config)
         {

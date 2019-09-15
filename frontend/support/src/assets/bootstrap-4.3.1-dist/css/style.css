@@ -104,6 +104,12 @@
 	float:left;
 	font-size: 0px;
 }
+.k-grid {
+	direction: rtl !important;
+}
+.k-grid td {
+	text-align: right !important;
+}
 /* compatibility with Joomla styles */
 #wowslider-container1  .ws_bullets a {
 	line-height: 0;

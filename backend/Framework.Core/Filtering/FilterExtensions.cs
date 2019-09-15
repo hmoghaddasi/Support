@@ -9,7 +9,7 @@ namespace Framework.Core.Filtering
         public static FilterResponse<T> ApplyFilters<T>(this IQueryable<T> query,
             GridRequest request, bool defaultSort = true) where T : class
         {
-            if (request.FilterX != null)
+            if (request.Filter != null)
                 FilterHelper.ProcessFilters(request.FilterX, ref query);
 
             //if (request.Filter != null && request.Filter.perdict != null)

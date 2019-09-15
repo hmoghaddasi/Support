@@ -23,14 +23,14 @@ namespace Support.Host.Controllers
 
 
         [HttpPost]
-        public string Post([FromBody]TokenDTO dto)
+        public LoginResultDTO Post([FromBody]TokenDTO dto)
         {
             if (dto == null || !ModelState.IsValid)
                 throw new StatusCodeException(HttpStatusCode.NotFound);
 
             var claims = _authorizationService.CreateClaimsFor(dto);
             if (claims != null)
-                return _authenticateService.IsAuthenticated(claims);
+                return new LoginResultDTO { Token = _authenticateService.IsAuthenticated(claims) };
            
             throw new StatusCodeException(HttpStatusCode.Unauthorized);
         }

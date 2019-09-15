@@ -12,6 +12,8 @@ import { FrameworkModule } from './framework/framework.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GridModule } from '@progress/kendo-angular-grid';
 import { HomeModule } from './home/home.module';
+import { ConfigModule } from './config/config.module';
+import { RTL } from '@progress/kendo-angular-l10n';
 
 
 @NgModule({
@@ -29,9 +31,10 @@ import { HomeModule } from './home/home.module';
      BrowserAnimationsModule,
      MatFormFieldModule,
      HomeModule,
+     ConfigModule,
      GridModule,
   ],
-  providers: [],
+  providers: [{ provide: RTL, useValue: true }],
   bootstrap: [AppComponent],
   exports: []
 })

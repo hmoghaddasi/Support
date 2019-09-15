@@ -1,11 +1,11 @@
 <div class="grid-wrapper">
   <kendo-grid [data]="view | async" [pageSize]="gridState.take" [skip]="gridState.skip" [filter]="gridState.filter"
     filterable="menu" [pageable]="true" [scrollable]="'none'" (dataStateChange)="onStateChange($event)">
-    <kendo-grid-column field="ConfigName" title="عنوان"></kendo-grid-column>
-    <kendo-grid-column field="ConfigValue" title="مقدار" filter="numeric"></kendo-grid-column>
-    <kendo-grid-column field="ClassName" title="کلاس"></kendo-grid-column>
-    <kendo-grid-column field="ConfigNote" title="توضیحات"></kendo-grid-column>
-    <kendo-grid-column field="ConfigSort" title="ترتیب" filter="numeric"></kendo-grid-column>
+    <kendo-grid-column field="configName" title="عنوان"></kendo-grid-column>
+    <kendo-grid-column field="configValue" title="مقدار" filter="numeric"></kendo-grid-column>
+    <kendo-grid-column field="className" title="کلاس"></kendo-grid-column>
+    <kendo-grid-column field="configNote" title="توضیحات"></kendo-grid-column>
+    <kendo-grid-column field="configSort" title="ترتیب" filter="numeric"></kendo-grid-column>
 
     <kendo-grid-column width="200">
       <ng-template kendoGridCellTemplate let-dataItem>

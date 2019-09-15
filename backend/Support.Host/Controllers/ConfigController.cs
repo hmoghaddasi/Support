@@ -25,7 +25,7 @@ namespace Support.Host.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        [Route("api/ConfigChild")]
+        [Route("ConfigChild")]
         public List<ConfigDTO> ConfigChild(int id)
         {
             return _configService.GetConfigChildsByParentId(id);
@@ -33,7 +33,7 @@ namespace Support.Host.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        [Route("api/ConfigGrid")]
+        [Route("ConfigGrid")]
         public FilterResponse<ConfigDTO> Get([FromQuery]GridRequestWithArgument request)
         {
             if (!string.IsNullOrWhiteSpace(request.Filter))

@@ -1,5 +1,5 @@
 <mat-toolbar style="text-align:center" dir="rtl">
-    <span>تنظیمات</span>
+  <span>تنظیمات</span>
 </mat-toolbar>
 <mat-card class="my-card" dir="rtl">
   <mat-card-content dir='rtl'>
@@ -7,29 +7,29 @@
       <div class="my-row">
         <mat-form-field style="display: none;">
           <mat-label>والد</mat-label>
-          <input matInput placeholder="والد" name="ConfigHdrId" [(ngModel)]="model.ConfigHdrId" required readonly />
+          <input matInput placeholder="والد" name="configHdrId" [(ngModel)]="model.configHdrId" required readonly />
         </mat-form-field>
-        <app-config-select [label]="'والد'" [parentId]=0 [(selectedConfig)]="model.ConfigHdrId"></app-config-select>
+        <app-config-select [label]="'والد'" [parentId]=0 [(selectedConfig)]="model.configHdrId"></app-config-select>
         <mat-form-field class="half-width-input">
           <mat-label>عنوان </mat-label>
-          <input matInput placeholder=" عنوان " name="ConfigName" [(ngModel)]="model.ConfigName" />
+          <input matInput placeholder=" عنوان " name="configName" [(ngModel)]="model.configName" />
         </mat-form-field>
         <mat-form-field class="half-width-input">
           <mat-label>توضیحات</mat-label>
-          <input matInput placeholder=" توضیحات " name="ConfigNote" [(ngModel)]="model.ConfigNote" />
+          <input matInput placeholder=" توضیحات " name="configNote" [(ngModel)]="model.configNote" />
         </mat-form-field>
         <mat-form-field class="half-width-input">
           <mat-label>ترتیب </mat-label>
-          <input type="number" matInput placeholder=" ترتیب " name="ConfigSort" [(ngModel)]="model.ConfigSort"
+          <input type="number" matInput placeholder=" ترتیب " name="configSort" [(ngModel)]="model.configSort"
             required />
         </mat-form-field>
         <mat-form-field class="half-width-input">
           <mat-label>کلاس</mat-label>
-          <input matInput placeholder=" کلاس " name="ClassName" [(ngModel)]="model.ClassName" />
+          <input matInput placeholder=" کلاس " name="className" [(ngModel)]="model.className" />
         </mat-form-field>
         <mat-form-field class="half-width-input">
           <mat-label>مقدار</mat-label>
-          <input type="number" matInput placeholder=" مقدار " name="ConfigValue" [(ngModel)]="model.ConfigValue"
+          <input type="number" matInput placeholder=" مقدار " name="configValue" [(ngModel)]="model.configValue"
             required />
         </mat-form-field>
         <mat-card-actions>

@@ -43,7 +43,7 @@ export class PersonAccessComponent implements OnInit {
     this.model.AccessId = accessId;
     this.model.AddOrRemove = addOrRemove;
     this.accessPolicyService.changePersonAccess(this.model).subscribe((result: BaseResponseDto) => {
-      if(result.ResultCode == 200) {
+      if(result.resultCode == 200) {
         this.accessList = [];
         this.getAccessList(this.id);
       }
