@@ -22,6 +22,7 @@ using Support.DataAccess.EF.Repository;
 using Framework.Kavenegar;
 using Framework.Core.Notification;
 
+
 namespace Support.Host
 {
     public class Startup
@@ -36,32 +37,41 @@ namespace Support.Host
 
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.Configure<TokenManagement>(Configuration.GetSection("tokenManagement"));
+            var token = Configuration.GetSection("tokenManagement").Get<TokenManagement>();
+            var secret = Encoding.ASCII.GetBytes(token.Secret);
 
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(options =>
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(x =>
+            {
+                x.RequireHttpsMetadata = false;
+                x.SaveToken = true;
+                x.TokenValidationParameters = new TokenValidationParameters
                 {
-                   options.TokenValidationParameters = new TokenValidationParameters
-                   {
-                       ValidateIssuer = true,
-                       ValidateAudience = true,
-                       ValidateLifetime = true,
-                       ValidateIssuerSigningKey = true,
-                       ValidIssuer = Configuration["Jwt:Issuer"],
-                       ValidAudience = Configuration["Jwt:Issuer"],
-                       IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
-                   };
-               });
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(token.Secret)),
+                    ValidIssuer = token.Issuer,
+                    ValidAudience = token.Audience,
+                    ValidateIssuer = false,
+                    ValidateAudience = false
+                };
+            });
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddDbContext<SupportDbContext>(options =>
             {
             });
             services.AddSwaggerDocumentation();
-
+           
             //Now register our services with Autofac container
             var builder = new ContainerBuilder();
             //add services to autofac container
+            builder.RegisterType<AuthenticateService>().As<IAuthenticateService>();
             builder.RegisterType<AuthorizationService>().As<IAuthorizationService>();
+            builder.RegisterType<UserManagementService>().As<IUserManagementService>();
             builder.RegisterType<PersonRepository>().As<IPersonRepository>();
             builder.RegisterType<NotificationService>().As<INotificationService>();
             builder.RegisterType<AccessPolicyService>().As<IAccessPolicyServices>();
@@ -86,7 +96,10 @@ namespace Support.Host
             {
                 app.UseHsts();
             }
+           
+            //Add JWToken Authentication service
             app.UseAuthentication();
+
             app.UseHttpsRedirection();
             app.UseCors(a =>
             {

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Support.Application.Contract.DTO;
 using Support.Application.Contract.IService;
 using Support.Host.HttpStatus;
@@ -10,11 +11,16 @@ namespace Support.Host.Controllers
     [ApiController]
     public class TokenController : ControllerBase
     {
-        private readonly IAuthorizationService _authorizationService;
-        public TokenController(IAuthorizationService authorizationService)
+        private readonly IAuthenticateService _authenticateService;
+        private readonly Application.Contract.IService.IAuthorizationService _authorizationService;
+
+        public TokenController(IAuthenticateService authenticateService, Application.Contract.IService.IAuthorizationService authorizationService)
         {
+            this._authenticateService = authenticateService;
             this._authorizationService = authorizationService;
+
         }
+
 
         [HttpPost]
         public string Post([FromBody]TokenDTO dto)
@@ -24,8 +30,8 @@ namespace Support.Host.Controllers
 
             var claims = _authorizationService.CreateClaimsFor(dto);
             if (claims != null)
-                return JwtManager.GenerateToken(claims);
-
+                return _authenticateService.IsAuthenticated(claims);
+           
             throw new StatusCodeException(HttpStatusCode.Unauthorized);
         }
     }

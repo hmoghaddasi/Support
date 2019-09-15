@@ -10,6 +10,5 @@ namespace Support.Application.Contract.IService
         List<Claim> CreateClaimsFor(TokenDTO dto);
         List<Claim> Verification(VerificationDTO dto, string mobile);
         void ResendVerificationCode(string mobile);
-
     }
 }

@@ -1,8 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
+using System.Text;
 using Framework.Core.Notification;
 using Framework.Core.Text;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using Support.Application.Contract.Constant;
 using Support.Application.Contract.DTO;
 using Support.Application.Contract.IService;
@@ -11,7 +16,7 @@ using Support.Application.Mapper;
 using Support.Domain.Exception;
 using Support.Domain.IRepositories;
 using Support.Domain.Model;
-
+using Support.Host.Tools;
 namespace Support.Application.Service
 {
     public class AuthorizationService : IAuthorizationService
@@ -25,6 +30,7 @@ namespace Support.Application.Service
             _personRepository = personRepository;
             _notificationService = notificationService;
             _accessPolicyService = accessPolicyService;
+
         }
 
         public List<Claim> RegisterPerson(PersonRegisterDTO dto)
@@ -73,7 +79,7 @@ namespace Support.Application.Service
             var password = MD5Tool.Hash(dto.Code);
             var person = _personRepository.Get(a => a.Mobile == mobile &&
                                                a.Password == password);
-            person.First().StatusId = PersonStatus.Verified;
+            person.First().StatusId = 0;
             if (person.Any())
             {
                 return CreateClaims(person.First());

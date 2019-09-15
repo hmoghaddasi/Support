@@ -16,9 +16,13 @@ namespace Support.Host.Controllers
     public class RegisterController : ControllerBase
     {
         private readonly IAuthorizationService _authorizationService;
-        public RegisterController(IAuthorizationService authorizationService)
+        private readonly IAuthenticateService _authenticateService;
+
+        public RegisterController(IAuthorizationService authorizationService, IAuthenticateService authenticateService)
         {
             this._authorizationService = authorizationService;
+            this._authenticateService = authenticateService;
+
         }
 
         [HttpPost]
@@ -26,7 +30,7 @@ namespace Support.Host.Controllers
         {
             var claims = _authorizationService.RegisterPerson(dto);
             if (claims != null)
-                return JwtManager.GenerateToken(claims);
+                return _authenticateService.IsAuthenticated(claims);
 
             throw new StatusCodeException(HttpStatusCode.Unauthorized);
         }

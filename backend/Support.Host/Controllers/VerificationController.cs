@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Support.Application.Contract.DTO;
+using Support.Application.Contract.IService;
 using Support.Host.HttpStatus;
 using Support.Host.Tools;
 using System.Net;
@@ -12,9 +13,11 @@ namespace Support.Host.Controllers
     public class VerificationController : ControllerBase
     {
         private readonly Application.Contract.IService.IAuthorizationService _authorizationService;
-        public VerificationController(Application.Contract.IService.IAuthorizationService authorizationService)
+        private readonly IAuthenticateService _authenticateService;
+        public VerificationController(Application.Contract.IService.IAuthorizationService authorizationService, IAuthenticateService authenticateService)
         {
             this._authorizationService = authorizationService;
+            this._authenticateService = authenticateService;
         }
 
         [HttpPost, Authorize]
@@ -23,7 +26,7 @@ namespace Support.Host.Controllers
             var mobile = UserManagementTools.GetCurrentPersonUser();
             var claims = _authorizationService.Verification(code, mobile);
             if (claims != null)
-                return JwtManager.GenerateToken(claims);
+                return _authenticateService.IsAuthenticated(claims);
 
             throw new StatusCodeException(HttpStatusCode.Unauthorized);
         }
