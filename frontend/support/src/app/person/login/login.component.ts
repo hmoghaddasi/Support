@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit {
   }
   login() {
     this.service.login(this.model).subscribe(result => {
+      debugger
       this.tokenService.store(result);
       this.accessService.loadPermissions();
       this.tokenService.signed();

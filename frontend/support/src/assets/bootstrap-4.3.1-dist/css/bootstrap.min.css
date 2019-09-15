@@ -508,6 +508,9 @@ mark {
     content: "\2014\00A0"
 }
 
+.nav-item a {
+    color: white;
+}
 .img-fluid {
     max-width: 100%;
     height: auto

@@ -51,12 +51,13 @@ namespace Support.DataAccess.EF.Repository
         }
         public void Edit(Person person)
         {
-
+            _context.SaveChanges();
         }
         public void Delete(int personId)
         {
             var model = GetForDelete(personId);
             _context.Persons.Remove(_context.Persons.Find(personId));
+            _context.SaveChanges();
         }
         private Person GetForDelete(int personId)
         {
@@ -82,7 +83,7 @@ namespace Support.DataAccess.EF.Repository
             throw new PersonNotFoundException();
         }
 
-       
+
     }
 
     public class PersonNotFoundException : Exception

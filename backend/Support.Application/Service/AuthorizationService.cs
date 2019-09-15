@@ -80,6 +80,7 @@ namespace Support.Application.Service
             var person = _personRepository.Get(a => a.Mobile == mobile &&
                                                a.Password == password);
             person.First().StatusId = PersonStatus.Verified;
+            _personRepository.Edit(person.First());
             if (person.Any())
             {
                 return CreateClaims(person.First());
