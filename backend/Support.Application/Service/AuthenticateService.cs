@@ -16,11 +16,9 @@ namespace Support.Application.Service
 {
     public class AuthenticateService : IAuthenticateService
     {
-        private readonly IUserManagementService _userManagementService;
         private readonly TokenManagement _tokenManagement;
-        public AuthenticateService(IUserManagementService service, IOptions<TokenManagement> tokenManagement)
+        public AuthenticateService(IOptions<TokenManagement> tokenManagement)
         {
-            _userManagementService = service;
             _tokenManagement = tokenManagement.Value;
         }
 

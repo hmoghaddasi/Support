@@ -73,7 +73,6 @@ namespace Support.Host
 
             builder.RegisterType<AuthenticateService>().As<IAuthenticateService>();
             builder.RegisterType<AuthorizationService>().As<IAuthorizationService>();
-            builder.RegisterType<UserManagementService>().As<IUserManagementService>();
             builder.RegisterType<PersonRepository>().As<IPersonRepository>();
             builder.RegisterType<NotificationService>().As<INotificationService>();
             builder.RegisterType<AccessPolicyService>().As<IAccessPolicyServices>();
