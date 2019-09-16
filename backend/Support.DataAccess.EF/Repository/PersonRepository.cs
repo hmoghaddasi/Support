@@ -2,7 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using Framework.Core.Filtering;
 using Microsoft.EntityFrameworkCore;
+using Support.Application.Contract.Constant;
+using Support.Domain.Exception;
 using Support.Domain.IRepositories;
 using Support.Domain.Model;
 
@@ -83,10 +86,20 @@ namespace Support.DataAccess.EF.Repository
             throw new PersonNotFoundException();
         }
 
-
-    }
-
-    public class PersonNotFoundException : Exception
-    {
+        public FilterResponse<Person> GetForGrid(GridRequest request, int statusId)
+        {
+            if (statusId != PersonStatus.All)
+            {
+                return _context.Persons.Where(a => a.StatusId == statusId || statusId == 0)
+                .Include(a => a.Status)
+                .AsQueryable().ApplyFilters(request);
+            }
+            else
+            {
+                return _context.Persons                
+                .Include(a => a.Status)
+                .AsQueryable().ApplyFilters(request);
+            }
+        }
     }
 }

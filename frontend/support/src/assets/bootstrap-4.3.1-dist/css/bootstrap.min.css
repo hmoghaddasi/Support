@@ -4419,7 +4419,8 @@ input[type=submit].btn-block {
 
 .navbar-nav .nav-link {
     padding-right: 0;
-    padding-left: 0
+    padding-left: 0;
+    text-align: right;
 }
 
 .navbar-nav .dropdown-menu {

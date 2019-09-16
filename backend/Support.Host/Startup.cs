@@ -81,10 +81,12 @@ namespace Support.Host
             builder.RegisterType<AccessRepository>().As<IAccessRepository>();
             builder.RegisterType<ConfigRepository>().As<IConfigRepository>();
             builder.RegisterType<ConfigService>().As<IConfigService>();
+            builder.RegisterType<PersonServices>().As<IPersonServices>();
 
             //builder.RegisterType<SiteAnalyticsServices>();
             builder.Populate(services);
             var container = builder.Build();
+
             //Create the IServiceProvider based on the container.
             return new AutofacServiceProvider(container);
         }

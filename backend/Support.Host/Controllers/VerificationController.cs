@@ -22,12 +22,12 @@ namespace Support.Host.Controllers
         }
 
         [HttpPost, Authorize]
-        public string Post([FromBody]VerificationDTO code)
+        public ActionResult Post([FromBody]VerificationDTO code)
         {
             var mobile = User.GetLoggedInUserName();
             var claims = _authorizationService.Verification(code, mobile);
             if (claims != null)
-                return _authenticateService.IsAuthenticated(claims);
+                return Ok();
 
             throw new StatusCodeException(HttpStatusCode.Unauthorized);
         }

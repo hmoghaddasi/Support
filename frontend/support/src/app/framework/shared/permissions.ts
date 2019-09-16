@@ -20,5 +20,6 @@ export class Permissions {
     public static LIST_CONVERSATION = 'conversationlist';
     public static LIST_CONVERSATION_ADMIN = 'conversationlistadmin';
     public static LIST_IMAGE = 'listimage';
-    public static LIST_PERSON: any;
+    public static LIST_PERSON = 'listperson';
+    public static STH: any;
 }

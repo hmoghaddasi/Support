@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Linq.Dynamic.Core;
 using System.Linq.Expressions;
 
 namespace Framework.Core.Filtering
@@ -27,14 +28,14 @@ namespace Framework.Core.Filtering
                     foreach (var sort in request.Sort)
                     {
                         // TODO Add sorting                    
-                        //query = query.OrderBy($"{sort.Field} {sort.Dir}");
+                        query = query.OrderBy($"{sort.Field} {sort.Dir}");
                     }
                 }
                 else
                 {
                     var keyId = $@"{typeof(T).Name}Id";
                     // TODO Add sorting
-                    //query = query.OrderBy(keyId+" desc");
+                    query = query.OrderBy(keyId + " desc");
                 }
             }
             var count = query.Count();
@@ -63,14 +64,14 @@ namespace Framework.Core.Filtering
                     foreach (var sort in request.Sort)
                     {
                         // TODO Add sorting
-                        //query = query.OrderBy($"{sort.Field} {sort.Dir}");
+                        query = query.OrderBy($"{sort.Field} {sort.Dir}");
                     }
                 }
                 else
                 {
                     var keyId = $@"{typeof(T).Name}Id";
                     // TODO Add sorting
-                    //query = query.OrderBy(keyId + " desc");
+                    query = query.OrderBy(keyId + " desc");
                 }
             }
             if (predicate != null)

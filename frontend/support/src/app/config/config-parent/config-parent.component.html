@@ -3,7 +3,7 @@
   </mat-toolbar>
   <div style="float: right"> <button class="btn btn-info" (click)="create()">تنظیمات جدید</button></div>
   <div class="clearfix"></div>
-  <div dir="rtl">
+  <div dir="rtl"style="min-height: 79.5vh;">
     <ul class="nav nav-tabs">
       <li class="nav-item" *ngFor="let config of (configs | async)">
         <a class="nav-link text-black" data-toggle="tab" href="#tab{{config.configId}}">{{config.configName}}</a>

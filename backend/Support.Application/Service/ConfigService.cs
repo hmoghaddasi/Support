@@ -55,42 +55,20 @@ namespace Support.Application.Service
 
         public BaseResponseDTO Create(ConfigDTO dto)
         {
-            try
-            {
-                _repository.Create(ConfigMapper.MapToModel(dto));
-                return BaseResponseHelper.Success();
-            }
-            catch (Exception e)
-            {
-                return BaseResponseHelper.Failure(e.Message);
-            }
+            _repository.Create(ConfigMapper.MapToModel(dto));
+            return BaseResponseHelper.Success();
         }
         public BaseResponseDTO Edit(ConfigDTO dto)
         {
-            try
-            {
-                var model = _repository.GetById(dto.ConfigId);
-                var data = ConfigMapper.MapToEditModel(model, dto);
-                _repository.Edit(data);
-                return BaseResponseHelper.Success();
-            }
-            catch (Exception e)
-            {
-                return BaseResponseHelper.Failure(e.Message);
-            }
-
+            var model = _repository.GetById(dto.ConfigId);
+            var data = ConfigMapper.MapToEditModel(model, dto);
+            _repository.Edit(data);
+            return BaseResponseHelper.Success();
         }
         public BaseResponseDTO Delete(int id)
         {
-            try
-            {
-                _repository.Delete(_repository.GetById(id));
-                return BaseResponseHelper.Success();
-            }
-            catch (Exception e)
-            {
-                return BaseResponseHelper.Failure(e.Message);
-            }
+            _repository.Delete(_repository.GetById(id));
+            return BaseResponseHelper.Success();
         }
 
         public ConfigParentDTO GetConfigParent()

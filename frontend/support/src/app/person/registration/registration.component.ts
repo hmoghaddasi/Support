@@ -23,7 +23,7 @@ export class RegistrationComponent implements OnInit {
 
   register() {
     this.service.register(this.model).subscribe(result => {
-      this.tokenService.store(result);
+      this.tokenService.store(result.token);
       this.router.navigate(['./verification']);
       Swal.fire('عملیات موفق', 'کاربر شما در سامانه ثبت شد. مراحل بعدی عضویت را تکمیل نمایید', 'success');
     },err => {

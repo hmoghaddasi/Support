@@ -1,19 +1,19 @@
-<div class="m-auto">
-  <mat-toolbar dir="rtl">
-    <span>بازیابی رمز عبور</span>
-  </mat-toolbar>
-  <div class=" d-flex flex-row align-items-center justify-content-center">
-    <mat-card class="my-card col-3">
-      <mat-card-content dir='rtl'>
-        <form class="my-form" #resetForm="ngForm">
-          <mat-form-field class="d-flex flex-row align-items-center justify-content-center">
-            <mat-label>شماره همراه</mat-label>
-            <input matInput placeholder="شماره همراه" name="Mobile" [(ngModel)]="model.Mobile" required>
-          </mat-form-field>
-        </form>
-      </mat-card-content>
-      <mat-card-actions dir='rtl'>
-        <button [disabled]="!resetForm.form.valid" mat-raised-button (click)="reset()" class="btn btn-info persian">ارسال</button>
-      </mat-card-actions>
-    </mat-card>
-  </div>
+<div class=" d-flex flex-row align-items-center justify-content-center m-auto" style="height: 90vh;">
+  <mat-card class="my-card col-3" style="min-width: 300PX;">
+    <mat-card-title class="persian d-flex justify-content-center">
+      بازیابی رمز عبور
+    </mat-card-title>
+    <mat-card-content>
+      <form class="my-form" #resetForm="ngForm">
+        <mat-form-field class="d-flex flex-row align-items-center justify-content-center">
+          <mat-label>شماره همراه</mat-label>
+          <input matInput placeholder="شماره همراه" name="mobile" [(ngModel)]="model.mobile" required>
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <button [disabled]="resetForm.form.invalid" mat-raised-button (click)="reset()"
+        class="btn btn-info persian">تأیید</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

@@ -21,11 +21,11 @@ namespace Support.Host.Controllers
         }
 
         [HttpPost]
-        public string Post(PersonRegisterDTO dto)
+        public TokenResultDTO Post(PersonRegisterDTO dto)
         {
             var claims = _authorizationService.RegisterPerson(dto);
             if (claims != null)
-                return _authenticateService.IsAuthenticated(claims);
+                return new TokenResultDTO { Token= _authenticateService.IsAuthenticated(claims) };
 
             throw new StatusCodeException(HttpStatusCode.Unauthorized);
         }

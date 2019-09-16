@@ -52,8 +52,8 @@ export class PersonListComponent implements OnInit, OnDestroy {
       this.view.next(a);
     });
   }
-  accept(model: ValidationModel) {
-    this.service.accept(model.PersonId).subscribe((res: BaseResponseDto) => {
+  accept(id: number) {
+    this.service.accept(id).subscribe((res: BaseResponseDto) => {
       if (res.resultCode === 200) {
         Swal.fire('عملیات موفق', res.message, 'success');
         this.service.needDataUpdate.next(true);
@@ -65,8 +65,8 @@ export class PersonListComponent implements OnInit, OnDestroy {
     });
   }
 
-  activate(model: ValidationModel) {
-    this.service.activate(model.PersonId).subscribe((res: BaseResponseDto) => {
+  activate(id: number) {
+    this.service.activate(id).subscribe((res: BaseResponseDto) => {
       if (res.resultCode === 200) {
         Swal.fire('عملیات موفق', res.message, 'success');
         this.service.needDataUpdate.next(true);
@@ -78,8 +78,8 @@ export class PersonListComponent implements OnInit, OnDestroy {
     });
   }
 
-  deactivate(model: ValidationModel) {
-    this.service.deactivate(model.PersonId).subscribe((res: BaseResponseDto) => {
+  deactivate(id: number) {
+    this.service.deactivate(id).subscribe((res: BaseResponseDto) => {
       if (res.resultCode === 200) {
         Swal.fire('عملیات موفق', res.message, 'success');
         this.service.needDataUpdate.next(true);

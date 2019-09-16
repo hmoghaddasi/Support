@@ -15,12 +15,14 @@ import { PersonAccessComponent } from './person-access/person-access.component';
 import { MatDialogModule } from '@angular/material';
 import { MatListModule } from '@angular/material/list';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RegisterSuccessComponent } from './register-success/register-success.component';
+import { PersonParentComponent } from './person-parent/person-parent.component';
 
 
 
 @NgModule({
    declarations: [RegistrationComponent, LoginComponent, ProfileComponent, LogoutComponent, VerificationComponent,
-      PersonListComponent, ChangePasswordComponent, ResetpassComponent, PersonAccessComponent],
+      PersonListComponent, ChangePasswordComponent, ResetpassComponent, PersonAccessComponent, RegisterSuccessComponent, PersonParentComponent],
    imports: [
       CommonModule,
       MyMaterialModule,

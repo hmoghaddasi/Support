@@ -15,8 +15,8 @@ export class ResetpassComponent implements OnInit {
   constructor(private service: RegistrationService, private router: Router) { }
 
   ngOnInit() {
-
   }
+  
   reset() {
     this.service.resetpass(this.model).subscribe(a => {
       Swal.fire('عملیات موفق', 'رمز عبور جدید برایتان ارسال گردید', 'success');

@@ -38,7 +38,7 @@ namespace Support.Application.Mapper
                 FirstName = person.FirstName,
                 LastName = person.LastName,
                 Mobile = person.Mobile,
-                StatusId = PersonStatus.New,                
+                StatusId = PersonStatus.New,
                 Gender = false,
                 Password = MD5Tool.Hash(person.Password),
                 LoginName = person.Mobile
@@ -68,6 +68,34 @@ namespace Support.Application.Mapper
                 Mobile = dto.Mobile,
                 Password = PersonTools.GetRandomPassKey()
             };
+        }
+
+        public static ProfileDTO MapProfileDTO(Person person)
+        {
+            return new ProfileDTO()
+            {
+                PersonId = person.PersonId,
+                FirstName = person.FirstName,
+                LastName = person.LastName,
+                FullName = person.FirstName + " " + person.LastName,
+                LoginName = person.LoginName,
+                Email = person.Email,
+                Gender = person.Gender,
+                GenderText = person.Gender ? "مرد" : "زن",
+                Status = person.Status?.ConfigName,
+                Mobile = person.Mobile,
+                StatusId = person.StatusId
+            };
+        }
+
+        public static Person MapEditProfileDTO(Person person, ProfileDTO request)
+        {
+            person.FirstName = request.FirstName;
+            person.LastName = request.LastName;
+            person.Mobile = request.Mobile;
+            person.Gender = request.Gender;
+            person.Email = request.Email;
+            return person;
         }
     }
 

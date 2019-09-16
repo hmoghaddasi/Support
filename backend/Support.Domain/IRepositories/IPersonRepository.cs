@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using Framework.Core.Filtering;
 using Support.Domain.Model;
 
 namespace Support.Domain.IRepositories
@@ -14,6 +15,7 @@ namespace Support.Domain.IRepositories
         int Create(Person person);
         void Edit(Person person);
         void Delete(int personId);
+        FilterResponse<Person> GetForGrid(GridRequest request, int statusId);
     }
 }
 

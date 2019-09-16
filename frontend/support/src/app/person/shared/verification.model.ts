@@ -1,3 +1,3 @@
 export class VerificationModel {
-    public Code: string;
+    public code: string;
 }

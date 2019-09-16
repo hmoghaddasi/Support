@@ -9,7 +9,8 @@ import { ChangePasswordComponent } from './changepassword/change-password.compon
 import { AuthGuard } from '../framework/services/auth-guard.service';
 import { Permissions } from '../framework/shared/permissions';
 import { LogoutComponent } from './logout/logout.component';
-import { PersonListComponent } from './person-list/person-list.component';
+import { RegisterSuccessComponent } from './register-success/register-success.component';
+import { PersonParentComponent } from './person-parent/person-parent.component';
 
 const routes: Routes = [
   { path: 'register', component: RegistrationComponent },
@@ -29,9 +30,15 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: { permission: Permissions.PROFILE_PERSON }
   },
-  { path: 'person-list', component: PersonListComponent ,
+  {
+    path: 'register-success',
+    component: RegisterSuccessComponent
+  },
+  {
+    path: 'person-list', component: PersonParentComponent,
     canActivate: [AuthGuard],
-  data: { permission: Permissions.LIST_PERSON } },
+    data: { permission: Permissions.LIST_PERSON }
+  },
 ];
 
 
