@@ -34,6 +34,7 @@ namespace Support.Host.Controllers
             }
             return _requestService.GetForGrid(request);
         }
+
         [HttpGet]
         [Route("RequestByCurrentUserGrid")]
         public FilterResponse<RequestDTO> GetByCurrentuser([FromQuery]GridRequest request)
@@ -53,6 +54,7 @@ namespace Support.Host.Controllers
             var user = User.GetLoggedInUserName();
             return _requestService.Create( dto,user);
         }
+
         [HttpPut]
         [Authorize]
         public BaseResponseDTO Put(int id)

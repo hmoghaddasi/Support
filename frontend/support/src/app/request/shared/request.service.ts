@@ -11,8 +11,7 @@ import { GridDataResult } from '@progress/kendo-angular-grid';
   providedIn: 'root'
 })
 
-export class RequestService  {
-  [x: string]: any;
+export class RequestService {
   constructor(private restService: RestService) {
   }
   private resourceName = 'request';
@@ -32,6 +31,9 @@ export class RequestService  {
   }
   public getForGrid(state: State): Observable<GridDataResult> {
     return this.restService.getForGrid(this.resourceName, state);
+  }
+  public getForGridUser(state: State): Observable<GridDataResult> {
+    return this.restService.getForGridCustome(this.resourceName, 'RequestByCurrentUserGrid', state);
   }
 
 }

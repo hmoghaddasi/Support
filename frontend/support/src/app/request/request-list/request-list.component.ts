@@ -42,25 +42,4 @@ export class RequestListComponent implements OnInit {
       });
   }
 
-  public edit(model: RequestModel) {
-      const dialogRef = this.dialog.open(RequestCreateComponent, {
-          width: '600px',
-          data: { id: model.RequestId }
-      });
-      dialogRef.afterClosed().subscribe(result => {
-          if (result) {
-              this.reloadGrid();
-          }
-      });
-  }
-
-
-  public delete(model: RequestModel) {
-      this.service.delete(model.RequestId).subscribe(result => {
-          if (result) {
-              this.reloadGrid();
-          }
-      });
-  }
-
 }

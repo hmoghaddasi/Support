@@ -18,11 +18,9 @@ namespace Support.Application.Contract.DTO
         public string Type { get; set; }
         public int PriorityId { get; set; }
         public string Priority { get; set; }
-
         public int AssignedId { get; set; }
-
         public string Assigned { get; set; }
-
-        public List<ResponseDTO> Responses { get; set; }
+        public int ProjectId { get; set; }
+        public string Project { get; set; }
     }
 }

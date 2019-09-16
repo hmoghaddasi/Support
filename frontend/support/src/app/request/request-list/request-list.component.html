@@ -1,33 +1,26 @@
-<div class="fullpage">
-  <mat-card-title class="persian">
-      لیست درخواست ها
-  </mat-card-title>
+<mat-toolbar style="text-align:center" dir="rtl">
+  <span>لیست تیکت‌های سامانه</span>
+</mat-toolbar>
 <div class="grid-wrapper">
-<kendo-grid dir="rtl"
-[data]="view | async"
-[pageSize]="gridState.pageSize"
-[skip]="gridState.skip"
-[filter]="gridState.filter"
-filterable="menu"
-[pageable]="true"
-[scrollable]="'none'"
-(dataStateChange)="onStateChange($event)">
-  <kendo-grid-column field="Title" title="عنوان"></kendo-grid-column>
-  <kendo-grid-column field="RequestDate" title="تاریخ درخواست"></kendo-grid-column>
-  <kendo-grid-column field="RequestBy" title="درخواست کننده"></kendo-grid-column>
-  <kendo-grid-column field="Priority" title="اولویت"></kendo-grid-column>
-  <kendo-grid-column field="Status" title="وضعیت"></kendo-grid-column>
-
-  <kendo-grid-column  width="200">
+  <kendo-grid [data]="view | async" [pageSize]="gridState.take" [skip]="gridState.skip" [filter]="gridState.filter"
+    filterable="menu" [pageable]="true" [scrollable]="'none'" (dataStateChange)="onStateChange($event)">
+    <kendo-grid-column field="title" title="عنوان"></kendo-grid-column>
+    <kendo-grid-column field="requestShDate" title="تاریخ درخواست"></kendo-grid-column>
+    <kendo-grid-column field="requestBy" title="درخواست کننده"></kendo-grid-column>
+    <kendo-grid-column field="project" title="پروژه"></kendo-grid-column>
+    <kendo-grid-column field="type" title="نوع"></kendo-grid-column>
+    <kendo-grid-column field="priority" title="اولویت"></kendo-grid-column>
+    <kendo-grid-column field="status" title="وضعیت"></kendo-grid-column>
+    <kendo-grid-column field="assigned" title="فرد مسئول"></kendo-grid-column>
+    <kendo-grid-column width="200">
       <ng-template kendoGridCellTemplate let-dataItem>
-          <button kendoButton (click)="create(dataItem)" class="btn btn-default">پاسخ</button>
-          <button kendoButton (click)="edit(dataItem)" class="btn btn-default">ویرایش</button>
-          <button kendoButton (click)="delete(dataItem)" class="btn btn-default">حذف</button>
+        <button *ngIf="dataItem.statusId == 11" kendoButton (click)="conversation(dataItem.requestId)"
+          class="btn btn-default">گفتگو</button>
+        <button kendoButton (click)="detail(dataItem.requestId)" class="btn btn-default">جزئیات</button>
+        <button *ngIf="dataItem.statusId == 11" kendoButton (click)="close(dataItem.requestId)"
+          class="btn btn-default">بستن تیکت</button>
       </ng-template>
-  </kendo-grid-column>
-</kendo-grid>
-<div *ngIf="loading" class="k-i-loading"></div>
+    </kendo-grid-column>
+  </kendo-grid>
+  <div *ngIf="loading" class="k-i-loading"></div>
 </div>
-</div>
-
-

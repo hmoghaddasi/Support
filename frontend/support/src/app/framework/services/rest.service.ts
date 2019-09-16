@@ -47,6 +47,17 @@ export class RestService {
     }
     return this.http.get<GridDataResult>(`${environment.baseUrl}${resource}/${resource}Grid?${queryString}`, this.createHeaders());
   }
+  public getForGridCustome(resource: string,name: string, state: State, id: number = null): Observable<GridDataResult> {
+    let queryString = `skip=${state.skip}&take=${state.take}`;
+    if (state.filter != null) {
+      const filter = encodeURIComponent(JSON.stringify(state.filter));
+      queryString += `&filter=${filter}`;
+    }
+    if (id !== undefined) {
+      queryString += `&id=${id}`;
+    }
+    return this.http.get<GridDataResult>(`${environment.baseUrl}${resource}/${name}?${queryString}`, this.createHeaders());
+  }
   public getById<TResonse>(resource: string, id: number): Observable<TResonse> {
     return this.http.get<TResonse>(this.getUrl(resource) + id, this.createHeaders());
   }

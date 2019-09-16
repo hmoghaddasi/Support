@@ -55,10 +55,28 @@ namespace Framework.Core.DateTime
         public static string GetShamsiDate(System.DateTime date, int count=0)
         {
             count++;
+            var Month = "";
+            var Day = "";
             var pc = new PersianCalendar();
-            string strDate = pc.GetYear(date) + "/" + pc.GetMonth(date) + "/" + pc.GetDayOfMonth(date);
+            if (pc.GetMonth(date) < 10)
+            {
+                Month = "0" + pc.GetMonth(date);
+            }
+            else
+            {
+                Month = pc.GetMonth(date).ToString();
+            }
+            if (pc.GetDayOfMonth(date) < 10)
+            {
+                Day = "0" + pc.GetDayOfMonth(date);
+            }
+            else
+            {
+                Day = pc.GetDayOfMonth(date).ToString();
+            }
+            string strDate = pc.GetYear(date) + "/" + Month + "/" + Day;
             return strDate;
-            
+
         }
         public static string GetShamsiDateTime(System.DateTime date)
         {

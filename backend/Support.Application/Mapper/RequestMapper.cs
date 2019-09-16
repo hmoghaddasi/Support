@@ -2,6 +2,7 @@
 using Support.Application.Contract.Constant;
 using Support.Application.Contract.DTO;
 using Support.Domain.Model;
+using Framework.Core.DateTime;
 
 namespace Support.Application.Mapper
 {
@@ -16,7 +17,7 @@ namespace Support.Application.Mapper
                 RequestById = model.RequestById,
                 StatusId = model.StatusId,
                 AssignedId = model.AssignedId,
-                Assigned = model.Assigned.FirstName + " " + model.Assigned.LastName,
+                Assigned = model.Assigned?.FirstName + " " + model.Assigned?.LastName,
                 Title = model.Title,
                 Description = model.Description,
                 RequestBy = model.RequestBy.FirstName + " " + model.RequestBy.LastName,
@@ -24,19 +25,20 @@ namespace Support.Application.Mapper
                 TypeId = model.TypeId,
                 Type = model.Type.ConfigName,
                 PriorityId = model.PriorityId,
+                RequestShDate = DateConvert.GetShamsiDate(model.RequestDate),
                 Priority = model.Priority.ConfigName,
+                ProjectId = model.ProjectId,
+                Project = model.Project.ConfigName
             };
         }
         public static Request MapToModel(RequestCreateDTO dto,int personId)
         {
             return new Request()
             {
-                RequestId = dto.RequestId,
                 RequestDate = DateTime.Now,
                 RequestById = personId,
-                StatusId = dto.StatusId,
+                StatusId = RequestStatus.Open,
                 Title = dto.Title,
-                AssignedId = dto.AssignedId,
                 Description = dto.Description,
                 TypeId = dto.TypeId,
                 PriorityId = dto.PriorityId,
