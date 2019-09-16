@@ -6,13 +6,11 @@ namespace Support.Application.Contract.IService
 {
     public interface IRequestService : IApplicationService
     {
+        FilterResponse<RequestDTO> GetForGrid(GridRequest request);
+        BaseResponseDTO Delete(int requestId);
+        FilterResponse<RequestDTO> GetForGrid(GridRequest request, string userName);
+        BaseResponseDTO Create(RequestCreateDTO dto, string userName);
+        BaseResponseDTO UpdateStatus(int id);
 
-        RequestDTO GetById(int requestId);
-        FilterResponse<RequestDTO> GetAllFilter(GridRequest request);
-        List<RequestDTO> GetAll();
-        void Delete(int requestId);
-        List<RequestDTO> GetCustomerRequests(int personId, string userName);
-        void Create(RequestDTO dto, string userName);
-        List<RequestDTO> GetAllRequestResponcesById(int personId, string userName);
     }
 }

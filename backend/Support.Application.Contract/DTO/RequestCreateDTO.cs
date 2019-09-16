@@ -7,7 +7,7 @@ namespace Support.Application.Contract.DTO
     public class RequestCreateDTO
     {
         public int RequestId { get; set; }
-        public int RequestById { get; set; }
+        public int AssignedId { get; set; }
         public int StatusId { get; set; }
         public int TypeId { get; set; }
         public int PriorityId { get; set; }

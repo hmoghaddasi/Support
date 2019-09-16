@@ -12,15 +12,6 @@ namespace Framework.Core.Filtering
         {
             if (request.Filter != null)
                 FilterHelper.ProcessFilters(request.FilterX, ref query);
-
-            //if (request.Filter != null && request.Filter.perdict != null)
-            //{
-            //    var perdict = (Expression<Func<T, bool>>) request.Filter.perdict;
-
-            //    query = query.Where(perdict);
-            //}
-
-
             if (defaultSort)
             {
                 if (request.Sort != null && Enumerable.Any(request.Sort))
@@ -48,14 +39,6 @@ namespace Framework.Core.Filtering
         {
             if (request.FilterX != null)
                 FilterHelper.ProcessFilters(request.FilterX, ref query);
-
-            //if (request.Filter != null && request.Filter.perdict != null)
-            //{
-            //    var perdict = (Expression<Func<T, bool>>) request.Filter.perdict;
-
-            //    query = query.Where(perdict);
-            //}
-
 
             if (defaultSort)
             {

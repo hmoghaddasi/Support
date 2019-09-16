@@ -1,9 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Framework.Core.Filtering;
+using Support.Application.Contract.Constant;
 using Support.Application.Contract.DTO;
 using Support.Application.Contract.IService;
 using Support.Application.Mapper;
-using Support.Domain.IRepository;
+using Support.Domain.Exception;
+using Support.Domain.IRepositories;
 
 namespace Support.Application.Service
 {
@@ -18,54 +21,46 @@ namespace Support.Application.Service
             this._personService = personService;
             this._accessPolicyService = accessPolicyService;
         }
-        public RequestDTO GetById(int requestId)
+
+        public BaseResponseDTO Create(RequestCreateDTO dto, string userName)
         {
-            return RequestMapper.Map(_requestRepository.Get(a => a.RequestId == requestId).First());
+            var personId = _personService.GetPersonByLogin(userName);
+            _requestRepository.Create(RequestMapper.MapToModel(dto, personId));
+            return BaseResponseHelper.Success();
         }
 
-        //public FilterResponse<RequestDTO> GetAllFilter(GridRequest request)
-        //{
-        //    var result = _requestRepository.GetAll().Select(RequestMapper.Map).AsQueryable();
-        //    var data = result.ApplyFilters(request, false);
-        //    return new FilterResponse<RequestDTO>(data.Data, data.Count);
-        //}
-
-        public List<RequestDTO> GetAll()
+        public BaseResponseDTO Delete(int requestId)
         {
-            return _requestRepository.GetAll().Select(RequestMapper.Map).ToList();
-
-        }
-
-        public void Delete(int requestId)
-        {
+            var requestToDelete = _requestRepository.GetById(requestId);
+            if (requestToDelete == null)
+            {
+                throw new RequestNotFoundException();
+            }
             _requestRepository.Delete(requestId);
+            return BaseResponseHelper.Success();
         }
-
-        public List<RequestDTO> GetCustomerRequests(int personId, string userName)
+        public FilterResponse<RequestDTO> GetForGrid(GridRequest request)
         {
-            return _requestRepository
-                .Get(a => (personId == SelectedPerson.Unknown && a.RequestBy.LoginName == userName) || a.RequestById == personId)
-                .Select(RequestMapper.Map).ToList();
-
+            var result = _requestRepository.GetForGrid(request, null);
+            return new FilterResponse<RequestDTO>(result.data.Select(RequestMapper.Map).ToList(), result.total);
         }
 
-        public void Create(RequestDTO dto, string userName)
+        public FilterResponse<RequestDTO> GetForGrid(GridRequest request, string userName)
         {
-            dto.AssignedId = _accessPolicyService.FindRequestAdmin();
-            dto.RequestById = _personService.GetPersonByLogin(userName);
-            dto.StatusId = RequestStatus.New;
-            _requestRepository.Create(RequestMapper.MapToModel(dto));
+            var result = _requestRepository.GetForGrid(request, a => a.RequestBy.LoginName == userName);
+            return new FilterResponse<RequestDTO>(result.data.Select(RequestMapper.Map).ToList(), result.total);
         }
 
-        public List<RequestDTO> GetAllRequestResponcesById(int personId, string userName)
+        public BaseResponseDTO UpdateStatus(int id)
         {
-
-            var model = _requestRepository
-                .Get(a => a.RequestById == personId || a.AssignedId == personId)
-                .Select(RequestMapper.Map).ToList();
-            return model;
+            var request = _requestRepository.GetById(id);
+            if (request == null)
+            {
+                throw new RequestNotFoundException();
+            }
+            request.StatusId =RequestStatus.Close;
+            _requestRepository.Edit(request);
+            return BaseResponseHelper.Success();
         }
-
-
     }
 }

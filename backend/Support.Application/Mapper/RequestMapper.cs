@@ -1,4 +1,5 @@
 ﻿using System;
+using Support.Application.Contract.Constant;
 using Support.Application.Contract.DTO;
 using Support.Domain.Model;
 
@@ -24,23 +25,21 @@ namespace Support.Application.Mapper
                 Type = model.Type.ConfigName,
                 PriorityId = model.PriorityId,
                 Priority = model.Priority.ConfigName,
-                //Responses = model.Responses.Select(ResponseMapper.Map).ToList()
             };
         }
-        public static Request MapToModel(RequestDTO dto)
+        public static Request MapToModel(RequestCreateDTO dto,int personId)
         {
             return new Request()
             {
                 RequestId = dto.RequestId,
                 RequestDate = DateTime.Now,
-                RequestById = dto.RequestById,
+                RequestById = personId,
                 StatusId = dto.StatusId,
                 Title = dto.Title,
                 AssignedId = dto.AssignedId,
                 Description = dto.Description,
                 TypeId = dto.TypeId,
                 PriorityId = dto.PriorityId,
-
             };
         }
     }
