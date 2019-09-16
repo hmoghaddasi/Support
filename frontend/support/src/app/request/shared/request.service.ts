@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { RestService } from 'src/app/framework/services/rest.service';
 import { RequestModel } from './request.model';
 import { State } from '@progress/kendo-data-query';
 import { GridDataResult } from '@progress/kendo-angular-grid';
+import Swal from 'sweetalert2';
+import { BaseResponseDto } from 'src/app/framework/base-response/base-response-dto';
 
 
 @Injectable({
@@ -12,6 +14,7 @@ import { GridDataResult } from '@progress/kendo-angular-grid';
 })
 
 export class RequestService {
+  public needDataUpdate = new Subject<boolean>();
   constructor(private restService: RestService) {
   }
   private resourceName = 'request';
@@ -36,6 +39,9 @@ export class RequestService {
     return this.restService.getForGridCustome(this.resourceName, 'RequestByCurrentUserGrid', state);
   }
 
+  public closeTicket(requestId: number): any {
+    return this.restService.customAction(this.resourceName + '/' + 'CloseTicket', requestId);
+  }
 }
 
 

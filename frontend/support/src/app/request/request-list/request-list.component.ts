@@ -8,6 +8,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { GridDataResult } from '@progress/kendo-angular-grid';
 import { ResponseCreateComponent } from 'src/app/response/response-create/response-create.component';
 import { ResponseModel } from 'src/app/response/shared/response.model';
+import { BaseResponseDto } from 'src/app/framework/base-response/base-response-dto';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-request-list',
@@ -42,4 +44,16 @@ export class RequestListComponent implements OnInit {
       });
   }
 
+  close(id: number) {
+    this.service.closeTicket(id).subscribe((res: BaseResponseDto) => {
+      if (res.resultCode === 200) {
+        Swal.fire('عملیات موفق', res.message, 'success');
+        this.reloadGrid();
+    } else {
+        Swal.fire('عملیات ناموفق', res.message, 'error');
+      }
+    }, err => {
+      Swal.fire('خطایی رخ داده است', err.error.Message, 'error');
+    });
+  }
 }
