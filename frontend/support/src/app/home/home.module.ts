@@ -10,6 +10,8 @@ import { MyMaterialModule } from '../material.module';
 import { AccessDeniedComponent } from './access-denied/access-denied.component';
 import { FrameworkModule } from '../framework/framework.module';
 import { CardComponent } from './card/card.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
+import { ManualComponent } from './manual/manual.component';
 @NgModule({
   declarations: [
     AboutComponent,
@@ -17,7 +19,9 @@ import { CardComponent } from './card/card.component';
     footerComponent,
     HomeComponent,
     AccessDeniedComponent,
-    CardComponent
+    CardComponent,
+    ContactUsComponent,
+    ManualComponent
   ],
   exports: [NavbarComponent, footerComponent
   ],

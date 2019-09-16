@@ -38,7 +38,7 @@ namespace Support.Hosts.Controllers
 
         [HttpPost]
         [Authorize]
-        [Route("api/ChangePersonAccess")]
+        [Route("ChangePersonAccess")]
         public BaseResponseDTO ChangePersonAccess(ChangePersonAccessDTO request)
         {
             return _accessPolicyService.ChangePersonAccess(request);

@@ -24,7 +24,7 @@ namespace Support.Hosts.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        [Route("api/AccessGrid")]
+        [Route("AccessGrid")]
         public FilterResponse<AccessDTO> Get([FromQuery]GridRequest request)
         {
             if (!string.IsNullOrWhiteSpace(request.Filter))
@@ -37,7 +37,7 @@ namespace Support.Hosts.Controllers
 
         [HttpGet]
         [Authorize]
-        [Route("api/PersonAccess")]
+        [Route("PersonAccess")]
         public List<PersonAccessDTO> PersonAccess(int id)
         {
             return _accessService.PersonAccess(id);

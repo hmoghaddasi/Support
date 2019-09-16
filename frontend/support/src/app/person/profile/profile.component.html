@@ -1,56 +1,28 @@
-<mat-toolbar style="text-align:center" dir="rtl">
-  <span>پروفایل</span>
-</mat-toolbar>
-<mat-card class="my-card">
-  <mat-card-content dir='rtl'>
-    <div class="info-badge" role="alert">
-      <strong>نام </strong>: <strong>{{model.FirstName}}</strong>
-    </div>
-    <div class="info-badge" role="alert">
-      <strong>نام خانوادگی </strong>: <strong>{{model.LastName}}</strong>
-    </div>
-    <div class="info-badge" role="alert">
-      <strong>شماره همراه </strong>: <strong>{{model.Mobile}}</strong>
-    </div>
-    <div style="text-align:right" dir="rtl">
-      <h6>وضعیت درخواست‌های ثبت شده توسط داروخانه شما : </h6>
-      <mat-list-item *ngFor="let item of model.RequestItems">
-        <mat-icon mat-list-icon class="inline-icon">assignment</mat-icon>
-        وضعیت : {{item.Status}}
-        -
-        تعداد : {{item.Count}}
-      </mat-list-item>
-    </div>
-    <div style="text-align:right" dir="rtl">
-      <h6>وضعیت پیشنهادات داده شده توسط داروخانه شما : </h6>
-      <mat-list-item *ngFor="let item of model.ResponseItems">
-        <mat-icon mat-list-icon class="inline-icon">shopping_basket</mat-icon>
-        وضعیت : {{item.Status}}
-        -
-        تعداد : {{item.Count}}
-      </mat-list-item>
-      <p style="font-family: IRANSANS" *ngIf="!(model?.ResponseItems?.length>0)">شما تاکنون پیشنهادی ثبت نکرده‌اید</p>
-    </div>
-    <div style="text-align:right; font-family: IRANSANS" dir="rtl">
-      <h6>وضعیت بسته‌های اعتباری خریده شده توسط داروخانه شما : </h6>
-      <mat-card class="credit-card" *ngFor="let item of model.CreditItems">
-        <mat-card-header>
-          <mat-card-title>بسته اعتباری : {{item.Title}}</mat-card-title>
-          <mat-card-subtitle>مقدار اعتبار : {{item.DurationDays}} روز</mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-content>
-          <div>
-            <img mat-card-image src="../../../assets/images/credit.jpg">
-          </div>
-          <p>قیمت : {{item.Price | number}} ریال</p>
-          <p>تاریخ خرید : {{item.PersianPurchaseDate}}</p>
-          <p>تاریخ شروع اعتبار : {{item.PersianStartDate}}</p>
-          <p>تاریخ اتمام اعتبار : {{item.PersianEndDate}}</p>
-        </mat-card-content>
-      </mat-card>
-      <p *ngIf="!(model?.CreditItems?.length>0)">شما تاکنون بسته‌ای خریداری نکرده‌اید</p>
-    </div>
-    <button mat-raised-button color="primary" (click)="edit()" class="submit-btn">ویرایش پروفایل</button>&nbsp;
-    <button mat-raised-button color="primary" (click)="purchaseCredit()" class="submit-btn">خرید بسته اعتباری</button>
-  </mat-card-content>
-</mat-card>
+<div style="min-height: 90vh;">
+  <mat-toolbar style="text-align:center" dir="rtl">
+    <span>پروفایل</span>
+  </mat-toolbar>
+  <mat-card class="my-card">
+    <mat-card-content dir='rtl'>
+      <div class="info-badge" role="alert">
+        <strong>نام </strong>: <strong>{{model.firstName}}</strong>
+      </div>
+      <div class="info-badge" role="alert">
+        <strong>نام خانوادگی </strong>: <strong>{{model.lastName}}</strong>
+      </div>
+      <div class="info-badge" role="alert">
+        <strong>شماره همراه </strong>: <strong>{{model.mobile}}</strong>
+      </div>   
+      <div class="info-badge" role="alert">
+        <strong>نام کاربری </strong>: <strong>{{model.loginName}}</strong>
+      </div>   
+      <div class="info-badge" role="alert">
+        <strong>جنسیت </strong>: <strong>{{model.genderText}}</strong>
+      </div>   
+      <div class="info-badge" role="alert">
+        <strong>ایمیل </strong>: <strong>{{model.email}}</strong>
+      </div>   
+      <button style="margin-top: 5px;" mat-raised-button color="primary" (click)="edit()" class="submit-btn">ویرایش پروفایل</button>&nbsp;
+    </mat-card-content>
+  </mat-card>
+</div>

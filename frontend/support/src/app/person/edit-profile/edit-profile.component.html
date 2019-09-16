@@ -1,0 +1,41 @@
+<mat-toolbar style="text-align:center" dir="rtl">
+  <span>اطلاعات پروفایل کاربری</span>
+</mat-toolbar>
+<mat-card class="my-card" dir="">
+  <mat-card-content dir='' class="flex-column justify-content-center align-items-end">
+    <form class="my-form">
+      <div class="my-row">
+        <mat-form-field class="half-width-input">
+          <mat-label>نام</mat-label>
+          <input matInput placeholder="نام" name="firstName" [(ngModel)]="model.firstName" required />
+        </mat-form-field>
+        <mat-form-field class="half-width-input">
+          <mat-label>نام خانوادگی</mat-label>
+          <input matInput placeholder="نام خانوادگی" name="lastName" [(ngModel)]="model.lastName" required />
+        </mat-form-field>
+        <mat-form-field class="half-width-input">
+          <mat-label>شماره موبایل</mat-label>
+          <input matInput placeholder="شماره موبایل" name="mobile" [(ngModel)]="model.mobile" required />
+        </mat-form-field>
+        <mat-form-field class="half-width-input">
+          <mat-label>ایمیل</mat-label>
+          <input matInput placeholder="ایمیل" name="email" [(ngModel)]="model.email" required />
+        </mat-form-field>
+        <mat-form-field class="half-width">
+          <mat-label>جنسیت</mat-label>
+          <mat-select required name="gender" [(ngModel)]="model.gender">
+            <mat-option [value]="true">
+              مرد
+            </mat-option>
+            <mat-option [value]="false">
+              زن
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </form>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="submit()" class="submit-btn">ثبت </button>
+    </mat-card-actions>
+  </mat-card-content>
+</mat-card>
