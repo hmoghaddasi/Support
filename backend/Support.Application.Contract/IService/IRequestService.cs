@@ -11,6 +11,6 @@ namespace Support.Application.Contract.IService
         FilterResponse<RequestDTO> GetForGrid(GridRequest request, string userName);
         BaseResponseDTO Create(RequestCreateDTO dto, string userName);
         BaseResponseDTO UpdateStatus(int id);
-
+        RequestListDTO GetDetail(int id, string user);
     }
 }

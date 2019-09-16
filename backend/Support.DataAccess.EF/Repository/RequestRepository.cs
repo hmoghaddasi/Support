@@ -23,7 +23,7 @@ namespace Support.DataAccess.EF.Repository
         }
         public List<Request> GetAll()
         {
-            return _context.Requests.Include(a => a.Status).Include(a => a.Type)
+            return _context.Requests.Include(a => a.Status).Include(a => a.Type).Include(a => a.Project)
                 .Include(a => a.Priority).Include(a => a.RequestBy)
                 .Include(a => a.Responses).Include(a => a.Assigned)
                 .Include("Responses.CreateBy")

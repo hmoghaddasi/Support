@@ -39,6 +39,23 @@ namespace Support.Application.Service
             _requestRepository.Delete(requestId);
             return BaseResponseHelper.Success();
         }
+
+        public RequestListDTO GetDetail(int id, string user)
+        {
+            var request = _requestRepository.GetById(id);
+            if (request == null)
+            {
+                throw new RequestNotFoundException();
+            }
+            var personId = _personService.GetPersonByLogin(user);
+            if (personId != request.RequestById && personId != 0)
+            {
+                throw new InvalidDataAccessException();
+            }
+            return RequestMapper.MapDto(request);
+
+        }
+
         public FilterResponse<RequestDTO> GetForGrid(GridRequest request)
         {
             var result = _requestRepository.GetForGrid(request, null);
@@ -58,7 +75,7 @@ namespace Support.Application.Service
             {
                 throw new RequestNotFoundException();
             }
-            request.StatusId =RequestStatus.Close;
+            request.StatusId = RequestStatus.Close;
             _requestRepository.Edit(request);
             return BaseResponseHelper.Success();
         }

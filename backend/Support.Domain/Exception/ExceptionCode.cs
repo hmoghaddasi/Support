@@ -9,6 +9,7 @@
         public const int AccessPolicyNotFoundCode = 1005;
         public const int AccessNotFoundCode = 1006;
         public const int RequestNotFoundCode = 1007;
+        public const int InvalidDataAccess = 1008;
 
     }
 }
