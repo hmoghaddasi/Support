@@ -6,6 +6,9 @@ import { ResponseCreateComponent } from 'src/app/response/response-create/respon
 import { MatDialog } from '@angular/material';
 import { GridDataResult } from '@progress/kendo-angular-grid';
 import { State } from '@progress/kendo-data-query';
+import { RequestCreateComponent } from '../request-create/request-create.component';
+import { BaseResponseDto } from 'src/app/framework/base-response/base-response-dto';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-user-request-list',
@@ -37,7 +40,21 @@ export class UserRequestListComponent implements OnInit {
     this.service.getForGridUser(this.gridState).subscribe(a => {
       this.loading = false;
       this.view.next(a);
+    });
+  }
 
+  create() {
+    const dialogRef = this.dialog.open(RequestCreateComponent, {
+      width: '600px',
+      data: null
+    });
+    dialogRef.componentInstance.confirmedEventEmitter.subscribe((result: BaseResponseDto) => {
+      if (result.resultCode === 200) {
+        Swal.fire('عملیات موفق', result.message, 'success');
+        this.reloadGrid();
+      } else {
+        Swal.fire('عملیات ناموفق', result.message, 'error');
+      }
     });
   }
 }

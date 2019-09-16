@@ -10,6 +10,7 @@ import { RequestRoutingModule } from './request.module.routing';
 import { GridModule } from '@progress/kendo-angular-grid';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ConfigModule } from '../config/config.module';
 @NgModule({
   declarations: [RequestCreateComponent, RequestListComponent, UserRequestListComponent],
   imports: [
@@ -18,7 +19,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MyMaterialModule,
     GridModule,
      BrowserAnimationsModule,
-    ResponseModule
+    ResponseModule,
+    ConfigModule
   ],
   entryComponents:[ResponseCreateComponent]
 })

@@ -1,7 +1,9 @@
-import { Component, OnInit,  Inject } from '@angular/core';
+import { Component, OnInit,  Inject, EventEmitter } from '@angular/core';
 import { RequestModel } from '../shared/request.model';
-import { MAT_DIALOG_DATA } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { RequestService } from '../shared/request.service';
+import { BaseResponseDto } from 'src/app/framework/base-response/base-response-dto';
+import Swal from 'sweetalert2';
 
 
 export class DialogData {
@@ -15,16 +17,24 @@ export class DialogData {
   templateUrl: './request-create.component.html',
   styleUrls: ['./request-create.component.css']
 })
-export class RequestCreateComponent implements OnInit {
+export class RequestCreateComponent {
   model = new RequestModel();
-  constructor( private service: RequestService) {}
+  public confirmedEventEmitter: EventEmitter<any>;
 
-  ngOnInit() {
-
+  constructor(
+    private service: RequestService,
+    public dialogRef: MatDialogRef<RequestCreateComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) {
+    this.confirmedEventEmitter = new EventEmitter<BaseResponseDto>();
   }
 
-  create() {
-    this.service.create(this.model).subscribe(result => {
-    });
-  }
+
+  submitform() {
+      this.service.create(this.model).subscribe((result: BaseResponseDto) => {
+        this.confirmedEventEmitter.emit(result);
+        this.dialogRef.close();
+      }, err => {
+        Swal.fire('خطایی رخ داد', err.error.message, 'error');
+      });
+  } 
 }

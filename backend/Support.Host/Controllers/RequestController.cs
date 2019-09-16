@@ -55,9 +55,10 @@ namespace Support.Host.Controllers
             return _requestService.Create( dto,user);
         }
 
-        [HttpPut]
+        [HttpGet]
         [Authorize]
-        public BaseResponseDTO Put(int id)
+        [Route("CloseTicket")]
+        public BaseResponseDTO CloseTicket(int id)
         {
             return _requestService.UpdateStatus(id);
         }

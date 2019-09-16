@@ -1,33 +1,38 @@
-<mat-card >
-  <mat-card-content
-    class="">
-    <mat-label class="" style="text-align:center;">
-      <span class="text-white">request</span>
-    </mat-label>
-    <form class="">
-      <div class="">
-
-        <mat-form-field class="full-width">
-          <mat-label> RequestId</mat-label>
-          <input matInput placeholder=" RequestId" name="RequestId" [(ngModel)]="model.RequestId" class="text-dark"
-            required>
+<mat-toolbar style="text-align:center" dir="rtl">
+  <span>اطلاعات تیکت</span>
+</mat-toolbar>
+<mat-card class="my-card" dir="rtl">
+  <mat-card-content dir='rtl'>
+    <form #createform="ngForm" class="my-form mydadrow" dir="rtl">
+      <div class="my-row">
+        <mat-form-field style="display: none;">
+          <mat-label>پروژه</mat-label>
+          <input matInput placeholder="پروژه" name="projectId" [(ngModel)]="model.projectId" required readonly />
         </mat-form-field>
-        <!-- <app-project-select (selectedProject)="model.ProjectId"></app-project-select> -->
-
-        <mat-form-field class="full-width">
-          <mat-label> Note</mat-label>
-          <input matInput placeholder=" Note" name="Note" [(ngModel)]="model.Note" class="text-dark"
-            required>
+        <app-config-select [label]="'پروژه'" [parentId]=5 [(selectedConfig)]="model.projectId"></app-config-select>
+        <mat-form-field style="display: none;">
+          <mat-label>اولویت</mat-label>
+          <input matInput placeholder="اولویت" name="priorityId" [(ngModel)]="model.priorityId" required readonly />
         </mat-form-field>
-        <mat-form-field class="full-width">
-          <mat-label> Title</mat-label>
-          <input matInput placeholder=" Title" name="Title" [(ngModel)]="model.Title" class="text-dark"
-            required>
+        <app-config-select [label]="'اولویت'" [parentId]=4 [(selectedConfig)]="model.priorityId"></app-config-select>
+        <mat-form-field style="display: none;">
+          <mat-label>نوع تیکت</mat-label>
+          <input matInput placeholder="نوع تیکت" name="typeId" [(ngModel)]="model.typeId" required readonly />
         </mat-form-field>
+        <app-config-select [label]="'نوع تیکت'" [parentId]=3 [(selectedConfig)]="model.typeId"></app-config-select>
+        <mat-form-field class="half-width-input">
+          <mat-label>عنوان </mat-label>
+          <input matInput placeholder=" عنوان " name="title" [(ngModel)]="model.title" />
+        </mat-form-field>
+        <mat-form-field class="full-width-input">
+          <mat-label>توضیحات</mat-label>
+          <textarea matInput placeholder=" توضیحات " name="Description" [(ngModel)]="model.Description"></textarea>
+        </mat-form-field>
+        <mat-card-actions>
+          <button class="submit-btn" mat-raised-button (click)="submitform()" color="primary"
+            [disabled]="createform.form.invalid">ثبت</button>
+        </mat-card-actions>
       </div>
-      <mat-card-actions>
-        <button mat-raised-button (click)="create()" class="bg-sazman text-white">Create</button>
-      </mat-card-actions>
     </form>
   </mat-card-content>
 </mat-card>

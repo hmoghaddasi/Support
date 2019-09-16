@@ -12,7 +12,7 @@
     <kendo-grid-column field="priority" title="اولویت"></kendo-grid-column>
     <kendo-grid-column field="status" title="وضعیت"></kendo-grid-column>
     <kendo-grid-column field="assigned" title="فرد مسئول"></kendo-grid-column>
-    <kendo-grid-column width="200">
+    <kendo-grid-column width="280">
       <ng-template kendoGridCellTemplate let-dataItem>
         <button *ngIf="dataItem.statusId == 11" kendoButton (click)="conversation(dataItem.requestId)"
           class="btn btn-default">گفتگو</button>
