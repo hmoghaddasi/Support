@@ -2,7 +2,7 @@
   <span>لیست کاربران</span>
 </mat-toolbar>
 <br />
-<div dir="rtl">
+<div dir="rtl" style="min-height: 80.90vh">
   <ul class="nav nav-tabs">
     <li class="nav-item" *ngFor="let config of (configs | async)">
       <a class="nav-link" data-toggle="tab" href="#tab{{config.configId}}">{{config.configName}}</a>

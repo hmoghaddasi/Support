@@ -1,8 +1,8 @@
 export class AccessModel {
-    public AccessId: number;
-    public AccessName: string;
-    public AccessDesc: string;
-    public IsGeneral: boolean;
-    public HelpDscp: string;
-    public PolicyAvailable: boolean;
+    public accessId: number;
+    public accessName: string;
+    public accessDesc: string;
+    public isGeneral: boolean;
+    public helpDscp: string;
+    public policyAvailable: boolean;
 }

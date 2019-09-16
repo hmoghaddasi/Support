@@ -22,7 +22,7 @@ namespace Support.DataAccess.EF.Repository
         }
         public List<Access> GetAll()
         {
-            return _context.Accesses.ToList();
+            return _context.Accesses.Include(d => d.AccessPolicies).ToList();
         }
         public List<Access> Get(Expression<Func<Access, bool>> predicate)
         {

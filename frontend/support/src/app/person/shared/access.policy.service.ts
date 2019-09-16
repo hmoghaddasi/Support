@@ -16,7 +16,7 @@ export class AccessPolicyService {
   private resourceName = 'AccessPolicy';
 
   public changePersonAccess(changePersonAccessModel: ChangePersonAccessModel): any {
-    return this.restService.post('ChangePersonAccess', changePersonAccessModel);
+    return this.restService.post(this.resourceName + '/' + 'ChangePersonAccess', changePersonAccessModel);
   }
 
 }

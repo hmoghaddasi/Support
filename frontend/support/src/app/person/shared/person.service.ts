@@ -41,12 +41,12 @@ export class PersonService implements OnInit {
   //   return this.restService.getForGrid('Validation', state);
   // }
   public accept(PersonId: number): any {
-    return this.restService.customAction('Validate', PersonId);
+    return this.restService.customAction(this.resourceName + '/' + 'Validate', PersonId);
   }
   public activate(PersonId: number): any {
-    return this.restService.customAction('Activate', PersonId);
+    return this.restService.customAction(this.resourceName + '/' + 'Activate', PersonId);
   }
   public deactivate(PersonId: number): any {
-    return this.restService.customAction('DeActivate', PersonId);
+    return this.restService.customAction(this.resourceName + '/' + 'DeActivate', PersonId);
   }
 }

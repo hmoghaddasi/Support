@@ -17,12 +17,13 @@ import { MatListModule } from '@angular/material/list';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterSuccessComponent } from './register-success/register-success.component';
 import { PersonParentComponent } from './person-parent/person-parent.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
 
 
 @NgModule({
    declarations: [RegistrationComponent, LoginComponent, ProfileComponent, LogoutComponent, VerificationComponent,
-      PersonListComponent, ChangePasswordComponent, ResetpassComponent, PersonAccessComponent, RegisterSuccessComponent, PersonParentComponent],
+      PersonListComponent, ChangePasswordComponent, ResetpassComponent, PersonAccessComponent, RegisterSuccessComponent, PersonParentComponent, EditProfileComponent],
    imports: [
       CommonModule,
       MyMaterialModule,
@@ -33,7 +34,7 @@ import { PersonParentComponent } from './person-parent/person-parent.component';
       FormsModule,
       ReactiveFormsModule
    ],
-   entryComponents: [PersonAccessComponent],
+   entryComponents: [PersonAccessComponent, EditProfileComponent],
    exports: [
       LoginComponent,
       LogoutComponent

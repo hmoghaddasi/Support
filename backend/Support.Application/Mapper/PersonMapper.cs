@@ -26,6 +26,8 @@ namespace Support.Application.Mapper
                 Gender = person.Gender,
                 GenderText = person.Gender ? "مرد" : "زن",
                 Status = person.Status.ConfigName,
+                StatusId = person.StatusId,
+                FullName = $"{person.FirstName} {person.LastName}",
                 Mobile = person.Mobile,
             };
         }

@@ -15,7 +15,7 @@ export class AccessService {
   private resourceName = 'Access';
 
   public personAccess(PersonId: number): any {
-    return this.restService.customAction('PersonAccess', PersonId);
+    return this.restService.customAction(this.resourceName + '/' + 'PersonAccess', PersonId);
   }
 
 }
