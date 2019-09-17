@@ -84,6 +84,8 @@ namespace Support.Host
             builder.RegisterType<PersonServices>().As<IPersonServices>();
             builder.RegisterType<RequestRepository>().As<IRequestRepository>();
             builder.RegisterType<RequestService>().As<IRequestService>();
+            builder.RegisterType<ResponseRepository>().As<IResponseRepository>();
+            builder.RegisterType<ResponseService>().As<IResponseService>();
             //builder.RegisterType<SiteAnalyticsServices>();
             builder.Populate(services);
             var container = builder.Build();
