@@ -11,8 +11,9 @@ import { GridModule } from '@progress/kendo-angular-grid';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ConfigModule } from '../config/config.module';
+import { RequestDetailComponent } from './request-detail/request-detail.component';
 @NgModule({
-  declarations: [RequestCreateComponent, RequestListComponent, UserRequestListComponent],
+  declarations: [RequestCreateComponent, RequestListComponent, UserRequestListComponent, RequestDetailComponent],
   imports: [
     CommonModule,
     RequestRoutingModule,

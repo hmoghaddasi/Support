@@ -47,6 +47,8 @@ namespace Support.Host.Controllers
             return _requestService.GetForGrid(request,user);
         }
         [HttpGet]
+        [Authorize]
+        [Route("GetDetail")]
         public RequestListDTO GetDetail(int id)
         {
             var user = User.GetLoggedInUserName();

@@ -4,6 +4,7 @@ import { AuthGuard } from '../framework/services/auth-guard.service';
 import { Permissions } from '../framework/shared/permissions';
 import { RequestListComponent } from './request-list/request-list.component';
 import { UserRequestListComponent } from './user-request-list/user-request-list.component';
+import { RequestDetailComponent } from './request-detail/request-detail.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,12 @@ const routes: Routes = [
     component: UserRequestListComponent,
     canActivate: [AuthGuard],
     data: { permission: Permissions.LIST_REQUEST }
+  },
+  {
+    path: 'request-detail/:id',
+    component: RequestDetailComponent,
+    canActivate: [AuthGuard],
+    data: { permission: Permissions.REQUEST_DETAIL }
   }
 ];
 
