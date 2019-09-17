@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <Compile Remove="Service\AccessPolicyServices.cs" />
-    <Compile Remove="Service\ResponseService.cs" />
   </ItemGroup>
 
   <ItemGroup>

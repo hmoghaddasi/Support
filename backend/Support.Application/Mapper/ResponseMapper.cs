@@ -18,20 +18,20 @@ namespace Support.Application.Mapper
                 ResponseShDate = DateConvert.GetShamsiDate(model.ResponseDate),
                 Note = model.Note,
                 Private = model.Private,
-                CreateBy = model.CreateBy.FirstName + " " + model.CreateBy.LastName
+                CreateBy = model.CreateBy.FirstName + " " + model.CreateBy.LastName,
+                Request=model.Request.Title
             };
         }
-        public static Response MapToModel(ResponseDTO dto)
+        public static Response MapToModel(ResponseCreateDTO dto,int personId)
         {
             return new Response()
             {
                 ResponseId = dto.ResponseId,
                 ResponseDate = DateTime.Now,
-                CreateById = dto.CreateById,
+                CreateById =personId,
                 RequestId = dto.RequestId,
                 Note = dto.Note,
                 Private = dto.Private
-
             };
         }
     }

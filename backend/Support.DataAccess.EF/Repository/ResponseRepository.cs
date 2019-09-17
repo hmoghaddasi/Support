@@ -4,7 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using Support.Domain.IRepositories;
 using Support.Domain.Model;
-
+using Microsoft.EntityFrameworkCore;
 namespace Support.DataAccess.EF.Repository
 {
     public class ResponseRepository : IResponseRepository
@@ -21,22 +21,27 @@ namespace Support.DataAccess.EF.Repository
         }
         public List<Response> GetAll()
         {
-            return _context.Responses.ToList();
+            return _context.Responses.Include(a => a.CreateBy).Include(a => a.Request).ToList();
         }
         public List<Response> Get(Expression<Func<Response, bool>> predicate)
         {
-            return _context.Responses.Where(predicate).ToList();
+            return _context.Responses.Include(a => a.CreateBy).Include(a => a.Request).Where(predicate).ToList();
         }
         public void Create(Response response)
         {
             _context.Responses.Add(response);
+            _context.SaveChanges();
         }
         public void Edit(Response response)
         {
+            _context.SaveChanges();
+
         }
         public void Delete(int responseId)
         {
             _context.Responses.Remove(_context.Responses.Find(responseId));
+            _context.SaveChanges();
+
         }
 
 

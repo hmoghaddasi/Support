@@ -7,13 +7,8 @@ namespace Support.Application.Contract.IService
     public interface IResponseService : IApplicationService
     {
 
-        ResponseDTO GetById(int responseId);
-        FilterResponse<ResponseDTO> GetAllFilter(GridRequest request);
-        List<ResponseDTO> GetAll();
-        void Create(ResponseDTO dto, string userName);
-
-        void Delete(int responseId);
-
-        List<ResponseDTO> GetResponseByRequest(int requestId, bool showPrivate);
+        List<ResponseDTO> GetAll(int requestId,string userName);
+        BaseResponseDTO Create(ResponseCreateDTO dto, string userName);
+        BaseResponseDTO Delete(int responseId, string userName);
     }
 }
