@@ -59,7 +59,6 @@ export class ConfigService {
             Swal.fire('عملیات ناموفق', res.message, 'error');
           }
         }, err => {
-          console.log(err)
           Swal.fire('خطایی رخ داده است', err.error.message, 'error');
         });
       }

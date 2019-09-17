@@ -27,7 +27,7 @@ export class RegistrationComponent implements OnInit {
       this.router.navigate(['./verification']);
       Swal.fire('عملیات موفق', 'کاربر شما در سامانه ثبت شد. مراحل بعدی عضویت را تکمیل نمایید', 'success');
     },err => {
-      Swal.fire('خطایی رخ داد', err.error.Message, 'error');
+      Swal.fire('خطایی رخ داد', err.error.message, 'error');
     });
   }
 }

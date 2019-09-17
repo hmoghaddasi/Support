@@ -61,7 +61,7 @@ export class PersonListComponent implements OnInit, OnDestroy {
         Swal.fire('عملیات ناموفق', res.message, 'error');
       }
     }, err => {
-      Swal.fire('خطایی رخ داده است', err.error.Message, 'error');
+      Swal.fire('خطایی رخ داده است', err.error.message, 'error');
     });
   }
 
@@ -74,7 +74,7 @@ export class PersonListComponent implements OnInit, OnDestroy {
         Swal.fire('عملیات ناموفق', res.message, 'error');
       }
     }, err => {
-      Swal.fire('خطایی رخ داده است', err.error.Message, 'error');
+      Swal.fire('خطایی رخ داده است', err.error.message, 'error');
     });
   }
 
@@ -87,7 +87,7 @@ export class PersonListComponent implements OnInit, OnDestroy {
         Swal.fire('عملیات ناموفق', res.message, 'error');
       }
     }, err => {
-      Swal.fire('خطایی رخ داده است', err.error.Message, 'error');
+      Swal.fire('خطایی رخ داده است', err.error.message, 'error');
     });
   }
 

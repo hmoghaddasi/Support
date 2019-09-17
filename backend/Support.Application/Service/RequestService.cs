@@ -1,12 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Framework.Core.Filtering;
+using Framework.Core.Notification;
 using Support.Application.Contract.Constant;
 using Support.Application.Contract.DTO;
 using Support.Application.Contract.IService;
 using Support.Application.Mapper;
 using Support.Domain.Exception;
 using Support.Domain.IRepositories;
+using Support.Domain.Model;
 
 namespace Support.Application.Service
 {
@@ -15,17 +17,21 @@ namespace Support.Application.Service
         private readonly IRequestRepository _requestRepository;
         private readonly IPersonServices _personService;
         private readonly IAccessPolicyServices _accessPolicyService;
-        public RequestService(IRequestRepository requestRepository, IPersonServices personService, IAccessPolicyServices accessPolicyService)
+        private readonly INotificationService _notificationService;
+        public RequestService(IRequestRepository requestRepository, IPersonServices personService, IAccessPolicyServices accessPolicyService, INotificationService notificationService)
         {
             this._requestRepository = requestRepository;
             this._personService = personService;
             this._accessPolicyService = accessPolicyService;
+            this._notificationService = notificationService;
         }
 
         public BaseResponseDTO Create(RequestCreateDTO dto, string userName)
         {
-            var personId = _personService.GetPersonByLogin(userName);
-            _requestRepository.Create(RequestMapper.MapToModel(dto, personId));
+            var user = _personService.GetByUserName(userName);
+            var admin = _personService.GetById(0);
+            _requestRepository.Create(RequestMapper.MapToModel(dto, user.PersonId));
+            this._notificationService.SendSms(admin.Mobile, $"یک تیکت جدید در سامانه از سمت کاربر {user.FirstName} {user.LastName} با عنوان {dto.Title} ثبت گردید.");
             return BaseResponseHelper.Success();
         }
 
@@ -40,9 +46,9 @@ namespace Support.Application.Service
             return BaseResponseHelper.Success();
         }
 
-        public RequestListDTO GetDetail(int id, string user)
+        public RequestDetailDTO GetDetail(int id, string user)
         {
-            var request = _requestRepository.GetById(id);
+            var request = _requestRepository.GetByIdExtended(id);
             if (request == null)
             {
                 throw new RequestNotFoundException();
@@ -66,6 +72,11 @@ namespace Support.Application.Service
         {
             var result = _requestRepository.GetForGrid(request, a => a.RequestBy.LoginName == userName);
             return new FilterResponse<RequestDTO>(result.data.Select(RequestMapper.Map).ToList(), result.total);
+        }
+
+        public Request GetRequestById(int requestId)
+        {
+            return _requestRepository.GetById(requestId);
         }
 
         public BaseResponseDTO UpdateStatus(int id)

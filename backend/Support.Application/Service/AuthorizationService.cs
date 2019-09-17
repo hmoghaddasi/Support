@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
-using System.Text;
 using Framework.Core.Notification;
 using Framework.Core.Text;
-using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
 using Support.Application.Contract.Constant;
 using Support.Application.Contract.DTO;
 using Support.Application.Contract.IService;
@@ -16,7 +11,7 @@ using Support.Application.Mapper;
 using Support.Domain.Exception;
 using Support.Domain.IRepositories;
 using Support.Domain.Model;
-using Support.Host.Tools;
+using Framework.Core.Number;
 namespace Support.Application.Service
 {
     public class AuthorizationService : IAuthorizationService
@@ -35,6 +30,11 @@ namespace Support.Application.Service
 
         public List<Claim> RegisterPerson(PersonRegisterDTO dto)
         {
+            dto.Mobile = dto.Mobile.PersianToEnglish();
+            if (!dto.Mobile.IsValidMobile())
+            {
+                throw new NotValidMobileInputException();
+            }
             var registerPerson = PersonMapper.MapToRegister(dto);
             GuardDuplicateMobileNumber(dto.Mobile);
             var person = PersonMapper.MapToModel(registerPerson);

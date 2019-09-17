@@ -23,7 +23,7 @@ export class VerificationComponent implements OnInit {
       this.authService.logout();
       this.router.navigate(['./register-success']);
     }, err => {
-      Swal.fire('خطایی رخ داد', err.error.Message, 'error');
+      Swal.fire('خطایی رخ داد', err.error.message, 'error');
     });
   }
 }

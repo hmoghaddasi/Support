@@ -22,9 +22,6 @@ export class ConfigParentComponent implements OnInit {
 
   ngOnInit() {
     this.configs = this.service.getConfigChild(0);
-    this.configs.subscribe(s =>{
-      console.log(s);
-    })
   }
 
 

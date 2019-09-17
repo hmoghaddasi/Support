@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using Framework.Core.Filtering;
 using Microsoft.EntityFrameworkCore;
+using Support.Domain.Exception;
 using Support.Domain.IRepositories;
 using Support.Domain.Model;
 
@@ -86,8 +87,12 @@ namespace Support.DataAccess.EF.Repository
             }
             return reportRow.ApplyFilters(request);
         }
-    }
-    internal class ForignkeyDeleteException : Exception
-    {
+
+        public Request GetByIdExtended(int id)
+        {
+            return _context.Requests.Include(a => a.Status).Include(a => a.Type).Include(a => a.Project)
+                .Include(a => a.Priority).Include(a => a.RequestBy)
+                .Include(a => a.Responses).Include(a => a.Assigned).First(d => d.RequestId == id);
+        }
     }
 }

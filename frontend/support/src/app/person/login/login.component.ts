@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
       this.tokenService.signed();
       Swal.fire('عملیات موفق', 'با موفقیت وارد شدید', 'success');
     }, err => {
-      Swal.fire('خطایی رخ داد', err.error.Message, 'error');
+      Swal.fire('خطایی رخ داد', err.error.message, 'error');
     });
   }
 }

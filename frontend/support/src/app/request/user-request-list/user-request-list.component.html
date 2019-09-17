@@ -7,16 +7,16 @@
   <kendo-grid [data]="view | async" [pageSize]="gridState.take" [skip]="gridState.skip" [filter]="gridState.filter"
     filterable="menu" [pageable]="true" [scrollable]="'none'" (dataStateChange)="onStateChange($event)">
     <kendo-grid-column field="title" title="عنوان"></kendo-grid-column>
-    <kendo-grid-column field="requestShDate" title="تاریخ درخواست"></kendo-grid-column>
-    <kendo-grid-column field="project" title="پروژه"></kendo-grid-column>
-    <kendo-grid-column field="type" title="نوع"></kendo-grid-column>
-    <kendo-grid-column field="priority" title="اولویت"></kendo-grid-column>
-    <kendo-grid-column field="status" title="وضعیت"></kendo-grid-column>
+    <kendo-grid-column field="requestShDate" title="تاریخ درخواست" filterable=false></kendo-grid-column>
+    <kendo-grid-column field="project" title="پروژه" filterable=false></kendo-grid-column>
+    <kendo-grid-column field="type" title="نوع" filterable=false></kendo-grid-column>
+    <kendo-grid-column field="priority" title="اولویت" filterable=false></kendo-grid-column>
+    <kendo-grid-column field="status" title="وضعیت" filterable=false></kendo-grid-column>
     <kendo-grid-column width="200">
       <ng-template kendoGridCellTemplate let-dataItem>
-        <button *ngIf="dataItem.statusId == 11" kendoButton (click)="conversation(dataItem.requestId)"
+        <button *ngIf="dataItem.statusId == 11" kendoButton [routerLink]="['/response-management',dataItem.requestId]"
           class="btn btn-default">گفتگو</button>
-        <button kendoButton (click)="detail(dataItem.requestId)" class="btn btn-default">جزئیات</button>
+        <button kendoButton [routerLink]="['/request-detail',dataItem.requestId]" class="btn btn-default">جزئیات</button>
       </ng-template>
     </kendo-grid-column>
   </kendo-grid>

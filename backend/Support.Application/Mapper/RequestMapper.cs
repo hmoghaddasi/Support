@@ -32,9 +32,9 @@ namespace Support.Application.Mapper
                 Project = model.Project.ConfigName
             };
         }
-        public static RequestListDTO MapDto(Request model)
+        public static RequestDetailDTO MapDto(Request model)
         {
-            return new RequestListDTO()
+            return new RequestDetailDTO()
             {
                 RequestId = model.RequestId,
                 RequestDate = model.RequestDate,
@@ -67,6 +67,8 @@ namespace Support.Application.Mapper
                 Description = dto.Description,
                 TypeId = dto.TypeId,
                 PriorityId = dto.PriorityId,
+                ProjectId = dto.PriorityId,
+                AssignedId = 0,                
             };
         }
     }

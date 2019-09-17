@@ -5,13 +5,15 @@ import { MyMaterialModule } from '../material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RequestCreateComponent } from '../request/request-create/request-create.component';
 import { ResponseManagementComponent } from './response-management/response-management.component';
+import { ResponseManagementAdminComponent } from './response-management-admin/response-management-admin.component';
 
 @NgModule({
-  declarations: [ResponseManagementComponent],
+  declarations: [ResponseManagementComponent, ResponseManagementAdminComponent],
   imports: [
     CommonModule,
     MyMaterialModule,
-    ResponseRoutingModule, BrowserAnimationsModule
+    ResponseRoutingModule,
+    BrowserAnimationsModule
   ],
   entryComponents: [ RequestCreateComponent]
 })

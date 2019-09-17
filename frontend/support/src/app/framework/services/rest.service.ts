@@ -66,7 +66,6 @@ export class RestService {
   }
 
   private createHeaders() {
-    debugger
     const token = this.tokenService.load();
     return { headers: new HttpHeaders().set('Authorization', token) };
   }

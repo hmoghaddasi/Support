@@ -21,7 +21,7 @@ using Support.Domain.IRepositories;
 using Support.DataAccess.EF.Repository;
 using Framework.Kavenegar;
 using Framework.Core.Notification;
-
+using Microsoft.AspNetCore.StaticFiles;
 
 namespace Support.Host
 {
@@ -124,7 +124,11 @@ namespace Support.Host
                 app.UseDeveloperExceptionPage();
             }
             app.UseDefaultFiles();
-            app.UseStaticFiles();
+            var provider = new FileExtensionContentTypeProvider();
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                ContentTypeProvider = provider // this is not set by default
+            });
         }
     }
 }

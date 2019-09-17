@@ -1,0 +1,10 @@
+.response-card {
+  width: 70vw;
+  min-width: 250px;
+  ;
+}
+
+.response-header-image {
+  background-image: url('../../../assets/images/avatar.jpg');
+  background-size: cover;
+}

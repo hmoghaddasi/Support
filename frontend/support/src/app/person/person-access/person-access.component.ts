@@ -43,13 +43,12 @@ export class PersonAccessComponent implements OnInit {
     this.model.AccessId = accessId;
     this.model.AddOrRemove = addOrRemove;
     this.accessPolicyService.changePersonAccess(this.model).subscribe((result: BaseResponseDto) => {
-      debugger
       if(result.resultCode == 200) {
         this.accessList = [];
         this.getAccessList(this.id);
       }
     }, err => {
-      Swal.fire('خطایی رخ داد', err.error.Message, 'error');
+      Swal.fire('خطایی رخ داد', err.error.message, 'error');
     });
   }
 

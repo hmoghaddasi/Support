@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Support.Application.Contract.DTO
 {
-    public class RequestListDTO
+    public class RequestDetailDTO
     {
         public int RequestId { get; set; }
         public DateTime RequestDate { get; set; }

@@ -48,8 +48,7 @@ namespace Support.Host.Controllers
         }
         [HttpGet]
         [Authorize]
-        [Route("GetDetail")]
-        public RequestListDTO GetDetail(int id)
+        public RequestDetailDTO Get(int id)
         {
             var user = User.GetLoggedInUserName();
             return _requestService.GetDetail(id,user);

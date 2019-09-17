@@ -18,7 +18,6 @@ export class AboutComponent implements OnInit {
   reloadDate() {
      this.service.getHomeInfo().subscribe((res: HomeModel) => {
        this.model = res;
-       console.log(this.model);
     });
   }
 }

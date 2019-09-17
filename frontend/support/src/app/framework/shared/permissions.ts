@@ -6,9 +6,8 @@ export class Permissions {
     public static Edit_REQUEST = 'editrequest';
     public static LIST_REQUEST = 'listrequest';
     public static ADMIN_REQUEST = 'adminrequest';
-    public static CREATE_RESPONSE = 'createresponse';
-    public static LIST_RESPONSE = 'listresponse';
-    public static LIST_RESPONSE_ADMIN = 'listresponseadmin';
+    public static RESPONSE_MANAGEMENT = 'responsemanagement';
+    public static RESPONSE_MANAGEMENT_ADMIN = 'responsemanagementadmin';
     public static CHANGEPASSWORD_PERSON = 'changepassword';
     public static VERIFICATION_PERSON = 'verification';
     public static PROFILE_PERSON = 'profile';

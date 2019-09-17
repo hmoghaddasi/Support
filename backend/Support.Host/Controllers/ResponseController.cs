@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Framework.Core.Filtering;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 using Support.Application.Contract.DTO;
 using Support.Application.Contract.IService;
 using Support.Host.Tools;
@@ -25,10 +19,11 @@ namespace Support.Host.Controllers
         }
         
         [HttpGet]
-        public List<ResponseDTO> GetAll(int requestid)
+        [Route("GetRequestResponseList")]
+        public List<ResponseDTO> GetRequestResponseList(int id)
         {
             var user = User.GetLoggedInUserName();
-            return _responseService.GetAll(requestid, user);
+            return _responseService.GetAll(id, user);
         }
 
         [HttpPost]

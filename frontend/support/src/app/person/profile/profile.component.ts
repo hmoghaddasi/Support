@@ -26,7 +26,6 @@ export class ProfileComponent implements OnInit {
   reloadDate() {
     this.service.get().subscribe(a => {
       this.model = a;
-      console.log(a);
     });
   }
 

@@ -1,13 +1,14 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 
 namespace Framework.Core.Text
 {
     public static class TextExtenssion
     {
-        public static bool IsValidMobile(string text)
+        private const string _mobilePattern = @"^[0][1-9]\d{9}$|^[1-9]\d{9}$";
+        public static bool IsValidMobile(this string text)
         {
-            //Check digit count
-            throw new NotImplementedException();
+            return Regex.Match(text, _mobilePattern).Success;
         }
     }
 }

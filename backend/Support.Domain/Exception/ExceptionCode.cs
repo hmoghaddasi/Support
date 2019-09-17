@@ -11,6 +11,7 @@
         public const int RequestNotFoundCode = 1007;
         public const int InvalidDataAccess = 1008;
         public const int RsponseNotFoundCode = 1009;
+        public const int NotValidMobileInput = 1010;
 
     }
 }

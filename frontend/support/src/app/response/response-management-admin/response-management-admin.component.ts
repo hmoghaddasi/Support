@@ -1,20 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ResponseDetailModel } from '../shared/response-detail.model';
 import { ResponseService } from '../shared/response.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { ResponseModel } from '../shared/response.model';
 import { BaseResponseDto } from 'src/app/framework/base-response/base-response-dto';
+import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-response-management',
-  templateUrl: './response-management.component.html',
-  styleUrls: ['./response-management.component.css']
+  selector: 'app-response-management-admin',
+  templateUrl: './response-management-admin.component.html',
+  styleUrls: ['./response-management-admin.component.css']
 })
-export class ResponseManagementComponent {
+export class ResponseManagementAdminComponent implements OnDestroy {
   requestId: number;
   responses: ResponseDetailModel[] = [];
   model = new ResponseModel();
+  subscription = new Subscription();
 
   constructor(private responseService: ResponseService,
     private activatedRoute: ActivatedRoute,
@@ -24,8 +26,13 @@ export class ResponseManagementComponent {
       this.model.requestId = this.requestId;
     });
     this.reloadData();
+    this.subscription = responseService.needDataUpdate.subscribe(a => {
+      this.reloadData();
+    })
   }
-
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
   reloadData() {
     this.responseService.getRequestResponseList(this.requestId).subscribe((res: ResponseDetailModel[]) => {
       this.responses = res;
@@ -33,7 +40,6 @@ export class ResponseManagementComponent {
       Swal.fire('خطا', err.error.message, 'error');
     });
   }
-
   submit() {
     if (!this.model.note) {
       Swal.fire('صبر کنید', 'ابتدا یک متن در کادر پیام وارد نمایید', 'warning');
@@ -50,5 +56,8 @@ export class ResponseManagementComponent {
     }, err => {
       Swal.fire('خطایی رخ داد', err.error.message, 'error');
     });
+  }
+  delete(responseId: number) {
+    this.responseService.delete(responseId);
   }
 }

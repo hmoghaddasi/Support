@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { Observable, Subject } from 'rxjs';
 import { RestService } from 'src/app/framework/services/rest.service';
-import { RequestModel } from './request.model';
+import { RequestCreateModel } from './request.model';
 import { State } from '@progress/kendo-data-query';
 import { GridDataResult } from '@progress/kendo-angular-grid';
 import Swal from 'sweetalert2';
@@ -20,14 +20,14 @@ export class RequestService {
   private resourceName = 'request';
 
 
-  public create(model: RequestModel): Observable<any> {
+  public create(model: RequestCreateModel): Observable<any> {
     return this.restService.post(this.resourceName, model);
   }
   public getAll(): Observable<any> {
     return this.restService.getAll(this.resourceName);
   }
   public getById(id): Observable<any> {
-    return this.restService.getById(this.resourceName, id);
+    return this.restService.customAction(this.resourceName, id);
   }
   public getRequest(id: number): Observable<any> {
     return this.restService.customAction('request', id);

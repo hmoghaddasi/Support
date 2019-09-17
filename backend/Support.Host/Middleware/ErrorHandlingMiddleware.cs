@@ -39,11 +39,11 @@ namespace Support.Host.Middleware
             context.Response.StatusCode = (int)code;
             if (exception == null)
             {                 
-                return context.Response.WriteAsync(JsonConvert.SerializeObject(new { error = "Unknown Error. Please call system adminsitrators." }));
+                return context.Response.WriteAsync(JsonConvert.SerializeObject(new { message = "Unknown Error. Please call system adminsitrators." }));
             }
             else
             {
-                return context.Response.WriteAsync(JsonConvert.SerializeObject(new { error = ex.Message }));                
+                return context.Response.WriteAsync(JsonConvert.SerializeObject(new { message = ex.Message }));                
             }
         }
     }    

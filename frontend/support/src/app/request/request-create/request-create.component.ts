@@ -1,5 +1,5 @@
 import { Component, OnInit,  Inject, EventEmitter } from '@angular/core';
-import { RequestModel } from '../shared/request.model';
+import { RequestCreateModel } from '../shared/request.model';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { RequestService } from '../shared/request.service';
 import { BaseResponseDto } from 'src/app/framework/base-response/base-response-dto';
@@ -18,7 +18,7 @@ export class DialogData {
   styleUrls: ['./request-create.component.css']
 })
 export class RequestCreateComponent {
-  model = new RequestModel();
+  model = new RequestCreateModel();
   public confirmedEventEmitter: EventEmitter<any>;
 
   constructor(

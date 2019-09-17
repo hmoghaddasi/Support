@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Framework.Core.Filtering;
+using Framework.Core.Notification;
 using Support.Application.Contract.Constant;
 using Support.Application.Contract.DTO;
 using Support.Application.Contract.IService;
@@ -15,17 +16,32 @@ namespace Support.Application.Service
         private readonly IRequestRepository _requestRepository;
         private readonly IResponseRepository _responseRepository;
         private readonly IPersonServices _personService;
+        private readonly INotificationService _notificationService;
+        private readonly IRequestService _requestService;
 
         public ResponseService(IRequestRepository requestRepository, IPersonServices personService,
-           IResponseRepository responseRepository)
+           IResponseRepository responseRepository, INotificationService notificationService, IRequestService requestService)
         {
             this._requestRepository = requestRepository;
             this._personService = personService;
             this._responseRepository = responseRepository;
+            this._notificationService = notificationService;
+            this._requestService = requestService;
         }
         public BaseResponseDTO Create(ResponseCreateDTO dto, string userName)
         {
             var personId = _personService.GetPersonByLogin(userName);
+            var request = _requestService.GetRequestById(dto.RequestId);
+            if(request.RequestById != personId)
+            {
+                var user = _personService.GetById(request.RequestById);
+                _notificationService.SendSms(user.Mobile, $"یک پاسخ از سمت کارشناسان سامانه ساپ بر روی تیکت شما با عنوان {request.Title} درج گردید.");
+            }
+            else
+            {
+                var user = _personService.GetById(request.AssignedId);
+                _notificationService.SendSms(user.Mobile, $"بر روی تیکت با عنوان {request.Title} یک پاسخ جدید از سوی کاربر درج شده است.");
+            }
             _responseRepository.Create(ResponseMapper.MapToModel(dto, personId));
             return BaseResponseHelper.Success();
         }

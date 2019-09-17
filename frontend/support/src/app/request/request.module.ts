@@ -1,4 +1,3 @@
-import { ResponseCreateComponent } from 'src/app/response/response-create/response-create.component';
 import { ResponseModule } from './../response/response.module';
 import { MyMaterialModule } from './../material.module';
 import { NgModule } from '@angular/core';
@@ -11,6 +10,7 @@ import { GridModule } from '@progress/kendo-angular-grid';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ConfigModule } from '../config/config.module';
+import { MatGridListModule, MatListModule } from '@angular/material';
 import { RequestDetailComponent } from './request-detail/request-detail.component';
 @NgModule({
   declarations: [RequestCreateComponent, RequestListComponent, UserRequestListComponent, RequestDetailComponent],
@@ -19,10 +19,14 @@ import { RequestDetailComponent } from './request-detail/request-detail.componen
     RequestRoutingModule,
     MyMaterialModule,
     GridModule,
-     BrowserAnimationsModule,
+    BrowserAnimationsModule,
     ResponseModule,
-    ConfigModule
+    ConfigModule,
+    CommonModule,
+    BrowserModule,
+    MatGridListModule,
+    MatListModule,
   ],
-  entryComponents:[ResponseCreateComponent]
+  entryComponents: []
 })
 export class RequestModule { }

@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { RequestModel } from '../shared/request.model';
+import { RequestCreateModel } from '../shared/request.model';
 import { RequestCreateComponent } from '../request-create/request-create.component';
 import { State } from '@progress/kendo-data-query';
 import { MatDialog } from '@angular/material';
 import { RequestService } from '../shared/request.service';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { GridDataResult } from '@progress/kendo-angular-grid';
-import { ResponseCreateComponent } from 'src/app/response/response-create/response-create.component';
 import { ResponseModel } from 'src/app/response/shared/response.model';
 import { BaseResponseDto } from 'src/app/framework/base-response/base-response-dto';
 import Swal from 'sweetalert2';
@@ -24,8 +23,6 @@ export class RequestListComponent implements OnInit {
       take: 10
   };
   public loading: boolean;
-  public editDataItem: RequestModel;
- Requests: Observable<RequestModel>;
   constructor(private service: RequestService,
               private dialog: MatDialog) { }
 
@@ -53,7 +50,7 @@ export class RequestListComponent implements OnInit {
         Swal.fire('عملیات ناموفق', res.message, 'error');
       }
     }, err => {
-      Swal.fire('خطایی رخ داده است', err.error.Message, 'error');
+      Swal.fire('خطایی رخ داده است', err.error.message, 'error');
     });
   }
 }

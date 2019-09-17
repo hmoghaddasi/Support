@@ -1,3 +1,46 @@
-<p>
-  request-detail works!
-</p>
+<div style="min-height: 90vh;direction: rtl; overflow-x: hidden;">
+  <mat-toolbar class="persian text-center" dir="rtl">
+    <span>جزئیات درخواست</span>
+  </mat-toolbar>
+  <div class="row persian text-center border p-1">
+    <div class="col">
+      <p><b>تاریخ درخواست : </b>{{model.requestShDate}}</p>
+    </div>
+    <div class="col">
+      <p><b>درخواست دهنده : </b>{{model.requestBy}}</p>
+    </div>
+    <div class="col">
+      <p><b>وضعیت تیکت : </b>{{model.status}}</p>
+    </div>
+    <div class="col">
+      <p><b>نوع تیکت : </b>{{model.type}}</p>
+    </div>
+    <div class="col">
+      <p><b>اولویت تیکت : </b>{{model.priority}}</p>
+    </div>
+    <div class="col">
+      <p><b>مسئول تیکت : </b>{{model.assigned}}</p>
+    </div>
+    <div class="col">
+      <p><b>پروژه : </b>{{model.project}}</p>
+    </div>
+  </div>
+  <h5 class="text-center p-2">مکالمات تیکت: </h5>
+  <p class="text-center p-2 text-danger" *ngIf="!model?.responses?.length>0">در حال حاضر مکالمه‌ای در این تیکت انجام نشده است.</p>
+  <div style="direction: rtl;" class=" d-flex justify-content-center flex-column align-items-center">
+    <mat-card class="persian response-card m-1" *ngFor="let item of model.responses">
+      <mat-card-header>
+        <div mat-card-avatar class="response-header-image"></div>
+        <mat-card-title>{{item.createBy}}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p class="text-justify">
+          {{item.note}}
+        </p>
+        <p  class="text-left">
+          {{item.responseShDate}}
+        </p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

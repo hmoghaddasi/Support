@@ -19,19 +19,18 @@ namespace Support.Application.Mapper
                 Note = model.Note,
                 Private = model.Private,
                 CreateBy = model.CreateBy.FirstName + " " + model.CreateBy.LastName,
-                Request=model.Request.Title
+                Request = model.Request.Title
             };
         }
-        public static Response MapToModel(ResponseCreateDTO dto,int personId)
+        public static Response MapToModel(ResponseCreateDTO dto, int personId)
         {
             return new Response()
             {
-                ResponseId = dto.ResponseId,
                 ResponseDate = DateTime.Now,
-                CreateById =personId,
+                CreateById = personId,
                 RequestId = dto.RequestId,
                 Note = dto.Note,
-                Private = dto.Private
+                Private = false
             };
         }
     }

@@ -16,6 +16,6 @@ namespace Support.Domain.IRepositories
         void Edit(Request request);
         void Delete(int requestId);
         FilterResponse<Request> GetForGrid(GridRequest request, Expression<Func<Request, bool>> predicate);
-
+        Request GetByIdExtended(int id);
     }
 }

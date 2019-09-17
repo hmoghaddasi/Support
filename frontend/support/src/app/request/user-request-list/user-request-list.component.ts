@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RequestService } from '../shared/request.service';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { RequestModel } from '../shared/request.model';
-import { ResponseCreateComponent } from 'src/app/response/response-create/response-create.component';
+import { RequestCreateModel } from '../shared/request.model';
 import { MatDialog } from '@angular/material';
 import { GridDataResult } from '@progress/kendo-angular-grid';
 import { State } from '@progress/kendo-data-query';
@@ -23,8 +22,6 @@ export class UserRequestListComponent implements OnInit {
     take: 10
   };
   public loading: boolean;
-  public editDataItem: RequestModel;
-  Requests: Observable<RequestModel>;
   constructor(private service: RequestService,
     private dialog: MatDialog) { }
 

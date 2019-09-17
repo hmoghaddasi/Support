@@ -27,7 +27,7 @@ export class EditProfileComponent {
       this.confirmedEventEmitter.emit(result);
       this.dialogRef.close();
     }, err => {
-      Swal.fire('خطایی رخ داد', err.error.Message, 'error');
+      Swal.fire('خطایی رخ داد', err.error.message, 'error');
     });
   }
 

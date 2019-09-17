@@ -11,6 +11,7 @@ using Framework.Core.Filtering;
 using Support.Domain.Exception;
 using Support.Application.Contract.Constant;
 using Framework.Core.Notification;
+using Framework.Core.Number;
 
 namespace Support.Application.Service
 {
@@ -68,6 +69,10 @@ namespace Support.Application.Service
         {
             return PersonMapper.Map(_personRepository.Get(a => a.PersonId == Id).FirstOrDefault());
         }
+        public PersonDTO GetByUserName(string loginName)
+        {
+            return PersonMapper.Map(_personRepository.Get(a => a.LoginName == loginName).FirstOrDefault());
+        }
 
         public void Delete(int id)
         {
@@ -121,6 +126,11 @@ namespace Support.Application.Service
 
         public BaseResponseDTO Edit(string currentUserName, ProfileDTO request)
         {
+            request.Mobile = request.Mobile.PersianToEnglish();
+            if (!request.Mobile.IsValidMobile())
+            {
+                throw new NotValidMobileInputException();
+            }
             var response = new BaseResponseDTO();
             var persons = _personRepository.Get(a => a.LoginName.ToLower() == currentUserName.ToLower());
             var person = _personRepository.GetById(persons[0].PersonId);

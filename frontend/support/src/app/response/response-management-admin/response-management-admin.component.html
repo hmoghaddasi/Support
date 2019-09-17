@@ -1,4 +1,4 @@
-<div style="min-height: 90vh;direction: rtl;">
+<div style="min-height: 90vh; direction: rtl;">
   <div class="d-flex justify-content-center flex-column align-items-center">
     <mat-card class="persian response-card m-1" *ngFor="let item of responses">
       <mat-card-header>
@@ -13,6 +13,9 @@
           {{item.responseShDate}}
         </p>
       </mat-card-content>
+      <mat-card-actions>
+        <button class="persian" color="primary" (click)="delete(item.responseId)" mat-raised-button>حذف این گفتگو</button>
+      </mat-card-actions>
     </mat-card>
   </div>
   <div class="my-row">
