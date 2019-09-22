@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2330EFB4-43C6-45DB-8CBB-DEEBE0260416}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Support.Application.Contract</RootNamespace>
+    <AssemblyName>Support.Application.Contract</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Constant\BaseResponse.cs" />
+    <Compile Include="Constant\CharType.cs" />
+    <Compile Include="Constant\DataChangeLogMode.cs" />
+    <Compile Include="Constant\PersonStatus.cs" />
+    <Compile Include="Constant\RequestPriority.cs" />
+    <Compile Include="Constant\RequestProject.cs" />
+    <Compile Include="Constant\RequestStatus.cs" />
+    <Compile Include="Constant\RequestType.cs" />
+    <Compile Include="Constant\ResultCode.cs" />
+    <Compile Include="DTO\AccessDTO.cs" />
+    <Compile Include="DTO\AccessPolicyDTO.cs" />
+    <Compile Include="DTO\BaseResponseDTO.cs" />
+    <Compile Include="DTO\ChangePersonAccessDTO.cs" />
+    <Compile Include="DTO\ConfigDTO.cs" />
+    <Compile Include="DTO\ConfigParentDTO.cs" />
+    <Compile Include="DTO\CurrentAccessPolicyDTO.cs" />
+    <Compile Include="DTO\GridRequestWithArgument.cs" />
+    <Compile Include="DTO\LogDTO.cs" />
+    <Compile Include="DTO\LoginDTO.cs" />
+    <Compile Include="DTO\LoginResultDTO.cs" />
+    <Compile Include="DTO\MenuDTO.cs" />
+    <Compile Include="DTO\NewUserDTO.cs" />
+    <Compile Include="DTO\PairValueDTO.cs" />
+    <Compile Include="DTO\PasswordChangeDTO.cs" />
+    <Compile Include="DTO\PeronAccessDTO.cs" />
+    <Compile Include="DTO\PersonAccessDTO.cs" />
+    <Compile Include="DTO\PersonCreateDTO.cs" />
+    <Compile Include="DTO\PersonDTO.cs" />
+    <Compile Include="DTO\PersonEditDTO.cs" />
+    <Compile Include="DTO\PersonGridDTO.cs" />
+    <Compile Include="DTO\PersonNotificationDTO.cs" />
+    <Compile Include="DTO\PersonRegisterDTO.cs" />
+    <Compile Include="DTO\PersonTestDTO.cs" />
+    <Compile Include="DTO\ProfileDTO.cs" />
+    <Compile Include="DTO\RequestCreateDTO.cs" />
+    <Compile Include="DTO\RequestDTO.cs" />
+    <Compile Include="DTO\RequestEditDTO.cs" />
+    <Compile Include="DTO\RequestListDTO.cs" />
+    <Compile Include="DTO\ResetPasswordDTO.cs" />
+    <Compile Include="DTO\ResponseCreateDTO.cs" />
+    <Compile Include="DTO\ResponseDTO.cs" />
+    <Compile Include="DTO\SelectBoxDTO.cs" />
+    <Compile Include="DTO\TokenDTO.cs" />
+    <Compile Include="DTO\TokenResultDTO.cs" />
+    <Compile Include="DTO\VerificationDTO.cs" />
+    <Compile Include="IService\IAccessPolicyServices.cs" />
+    <Compile Include="IService\IAccessServices.cs" />
+    <Compile Include="IService\IApplicationService.cs" />
+    <Compile Include="IService\IAuthenticateService.cs" />
+    <Compile Include="IService\IAuthorizationService.cs" />
+    <Compile Include="IService\IConfigServices.cs" />
+    <Compile Include="IService\ILogServices.cs" />
+    <Compile Include="IService\INotificationService.cs" />
+    <Compile Include="IService\IPersonServices.cs" />
+    <Compile Include="IService\IRequestService.cs" />
+    <Compile Include="IService\IResponseService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tools\PersonTools.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Framework.Core\Framework.Core.csproj">
+      <Project>{2647d3d9-008e-4554-b39b-3b26a465a345}</Project>
+      <Name>Framework.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Support.Domain\Support.Domain.csproj">
+      <Project>{29d5b27c-bbea-4d8d-b635-f3ff77640901}</Project>
+      <Name>Nillaroad.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

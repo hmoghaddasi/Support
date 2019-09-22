@@ -242,9 +242,6 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
-
-/eLearn.ServiceHost/Controllers/HomeController.cs
-/eLearn.ServiceHost/Controllers/ValuesController.cs
-/ServicesHost/App_Start/web.config
-/Spoc.Host/App_Data
-/dotnet/Dependency
+/AMAR.WebUI/Logs/LogFile.txt.2017-11-06
+*.xlsx
+*.xls
