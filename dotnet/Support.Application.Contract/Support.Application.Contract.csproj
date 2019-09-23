@@ -95,7 +95,6 @@
     <Compile Include="IService\IAccessPolicyServices.cs" />
     <Compile Include="IService\IAccessServices.cs" />
     <Compile Include="IService\IApplicationService.cs" />
-    <Compile Include="IService\IAuthenticateService.cs" />
     <Compile Include="IService\IAuthorizationService.cs" />
     <Compile Include="IService\IConfigServices.cs" />
     <Compile Include="IService\ILogServices.cs" />

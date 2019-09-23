@@ -15,7 +15,7 @@ namespace Support.Application.Service
         public void UserRegister(PersonNotificationDTO model)
         {
             _messageHelper.SendSms(model.Mobile,
-            $"پیوستن شما به سیستم گزارش کمبود را تبریک می گوییم. نام کاربری {model.LoginName} رمز ورود {model.Password} گروه دارویی فارمافور"
+            $"پیوستن شما به سیستم پشتیبانی ساپ را تبریک می گوییم. نام کاربری {model.LoginName} رمز ورود {model.Password} "
              );
         }
 
@@ -23,7 +23,7 @@ namespace Support.Application.Service
        
         public void ResendPassword(PersonNotificationDTO model)
         {
-            _messageHelper.SendSms(model.Mobile, $"رمز عبور کاربر شما{model.LoginName} به {model.Password} تغییر یافت. گروه دارویی فارمافور" );
+            _messageHelper.SendSms(model.Mobile, $"رمز عبور کاربر شما{model.LoginName} به {model.Password} تغییر یافت. ساپ" );
          
         }
 

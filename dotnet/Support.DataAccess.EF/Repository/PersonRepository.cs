@@ -52,11 +52,9 @@ namespace Support.DataAccess.EF.Repository
             return _context.Persons.Any(a => a.LoginName == loginName && a.Password == password);
         }
 
-        public int Create(Person person)
+        public void Create(Person person)
         {
             _context.Persons.Add(person);
-            _context.SaveChanges();
-            return person.PersonId;
         }
 
         public void Delete(Person person)
@@ -77,7 +75,7 @@ namespace Support.DataAccess.EF.Repository
         private Person GetForDelete(int personId)
         {
             return _context.Persons.Where(a => a.PersonId == personId)
-                .Include(a => a.AccessPolicies).Include(a => a.CreateResponses).Include(a => a.AssignResponses)
+                .Include(a => a.AccessPolicies).Include(a => a.CreateResponses).Include(a => a.AssignedRequests)
                 .Include(a => a.Requests).First();
         }
         public int CreateClient(Person person)

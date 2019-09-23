@@ -4,11 +4,13 @@ using System.Reflection;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 using Framework.Core.Data;
+using Framework.Core.Notification;
 using Framework.Core.OnionClass;
 using Framework.Core.ServiceLocator;
 using Framework.Core.SQLAction;
 using Framework.Core.UnitOfWork;
 using Framework.EF;
+using Framework.Kavenegar;
 using Support.Application.Service;
 using Support.DataAccess.EF;
 using Support.DataAccess.EF.Repository;
@@ -18,7 +20,7 @@ namespace Support.Config
     public static class Bootstrapper
     {
 
-        public static IWindsorContainer WireUp<T,U>(Assembly presentationAssembly)
+        public static IWindsorContainer WireUp<T>(Assembly presentationAssembly)
         {
             var container = new WindsorContainer();
 
@@ -29,14 +31,16 @@ namespace Support.Config
                    .LifestyleTransient());
 
             ServiveLocator.SetCurrent(new WindsorServiceLocator(container));
-            container.Register(
-               Classes.FromAssembly(presentationAssembly)
-                   .BasedOn<U>()
-                   .LifestyleTransient());
+            //container.Register(
+            //   Classes.FromAssembly(presentationAssembly)
+            //       .BasedOn<U>()
+            //       .LifestyleTransient());
 
             container.Register(Component.For<TransactionInterceptor>()
                 .LifestylePerWebRequest());
 
+            container.Register(Component.For<INotificationHelper>()
+                .ImplementedBy<NotificationHelper>().LifestylePerWebRequest());
 
             container.Register(Classes.FromAssemblyContaining<AccessServices>()
                 .BasedOn<IApplicationService>()

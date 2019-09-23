@@ -27,37 +27,7 @@ namespace Support.Application.Service
 
    
 
-        public PersonDTO GetByLogin(string loginName)
-        {
-            var person = GetCurrentPerson(loginName);
-            return PersonMapper.Map(person);
-        }
-
-
-        private Person GetCurrentPerson(string loginName)
-        {
-            return _personRepository.Get(a => a.LoginName.ToLower() == loginName.ToLower()).FirstOrDefault();
-        }
-
-        public bool GetAuthenticated(string loginName, string password)
-        {
-            var hashPassword = MD5Tool.Hash(password);
-            return _personRepository.Get(a => a.LoginName.ToLower() == loginName.ToLower() && a.Password == hashPassword).Any();
-        }
-
-
-
-        public bool ChangePassword(string username, string password, string newPassword)
-        {
-            var hashPassword = MD5Tool.Hash(password);
-            var person = _personRepository.Get(a => a.LoginName == username && a.Password == hashPassword);
-            if (person.Any())
-            {
-                person.First().Password = MD5Tool.Hash(newPassword);
-                _personRepository.Edit(person.FirstOrDefault());
-            }
-            return person.Any();
-        }
+      
 
         public PersonDTO GetById(int Id)
         {
@@ -113,56 +83,74 @@ namespace Support.Application.Service
 
         public BaseResponseDTO Edit(string currentUserName, ProfileDTO request)
         {
-            request.Mobile = request.Mobile.PersianToEnglish();
+            try
+            {
+                request.Mobile = request.Mobile.PersianToEnglish();
 
-            var response = new BaseResponseDTO();
-            var persons = _personRepository.Get(a => a.LoginName.ToLower() == currentUserName.ToLower());
-            var person = _personRepository.GetById(persons[0].PersonId);
-            if (person == null)
-            {
-                throw new PersonNotFoundException();
+                var persons = _personRepository.Get(a => a.LoginName.ToLower() == currentUserName.ToLower());
+                var person = _personRepository.GetById(persons[0].PersonId);
+                if (person == null)
+                {
+                    throw new PersonNotFoundException();
+                }
+                if (_personRepository.Get(d => d.Mobile == request.Mobile && d.PersonId != person.PersonId).Any())
+                {
+                    throw new MobileExistsException();
+                }
+                var editEntity = PersonMapper.MapEditProfileDTO(person, request);
+                _personRepository.Edit(editEntity);
+                return BaseResponseHelper.Success();
             }
-            if (_personRepository.Get(d => d.Mobile == request.Mobile && d.PersonId != person.PersonId).Any())
+            catch (Exception e)
             {
-                throw new MobileExistsException();
+                return BaseResponseHelper.Failure(e.Message);
             }
-            var editEntity = PersonMapper.MapEditProfileDTO(person, request);
-            _personRepository.Edit(editEntity);
-            return BaseResponseHelper.Success();
+           
         }
 
         public BaseResponseDTO ValidateUser(int id)
         {
-            var response = new BaseResponseDTO();
-            var person = _personRepository.GetById(id);
-            if (person == null)
+            try
             {
-                throw new PersonNotFoundException();
+                var person = _personRepository.GetById(id);
+                if (person == null)
+                {
+                    throw new PersonNotFoundException();
+                }
+
+                person.StatusId = PersonStatus.Active;
+                _personRepository.Edit(person);
+                return BaseResponseHelper.Success();
+            }
+            catch (Exception e)
+            {
+                return BaseResponseHelper.Failure(e.Message);
             }
 
-            person.StatusId = PersonStatus.Active;
-            _personRepository.Edit(person);
-            return BaseResponseHelper.Success();
         }
 
         public BaseResponseDTO ActivateUser(int id)
         {
-            var response = new BaseResponseDTO();
-            var person = _personRepository.GetById(id);
-            if (person == null)
+            try
             {
-                throw new PersonNotFoundException();
+                var person = _personRepository.GetById(id);
+                if (person == null)
+                {
+                    throw new PersonNotFoundException();
+                }
+                person.StatusId = PersonStatus.Active;
+                _personRepository.Edit(person);
+                _notificationService.ActivateUser(person.Mobile, person.LoginName);
+
+                return BaseResponseHelper.Success();
             }
-            person.StatusId = PersonStatus.Active;
-            _personRepository.Edit(person);
-            _notificationService.ActivateUser(person.Mobile, person.LoginName);
-                
-            return BaseResponseHelper.Success();
+            catch (Exception e)
+            {
+                return BaseResponseHelper.Failure(e.Message);
+            }
+           
         }
 
-        public List<PersonDTO> GetAll(int personTypeId = 0)
-        {
-            throw new NotImplementedException();
-        }
+      
     }
 }

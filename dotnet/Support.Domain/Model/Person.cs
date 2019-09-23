@@ -18,7 +18,7 @@ namespace Support.Domain.Model
         public virtual Config Status { get; set; }
         public List<Request> Requests { get; set; }
         public List<Response> CreateResponses { get; set; }
-        public List<Request> AssignResponses { get; set; }
+        public List<Request> AssignedRequests { get; set; }
 
       
     }

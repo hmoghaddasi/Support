@@ -50,7 +50,7 @@ namespace Support.Hosts
 
         private static void ConfigControllerActivator(HttpConfiguration config)
         {
-            var container = Bootstrapper.WireUp<ApiController,IController>(typeof(Startup).Assembly);
+            var container = Bootstrapper.WireUp<ApiController>(typeof(Startup).Assembly);
 
             var contollerActivator = new CastleControllerActivator(container);
             config.Services.Replace(typeof(IHttpControllerActivator), contollerActivator);

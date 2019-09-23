@@ -101,6 +101,10 @@
       <Project>{1bc5c4af-b832-4484-b4f2-2178d9422f2d}</Project>
       <Name>Framework.EF</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Framework.Kavenegar\Framework.Kavenegar.csproj">
+      <Project>{3998a612-361c-495d-9811-669291054d8a}</Project>
+      <Name>Framework.Kavenegar</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Support.Application.Contract\Support.Application.Contract.csproj">
       <Project>{2330efb4-43c6-45db-8cbb-deebe0260416}</Project>
       <Name>Nillaroad.Application.Contract</Name>

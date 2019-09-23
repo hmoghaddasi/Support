@@ -9,12 +9,10 @@ namespace Support.Hosts.Controllers
     public class RegisterController : ApiController
     {
         private readonly IAuthorizationService _authorizationService;
-        private readonly IAuthenticateService _authenticateService;
 
-        public RegisterController(IAuthorizationService authorizationService, IAuthenticateService authenticateService)
+        public RegisterController(IAuthorizationService authorizationService)
         {
             this._authorizationService = authorizationService;
-            this._authenticateService = authenticateService;
 
         }
 

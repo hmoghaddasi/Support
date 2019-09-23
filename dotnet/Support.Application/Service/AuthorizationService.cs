@@ -8,6 +8,7 @@ using Support.Application.Contract.Constant;
 using Support.Application.Contract.DTO;
 using Support.Application.Contract.IService;
 using Support.Application.Contract.Tools;
+using Support.Application.Mapper;
 using Support.Domain.Exception;
 using Support.Domain.IRepository;
 using Support.Domain.Model;
@@ -119,7 +120,15 @@ namespace Support.Application.Service
 
         public List<Claim> RegisterPerson(PersonRegisterDTO dto)
         {
-            throw new NotImplementedException();
+            dto.Mobile = dto.Mobile.PersianToEnglish();
+
+            var registerPerson = PersonMapper.MapToRegister(dto);
+           
+            var person = PersonMapper.MapToModel(registerPerson);
+            _personRepository.Create(person);
+     
+            _notificationService.UserRegister(PersonMapper.MapToNotification(registerPerson));
+            return CreateClaims(person);
         }
 
         public List<Claim> GetPersonByUser(string user)

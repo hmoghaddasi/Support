@@ -22,8 +22,7 @@ namespace Support.Hosts
          
             return new LoginResultDTO()
             {
-                Token = token,
-                RefreshToken = claims.First(a => a.Type == ClaimTypes.SerialNumber).Value
+                Token = token
             };
 
         }

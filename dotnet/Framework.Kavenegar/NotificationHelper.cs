@@ -10,7 +10,7 @@ using Kavenegar.Exceptions;
 
 namespace Framework.Kavenegar
 {
-    public class KavenegarAdapter : INotificationHelper
+    public class NotificationHelper : INotificationHelper
     {
        
 

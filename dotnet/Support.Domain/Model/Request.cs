@@ -22,8 +22,8 @@ namespace Support.Domain.Model
         public Config Priority { get; set; }
         public Config Project { get; set; }
 
-        public virtual Person Assigned { get; set; }
-        public virtual List<Response> Responses { get; set; }
+        public Person Assigned { get; set; }
+        public List<Response> Responses { get; set; }
 
 
        

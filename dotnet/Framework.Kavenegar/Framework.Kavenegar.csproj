@@ -45,7 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="KavenegarAdapter.cs" />
+    <Compile Include="NotificationHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SMSToken.cs" />
   </ItemGroup>

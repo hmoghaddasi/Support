@@ -45,7 +45,16 @@ namespace Support.Application.Mapper
                 LoginName = person.Mobile
             };
         }
+        public static PersonNotificationDTO MapToNotification(PersonCreateDTO dto)
+        {
+            return new PersonNotificationDTO()
+            {
+                Mobile = dto.Mobile,
+                Password = dto.Password,
+                LoginName = dto.LoginName
+            };
 
+        }
         public static Person MapEditDTO(Person model, PersonDTO editDTO)
         {
             model.FirstName = editDTO.FirstName;
