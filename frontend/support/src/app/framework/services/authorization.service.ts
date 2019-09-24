@@ -13,8 +13,9 @@ export class AuthorizationService {
                 private storageService: StorageService) { }
 
     public loadPermissions() {
-        this.getAccess().subscribe(a => {
-            this.storageService.store('access', a.access);
+        this.getAccess().subscribe(access => {
+            debugger;
+            this.storageService.store('access', access);
             this.loadingPermissionsDone.next(true);
         });
     }

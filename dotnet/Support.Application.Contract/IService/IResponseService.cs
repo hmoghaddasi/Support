@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Framework.Core.OnionClass;
 using Support.Application.Contract.DTO;
 
 namespace Support.Application.Contract.IService

@@ -14,6 +14,7 @@ namespace Support.DataAccess.EF.Mapping
             HasRequired(h => h.Status).WithMany().HasForeignKey(h => h.StatusId).WillCascadeOnDelete(false);
             HasRequired(h => h.RequestBy).WithMany(a=>a.Requests).HasForeignKey(h => h.RequestById).WillCascadeOnDelete(false);
             HasRequired(h => h.Priority).WithMany().HasForeignKey(h => h.PriorityId).WillCascadeOnDelete(false);
+            HasRequired(h => h.Project).WithMany().HasForeignKey(h => h.ProjectId).WillCascadeOnDelete(false);
             HasRequired(h => h.Type).WithMany().HasForeignKey(h => h.TypeId).WillCascadeOnDelete(false);
             HasRequired(h => h.Assigned).WithMany(a=>a.AssignedRequests).HasForeignKey(h => h.AssignedId).WillCascadeOnDelete(false);
 

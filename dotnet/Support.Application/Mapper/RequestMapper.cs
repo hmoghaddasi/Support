@@ -67,7 +67,7 @@ namespace Support.Application.Mapper
                 Description = dto.Description,
                 TypeId = dto.TypeId,
                 PriorityId = dto.PriorityId,
-                ProjectId = dto.PriorityId,
+                ProjectId = dto.ProjectId,
                 AssignedId = 0,                
             };
         }

@@ -18,7 +18,7 @@ namespace Support.Hosts.Controllers
         [HttpGet]
 
         [JwtAuthentication]
-        [Route("GetRequestResponseList")]
+        [Route("api/ResponseList")]
         public List<ResponseDTO> GetRequestResponseList(int id)
         {
             var user = UserManagementTools.GetCurrentPersonUser();

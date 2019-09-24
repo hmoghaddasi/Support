@@ -38,7 +38,7 @@ export class ConfigService {
   }
 
   public getConfigChild(id: number): Observable<any> {
-    return this.restService.customAction(this.resourceName + '/' + 'ConfigChild', id);
+    return this.restService.customAction('ConfigChild', id);
   }
 
   public delete(id: number): any {

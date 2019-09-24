@@ -107,6 +107,22 @@ namespace Support.Application.Mapper
             person.Email = request.Email;
             return person;
         }
+
+        public static PersonDTO MapToGrid(Person person)
+        {
+            return new PersonDTO()
+            {
+                PersonId = person.PersonId,
+                FullName = person.FirstName + " " + person.LastName,
+                LoginName = person.LoginName,
+                Email = person.Email,
+                Gender = person.Gender,
+                GenderText = person.Gender ? "مرد" : "زن",
+                Status = person.Status?.ConfigName,
+                Mobile = person.Mobile,
+                StatusId = person.StatusId
+            };
+        }
     }
 
 }

@@ -23,21 +23,19 @@ namespace Support.Hosts.Controllers
 
         [HttpGet]
         [JwtAuthentication]
-        [Route("ConfigChild")]
+        [Route("api/ConfigChild")]
         public List<ConfigDTO> ConfigChild(int id)
         {
-            return _configService.GetConfigChildsByParentId(id);
+            var user = UserManagementTools.GetCurrentPersonUser();
+
+            return _configService.GetConfigChild(id, user);
         }
 
         [HttpGet]
         [JwtAuthentication]
-        [Route("ConfigGrid")]
-        public FilterResponse<ConfigDTO> Get([FromBody]GridRequestWithArgument request)
+        [Route("api/ConfigGrid")]
+        public FilterResponse<ConfigDTO> Get([FromUri]GridRequestWithArgument request)
         {
-            if (!string.IsNullOrWhiteSpace(request.Filter))
-            {
-                request.FilterX = JsonConvert.DeserializeObject<GridFilter>(request.Filter);
-            }
             return _configService.GetForGrid(request);
         }
 

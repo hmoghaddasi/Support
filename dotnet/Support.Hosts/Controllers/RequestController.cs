@@ -17,15 +17,17 @@ namespace Support.Hosts.Controllers
         }
 
         [HttpGet]
-        [Route("RequestGrid")]
-        public FilterResponse<RequestDTO> Get([FromBody]GridRequest request)
+        [JwtAuthentication]
+        [Route("api/RequestGrid")]
+        public FilterResponse<RequestDTO> Get([FromUri]GridRequest request)
         {
             return _requestService.GetForGrid(request);
         }
 
         [HttpGet]
-        [Route("RequestByCurrentUserGrid")]
-        public FilterResponse<RequestDTO> GetByCurrentuser([FromBody]GridRequest request)
+        [JwtAuthentication]
+        [Route("api/UserRequestGrid")]
+        public FilterResponse<RequestDTO> GetUserGrid([FromUri]GridRequest request)
         {
             var user = UserManagementTools.GetCurrentPersonUser();
             return _requestService.GetForGrid(request,user);
@@ -51,7 +53,7 @@ namespace Support.Hosts.Controllers
         [HttpGet]
 
         [JwtAuthentication]
-        [Route("CloseTicket")]
+        [Route("api/CloseTicket")]
         public BaseResponseDTO CloseTicket(int id)
         {
             return _requestService.UpdateStatus(id);

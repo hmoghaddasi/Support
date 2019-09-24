@@ -107,19 +107,19 @@
     </ProjectReference>
     <ProjectReference Include="..\Support.Application.Contract\Support.Application.Contract.csproj">
       <Project>{2330efb4-43c6-45db-8cbb-deebe0260416}</Project>
-      <Name>Nillaroad.Application.Contract</Name>
+      <Name>Support.Application.Contract</Name>
     </ProjectReference>
     <ProjectReference Include="..\Support.Application\Support.Application.csproj">
       <Project>{a0ebd041-5ee1-4f2a-b78d-61734878aead}</Project>
-      <Name>Nillaroad.Application</Name>
+      <Name>Support.Application</Name>
     </ProjectReference>
     <ProjectReference Include="..\Support.DataAccess.EF\Support.DataAccess.EF.csproj">
       <Project>{3a5de7a9-89a6-49c5-845e-358721608878}</Project>
-      <Name>Nillaroad.DataAccess.EF</Name>
+      <Name>Support.DataAccess.EF</Name>
     </ProjectReference>
     <ProjectReference Include="..\Support.Domain\Support.Domain.csproj">
       <Project>{29d5b27c-bbea-4d8d-b635-f3ff77640901}</Project>
-      <Name>Nillaroad.Domain</Name>
+      <Name>Support.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

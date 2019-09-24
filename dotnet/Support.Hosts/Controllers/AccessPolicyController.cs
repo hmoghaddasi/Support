@@ -1,6 +1,7 @@
 using System.Web.Http;
 using Support.Application.Contract.DTO;
 using Support.Application.Contract.IService;
+using Support.Hosts.Filters;
 
 namespace Support.Hosts.Controllers
 {
@@ -12,28 +13,29 @@ namespace Support.Hosts.Controllers
             this._accessPolicyService = accessPolicyService;
         }
         [HttpGet]
-        [Authorize]
-        public CurrentAccessPolicyDTO Get()
+        [JwtAuthentication]
+        public string Get()
         {
             var user = UserManagementTools.GetCurrentPersonUser();
-            return new CurrentAccessPolicyDTO { Access = _accessPolicyService.GetUserAccess(user) };
+            return  _accessPolicyService.GetUserAccess(user);
         }
         [HttpPost]
-        [AllowAnonymous]
+        [JwtAuthentication]
         public BaseResponseDTO Post(AccessPolicyDTO dto)
         {
             return _accessPolicyService.Create(dto);
         }
 
         [HttpDelete]
-        [AllowAnonymous]
+
+        [JwtAuthentication]
         public BaseResponseDTO Delete(int accessPolicyId)
         {
             return _accessPolicyService.Delete(accessPolicyId);
         }
 
         [HttpPost]
-        [Authorize]
+        [JwtAuthentication]
         [Route("ChangePersonAccess")]
         public BaseResponseDTO ChangePersonAccess(ChangePersonAccessDTO request)
         {

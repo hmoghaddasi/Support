@@ -17,7 +17,7 @@ namespace Support.Hosts.Controllers
         }
 
         [JwtAuthentication]
-        public LoginResultDTO Post([FromBody]VerificationDTO code)
+        public LoginResultDTO Post([FromUri]VerificationDTO code)
         {
             var mobile = UserManagementTools.GetCurrentPersonUser();
             var claims = _authorizationService.Verification(code, mobile);

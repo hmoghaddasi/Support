@@ -18,14 +18,11 @@ namespace Support.Hosts.Controllers
         }
 
         [HttpGet]
-        [Route("PersonGrid")]
-        public FilterResponse<PersonDTO> Get([FromBody]GridRequestWithArgument request)
+        [JwtAuthentication]
+        [Route("api/PersonGrid")]
+        public FilterResponse<PersonDTO> Get([FromUri]GridRequest request, int id)
         {
-            if (!string.IsNullOrWhiteSpace(request.Filter))
-            {
-                request.FilterX = JsonConvert.DeserializeObject<GridFilter>(request.Filter);
-            }
-            return _personService.GetForGrid(request);
+          return _personService.GetForGrid(request, id);
         }
 
         [HttpGet]
@@ -37,7 +34,7 @@ namespace Support.Hosts.Controllers
         [HttpGet]
 
         [JwtAuthentication]
-        [Route("Validate")]
+        [Route("api/Validate")]
         public BaseResponseDTO Post(int id)
         {
             return _personService.ValidateUser(id);
@@ -46,7 +43,7 @@ namespace Support.Hosts.Controllers
         [HttpGet]
 
         [JwtAuthentication]
-        [Route("Activate")]
+        [Route("api/Activate")]
         public BaseResponseDTO Activate(int id)
         {
             return _personService.ActivateUser(id);
@@ -55,7 +52,7 @@ namespace Support.Hosts.Controllers
         [HttpGet]
 
         [JwtAuthentication]
-        [Route("DeActivate")]
+        [Route("api/DeActivate")]
         public BaseResponseDTO DeActivate(int id)
         {
             return _personService.DeActivateUser(id);

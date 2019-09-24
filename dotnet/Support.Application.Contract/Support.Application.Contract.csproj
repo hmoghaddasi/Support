@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="Constant\BaseResponse.cs" />
     <Compile Include="Constant\CharType.cs" />
+    <Compile Include="Constant\ConfigType.cs" />
     <Compile Include="Constant\DataChangeLogMode.cs" />
     <Compile Include="Constant\PersonStatus.cs" />
     <Compile Include="Constant\RequestPriority.cs" />
@@ -94,7 +95,6 @@
     <Compile Include="DTO\VerificationDTO.cs" />
     <Compile Include="IService\IAccessPolicyServices.cs" />
     <Compile Include="IService\IAccessServices.cs" />
-    <Compile Include="IService\IApplicationService.cs" />
     <Compile Include="IService\IAuthorizationService.cs" />
     <Compile Include="IService\IConfigServices.cs" />
     <Compile Include="IService\ILogServices.cs" />
@@ -116,7 +116,7 @@
     </ProjectReference>
     <ProjectReference Include="..\Support.Domain\Support.Domain.csproj">
       <Project>{29d5b27c-bbea-4d8d-b635-f3ff77640901}</Project>
-      <Name>Nillaroad.Domain</Name>
+      <Name>Support.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

@@ -105,12 +105,6 @@
     <Reference Include="Rotativa, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Rotativa.1.7.4-rc\lib\net45\Rotativa.dll</HintPath>
     </Reference>
-    <Reference Include="Rotativa.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Rotativa.Core.2.0.2.1\lib\net45\Rotativa.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Rotativa.MVC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Rotativa.MVC.2.0.3\lib\net45\Rotativa.MVC.dll</HintPath>
-    </Reference>
     <Reference Include="Swashbuckle.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cd1bb07a5ac7c7bc, processorArchitecture=MSIL">
       <HintPath>..\packages\Swashbuckle.Core.5.6.0\lib\net40\Swashbuckle.Core.dll</HintPath>
     </Reference>
@@ -270,15 +264,15 @@
     </ProjectReference>
     <ProjectReference Include="..\Support.Application.Contract\Support.Application.Contract.csproj">
       <Project>{2330efb4-43c6-45db-8cbb-deebe0260416}</Project>
-      <Name>Nillaroad.Application.Contract</Name>
+      <Name>Support.Application.Contract</Name>
     </ProjectReference>
     <ProjectReference Include="..\Support.Application\Support.Application.csproj">
       <Project>{a0ebd041-5ee1-4f2a-b78d-61734878aead}</Project>
-      <Name>Nillaroad.Application</Name>
+      <Name>Support.Application</Name>
     </ProjectReference>
     <ProjectReference Include="..\Support.Config\Support.Config.csproj">
       <Project>{4323bc54-a1c2-4df8-8102-6b0f556a3b0f}</Project>
-      <Name>Nillaroad.Config</Name>
+      <Name>Support.Config</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

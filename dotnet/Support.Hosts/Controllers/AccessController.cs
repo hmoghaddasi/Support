@@ -21,8 +21,8 @@ namespace Support.Hosts.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        [Route("AccessGrid")]
-        public FilterResponse<AccessDTO> Get([FromBody]GridRequest request)
+        [Route("api/AccessGrid")]
+        public FilterResponse<AccessDTO> Get([FromUri]GridRequest request)
         {
           
             return _accessService.GetForGrid(request);
@@ -30,7 +30,7 @@ namespace Support.Hosts.Controllers
 
         [HttpGet]
         [JwtAuthentication]
-        [Route("PersonAccess")]
+        [Route("api/PersonAccess")]
         public List<PersonAccessDTO> PersonAccess(int id)
         {
             return _accessService.PersonAccess(id);

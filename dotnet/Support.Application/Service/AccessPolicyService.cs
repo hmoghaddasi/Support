@@ -71,10 +71,7 @@ namespace Support.Application.Service
             return new FilterResponse<AccessPolicyDTO>(data.data, data.total);
         }
 
-        public List<AccessPolicyDTO> GetAll()
-        {
-            return _accessPolicyRepository.GetAll().Select(AccessPolicyMapper.Map).ToList();
-        }
+     
 
         public string GetUserAccess(string user)
         {
@@ -134,15 +131,21 @@ namespace Support.Application.Service
                     var tempRecord = accessPolicyList.First();
                     _accessPolicyRepository.Delete(tempRecord);
                     response.ResultCode = ResultCode.Success;
-                    response.Message = "صلب دسترسی از کاربر با موفقیت انجام شد";
+                    response.Message = "حذف دسترسی از کاربر با موفقیت انجام شد";
                 }
                 catch (Exception ex)
                 {
                     response.ResultCode = ResultCode.Error;
-                    response.Message = "صلب دسترسی از کاربر با خطا مواجه شد";
+                    response.Message = "حذف دسترسی از کاربر با خطا مواجه شد";
                 }
             }
             return response;
+        }
+
+        public List<int> GetAccessBasedConfig(string user)
+        {
+            return _accessPolicyRepository.Get(a => a.Person.LoginName.ToLower() == user.ToLower())
+                .Select(a => a.AccessId).ToList();
         }
     }
 }

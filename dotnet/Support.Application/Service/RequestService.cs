@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Framework.Core.Filtering;
 using Support.Application.Contract.Constant;
 using Support.Application.Contract.DTO;
@@ -26,11 +27,18 @@ namespace Support.Application.Service
 
         public BaseResponseDTO Create(RequestCreateDTO dto, string userName)
         {
-            var user = _personService.GetByUserName(userName);
-            var admin = _personService.GetById(0);
-            _requestRepository.Create(RequestMapper.MapToModel(dto, user.PersonId));
-            this._notificationService.CreateNewTicket(admin.Mobile,$"{user.FirstName}", dto.Title);
-            return BaseResponseHelper.Success();
+            try
+            {
+                var user = _personService.GetByUserName(userName);
+                var admin = _personService.GetById(0);
+                _requestRepository.Create(RequestMapper.MapToModel(dto, user.PersonId));
+                this._notificationService.CreateNewTicket(admin.Mobile, $"{user.FirstName}", dto.Title);
+                return BaseResponseHelper.Success();
+            }
+            catch (Exception e)
+            {
+                return BaseResponseHelper.Failure(e.Message);
+            }
         }
 
         public BaseResponseDTO Delete(int requestId)

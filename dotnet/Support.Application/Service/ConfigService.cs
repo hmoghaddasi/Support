@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Framework.Core.Filtering;
+using Support.Application.Contract.Constant;
 using Support.Application.Contract.DTO;
 using Support.Application.Contract.IService;
 using Support.Application.Mapper;
@@ -12,46 +13,20 @@ namespace Support.Application.Service
     public class ConfigService : IConfigService
     {
         private readonly IConfigRepository _repository;
-        public ConfigService(IConfigRepository repository)
+        private readonly IAccessPolicyServices _accessPolicyServices;
+        public ConfigService(IConfigRepository repository, IAccessPolicyServices accessPolicyServices)
         {
             this._repository = repository;
+            this._accessPolicyServices = accessPolicyServices;
         }
-        public List<ConfigDTO> GetConfigName()
-        {
-            return _repository.Get(w => w.ConfigHdrId == 0).Select(ConfigMapper.Map).ToList();
-
-        }
-        public List<ConfigDTO> GetAll()
-        {
-            return
-                 _repository.GetAll().Select(ConfigMapper.Map)
-                     .ToList();
-        }
-        public IQueryable<ConfigDTO> GetAllIQueryable()
-        {
-            return
-                _repository.GetAll().Select(ConfigMapper.Map)
-                    .AsQueryable();
-        }
+      
+        
         public ConfigDTO GetById(int Id)
         {
             var config = _repository.GetById(Id);
             return ConfigMapper.Map(config);
         }
-        public List<ConfigDTO> GetParent(int Id)
-        {
-            return
-                _repository.Get(a => a.ConfigId == Id)
-                    .Select(ConfigMapper.Map)
-                    .ToList();
-        }
-        public List<ConfigDTO> GetChild(int parentId)
-        {
-            return
-             _repository.Get(a => (a.ConfigHdrId == parentId || a.ConfigId == parentId))
-                 .Select(ConfigMapper.Map)
-                 .ToList();
-        }
+       
 
         public BaseResponseDTO Create(ConfigDTO dto)
         {
@@ -71,22 +46,16 @@ namespace Support.Application.Service
             return BaseResponseHelper.Success();
         }
 
-        public ConfigParentDTO GetConfigParent()
-        {
-            throw new System.NotImplementedException();
-        }
+      
 
-        public List<ConfigDTO> GetConfigChildsByParentId(int id)
+        public List<ConfigDTO> GetConfigChild(int id, string user)
         {
-            try
-            {
-                return _repository.Get(d => d.ConfigHdrId == id && d.ConfigId != 0).Select(ConfigMapper.Map).ToList();
-            }
-            catch (Exception)
-            {
+            var accessBasedConfig = _accessPolicyServices.GetAccessBasedConfig(user);
 
-                throw;
-            }
+            return _repository.Get(a => a.ConfigHdrId == id && a.ConfigId != 0
+                                        && (accessBasedConfig.Contains(a.ConfigValue) || id != ConfigType.Project)
+                                        ).Select(ConfigMapper.Map).ToList();
+           
         }
 
         public FilterResponse<ConfigDTO> GetForGrid(GridRequestWithArgument request)

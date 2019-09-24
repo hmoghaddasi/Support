@@ -36,11 +36,11 @@ export class RequestService {
     return this.restService.getForGrid(this.resourceName, state);
   }
   public getForGridUser(state: State): Observable<GridDataResult> {
-    return this.restService.getForGridCustome(this.resourceName, 'RequestByCurrentUserGrid', state);
+    return this.restService.getForGrid('UserRequest', state);
   }
 
   public closeTicket(requestId: number): any {
-    return this.restService.customAction(this.resourceName + '/' + 'CloseTicket', requestId);
+    return this.restService.customAction('CloseTicket', requestId);
   }
 }
 

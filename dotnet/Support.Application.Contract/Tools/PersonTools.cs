@@ -11,7 +11,7 @@ namespace Support.Application.Contract.Tools
         public static string GetRandomPassKey()
         {
             Random random = new Random();
-            return $"NR{random.Next(10000, 99999).ToString().PersianToEnglish()}";
+            return $"{random.Next(10000, 99999).ToString().PersianToEnglish()}";
         }
 
         public static List<string> GetRandomUsername(List<string> currentData, int count)

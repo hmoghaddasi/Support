@@ -18,7 +18,6 @@ namespace Support.DataAccess.EF
         public DbSet<Log> Logs { get; set; }
         public DbSet<Menu> Menus { get; set; }
         public DbSet<Person> Persons { get; set; }
-        public DbSet<FileLog> FileLogs { get; set; }
         public DbSet<Response> Responses { get; set; }
         public DbSet<Request> Requests { get; set; }
 

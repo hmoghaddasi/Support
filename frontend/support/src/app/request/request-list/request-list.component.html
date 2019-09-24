@@ -4,20 +4,20 @@
 <div class="grid-wrapper">
   <kendo-grid [data]="view | async" [pageSize]="gridState.take" [skip]="gridState.skip" [filter]="gridState.filter"
     filterable="menu" [pageable]="true" [scrollable]="'none'" (dataStateChange)="onStateChange($event)">
-    <kendo-grid-column field="title" title="عنوان"></kendo-grid-column>
-    <kendo-grid-column field="requestShDate" title="تاریخ درخواست" filterable=false></kendo-grid-column>
-    <kendo-grid-column field="requestBy" title="درخواست کننده" filterable=false></kendo-grid-column>
-    <kendo-grid-column field="project" title="پروژه" filterable=false></kendo-grid-column>
-    <kendo-grid-column field="type" title="نوع" filterable=false></kendo-grid-column>
-    <kendo-grid-column field="priority" title="اولویت" filterable=false></kendo-grid-column>
-    <kendo-grid-column field="status" title="وضعیت" filterable=false></kendo-grid-column>
-    <kendo-grid-column field="assigned" title="فرد مسئول" filterable=false></kendo-grid-column>
+    <kendo-grid-column field="Title" title="عنوان"></kendo-grid-column>
+    <kendo-grid-column field="RequestShDate" title="تاریخ درخواست" filterable=false></kendo-grid-column>
+    <kendo-grid-column field="RequestBy" title="درخواست کننده" filterable=false></kendo-grid-column>
+    <kendo-grid-column field="Project" title="سیستم" filterable=false></kendo-grid-column>
+    <kendo-grid-column field="Type" title="نوع" filterable=false></kendo-grid-column>
+    <kendo-grid-column field="Priority" title="اولویت" filterable=false></kendo-grid-column>
+    <kendo-grid-column field="Status" title="وضعیت" filterable=false></kendo-grid-column>
+    <kendo-grid-column field="Assigned" title="فرد مسئول" filterable=false></kendo-grid-column>
     <kendo-grid-column width="280">
       <ng-template kendoGridCellTemplate let-dataItem>
-        <button *ngIf="dataItem.statusId == 11" kendoButton  [routerLink]="['/response-management-admin',dataItem.requestId]"
+        <button *ngIf="dataItem.StatusId == 11" kendoButton  [routerLink]="['/response-management-admin',dataItem.RequestId]"
           class="btn btn-default">گفتگو</button>
-        <button kendoButton [routerLink]="['/request-detail',dataItem.requestId]" class="btn btn-default">جزئیات</button>
-        <button *ngIf="dataItem.statusId == 11" kendoButton (click)="close(dataItem.requestId)"
+        <button kendoButton [routerLink]="['/request-detail',dataItem.RequestId]" class="btn btn-default">جزئیات</button>
+        <button *ngIf="dataItem.StatusId == 11" kendoButton (click)="close(dataItem.requestId)"
           class="btn btn-default">بستن تیکت</button>
       </ng-template>
     </kendo-grid-column>

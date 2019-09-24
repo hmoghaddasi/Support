@@ -33,6 +33,7 @@ export class RequestCreateComponent {
       this.service.create(this.model).subscribe((result: BaseResponseDto) => {
         this.confirmedEventEmitter.emit(result);
         this.dialogRef.close();
+        Swal.fire('موفق', 'درخواست با موفقیت ثبت شد', 'success');
       }, err => {
         Swal.fire('خطایی رخ داد', err.error.message, 'error');
       });

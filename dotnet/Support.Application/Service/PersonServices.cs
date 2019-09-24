@@ -53,9 +53,10 @@ namespace Support.Application.Service
             return 0;
         }
 
-        public FilterResponse<PersonDTO> GetForGrid(GridRequestWithArgument request)
+        public FilterResponse<PersonDTO> GetForGrid(GridRequest request, int statusId)
         {
-            throw new NotImplementedException();
+            var result = _personRepository.GetForGrid(request, statusId);
+            return new FilterResponse<PersonDTO>(result.data.Select(PersonMapper.MapToGrid).ToList(), result.total);
         }
 
 

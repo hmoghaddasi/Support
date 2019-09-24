@@ -9,12 +9,14 @@
       <li class="nav-item active">
         <a class="nav-link text-white" routerLink="/" *notSigned>خانه</a>
       </li>
-      <li class="nav-item dropdown" *signed>
+      <li class="nav-item dropdown" *hasPermission="'adminmenu'">
         <a class="nav-link text-white dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          اطلاعات پایه
+          پنل مدیریت
         </a>
         <div class="dropdown-menu bg-info" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" routerLink="/request-list-admin" *hasPermission="'adminmenu'">مدیریت تیکت های
+              سامانه</a>
           <a class="dropdown-item" routerLink="/person-list" *hasPermission="'adminmenu'">مدیریت اعضا</a>
           <a class="dropdown-item" routerLink="/config-list" *hasPermission="'adminmenu'">تنظیمات</a>
         </div>
@@ -25,8 +27,7 @@
           تیکت
         </a>
         <div class="dropdown-menu bg-info" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" routerLink="/request-list-admin" *hasPermission="'adminmenu'">مدیریت تیکت های
-            سامانه</a>
+        
           <a class="dropdown-item" routerLink="/request-list">تیکت های من</a>
         </div>
       </li>

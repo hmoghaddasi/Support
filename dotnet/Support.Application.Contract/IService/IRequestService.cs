@@ -1,4 +1,5 @@
 using Framework.Core.Filtering;
+using Framework.Core.OnionClass;
 using Support.Application.Contract.DTO;
 using Support.Domain.Model;
 
