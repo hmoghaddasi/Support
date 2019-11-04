@@ -5,10 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="autofac" Version="4.9.2" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Support.Application.Contract\Support.Application.Contract.csproj" />
     <ProjectReference Include="..\Support.Application\Support.Application.csproj" />
     <ProjectReference Include="..\Support.DataAccess.EF\Support.DataAccess.EF.csproj" />

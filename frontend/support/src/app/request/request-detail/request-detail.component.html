@@ -26,7 +26,7 @@
     </div>
   </div>
   <h5 class="text-center p-2">مکالمات تیکت: </h5>
-  <p class="text-center p-2 text-danger" *ngIf="!model?.responses?.length>0">در حال حاضر مکالمه‌ای در این تیکت انجام نشده است.</p>
+  <p class="text-center p-2 text-danger" *ngIf="!(model?.responses?.length>0)">در حال حاضر مکالمه‌ای در این تیکت انجام نشده است.</p>
   <div style="direction: rtl;" class=" d-flex justify-content-center flex-column align-items-center">
     <mat-card class="persian response-card m-1" *ngFor="let item of model.responses">
       <mat-card-header>

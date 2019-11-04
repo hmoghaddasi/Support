@@ -117,6 +117,7 @@ namespace Support.Host
             app.UseSwagger();
             app.UseSwaggerDocumentation();
             app.UseMiddleware(typeof(ErrorHandlingMiddleware));
+            app.UseHttpsRedirection();
             app.UseMvcWithDefaultRoute();
             app.UseMiddleware<StatusCodeExceptionHandler>();
             if (env.IsDevelopment())
