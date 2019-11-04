@@ -247,3 +247,4 @@ ModelManifest.xml
 /eLearn.ServiceHost/Controllers/ValuesController.cs
 /ServicesHost/App_Start/web.config
 /Spoc.Host/App_Data
+/dotnet/Dependency

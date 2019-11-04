@@ -31,7 +31,7 @@ export class RegistrationService  {
     return this.restService.post('membership', model);
   }
   public resetpass(model: resetpassModel): Observable<any> {
-    return this.restService.customePostAction('ResetPassword', model);
+    return this.restService.post('ResetPassword', model);
   }
   public change(model: ChangePasswordModel): Observable<any> {
     return this.restService.post('changepassword', model);
@@ -39,8 +39,6 @@ export class RegistrationService  {
   public login(model: LoginModel): Observable<any> {
     return this.restService.post('token', model);
   }
-  public newPharmacyMemebership(model: NewPharmacyMembershipModel): Observable<any> {
-    return this.restService.customePostAction('NewPharmacyMemebership', model);
-  }
+
 }
 

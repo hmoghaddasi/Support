@@ -6,10 +6,10 @@
     <form #createform="ngForm" class="my-form mydadrow" dir="rtl">
       <div class="my-row">
         <mat-form-field style="display: none;">
-          <mat-label>پروژه</mat-label>
-          <input matInput placeholder="پروژه" name="projectId" [(ngModel)]="model.projectId" required readonly />
+          <mat-label>سیستم</mat-label>
+          <input matInput placeholder="سیستم" name="projectId" [(ngModel)]="model.projectId" required readonly />
         </mat-form-field>
-        <app-config-select [label]="'پروژه'" [parentId]=5 [(selectedConfig)]="model.projectId"></app-config-select>
+        <app-config-select [label]="'سیستم'" [parentId]=5 [(selectedConfig)]="model.projectId"></app-config-select>
         <mat-form-field style="display: none;">
           <mat-label>اولویت</mat-label>
           <input matInput placeholder="اولویت" name="priorityId" [(ngModel)]="model.priorityId" required readonly />

@@ -18,10 +18,10 @@ export class RequestDetailComponent {
     private activatedRoute: ActivatedRoute,
     private router: Router) {
     this.activatedRoute.params.subscribe(params => {
-      this.model.requestId = +params['id'];
+      this.model.RequestId = +params['id'];
       this.user = params['user'];
     });
-    this.requestService.getById(this.model.requestId).subscribe((res: RequestDetailModel) => {
+    this.requestService.getById(this.model.RequestId).subscribe((res: RequestDetailModel) => {
       this.model = res;
     }, err => {
       Swal.fire('خطا', err.error.message, 'error');

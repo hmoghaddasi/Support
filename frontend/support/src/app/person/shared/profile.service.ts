@@ -10,15 +10,15 @@ export class ProfileService implements OnInit {
   constructor(private restService: RestService) {
   }
   private resourceName = 'Profile';
-
+  ngOnInit() {
+  }
   editProfile(model: ProfileModel) {
     return this.restService.post(this.resourceName, model);
   }
 
   public get(): Observable<ProfileModel> {
-    return this.restService.get(this.resourceName);
+    return this.restService.getAll(this.resourceName);
   }
 
-  ngOnInit() {
-  }
+ 
 }

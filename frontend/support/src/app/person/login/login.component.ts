@@ -25,8 +25,9 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
   login() {
-    this.service.login(this.model).subscribe(result => {     
-      this.tokenService.store(result.token);
+    debugger;
+    this.service.login(this.model).subscribe(result => {
+      this.tokenService.store(result.Token);
       this.accessService.loadPermissions();
       this.tokenService.signed();
       Swal.fire('عملیات موفق', 'با موفقیت وارد شدید', 'success');

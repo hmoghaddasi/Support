@@ -12,6 +12,6 @@ export class HomeService  {
   constructor(private restService: RestService) { }
 
   public getHomeInfo(): Observable<any> {
-    return this.restService.get(this.resourceName);
+    return this.restService.getAll(this.resourceName);
   }
 }

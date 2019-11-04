@@ -43,9 +43,8 @@ export class ResponseManagementComponent {
       if (res.resultCode == 200) {
         this.reloadData();
         Swal.fire('عملیات موفق', res.message, 'success');
-      }
-      else {
-        Swal.fire('عملیات موفق', res.message, 'error');
+      } else {
+        Swal.fire('عملیات موفق', res.message, 'success');
       }
     }, err => {
       Swal.fire('خطایی رخ داد', err.error.message, 'error');

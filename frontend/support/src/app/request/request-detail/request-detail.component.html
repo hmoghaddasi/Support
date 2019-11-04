@@ -4,25 +4,22 @@
   </mat-toolbar>
   <div class="row persian text-center border p-1">
     <div class="col">
-      <p><b>تاریخ درخواست : </b>{{model.requestShDate}}</p>
+      <p><b>تاریخ درخواست : </b>{{model.RequestShDate}}</p>
     </div>
     <div class="col">
-      <p><b>درخواست دهنده : </b>{{model.requestBy}}</p>
+      <p><b>درخواست دهنده : </b>{{model.RequestBy}}</p>
     </div>
     <div class="col">
-      <p><b>وضعیت تیکت : </b>{{model.status}}</p>
+      <p><b>وضعیت تیکت : </b>{{model.Status}}</p>
     </div>
     <div class="col">
-      <p><b>نوع تیکت : </b>{{model.type}}</p>
+      <p><b>نوع تیکت : </b>{{model.Type}}</p>
     </div>
     <div class="col">
-      <p><b>اولویت تیکت : </b>{{model.priority}}</p>
+      <p><b>اولویت تیکت : </b>{{model.Priority}}</p>
     </div>
     <div class="col">
-      <p><b>مسئول تیکت : </b>{{model.assigned}}</p>
-    </div>
-    <div class="col">
-      <p><b>پروژه : </b>{{model.project}}</p>
+      <p><b>سیستم : </b>{{model.Project}}</p>
     </div>
   </div>
   <h5 class="text-center p-2">مکالمات تیکت: </h5>
@@ -31,14 +28,14 @@
     <mat-card class="persian response-card m-1" *ngFor="let item of model.responses">
       <mat-card-header>
         <div mat-card-avatar class="response-header-image"></div>
-        <mat-card-title>{{item.createBy}}</mat-card-title>
+        <mat-card-title>{{item.CreateBy}}</mat-card-title>
       </mat-card-header>
       <mat-card-content>
         <p class="text-justify">
-          {{item.note}}
+          {{item.Note}}
         </p>
         <p  class="text-left">
-          {{item.responseShDate}}
+          {{item.ResponseShDate}}
         </p>
       </mat-card-content>
     </mat-card>

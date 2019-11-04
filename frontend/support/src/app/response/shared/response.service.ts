@@ -31,7 +31,7 @@ export class ResponseService {
   }
 
   getRequestResponseList(requestId: number) {
-    return this.restService.customAction(this.resourceName + '/' + "GetRequestResponseList", requestId);
+    return this.restService.customAction('ResponseList', requestId);
   }
 
   public delete(id: number): any {
